@@ -37,30 +37,19 @@ def login():
 
     return render_template("login.html")
 
+
+@app.route("/board")
+def board():
+    return render_template("board.html")
+
+
 # ✅ 로그아웃 라우팅 (선택)
 @app.route("/logout")
 def logout():
     session.pop("user_id", None)
     flash("로그아웃되었습니다.", "info")
     return redirect(url_for("home"))
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
 
-        if User.query.filter_by(username=username).first():
-            flash("이미 존재하는 사용자입니다.", "warning")
-            return redirect(url_for("register"))
-
-        new_user = User(username=username)
-        new_user.set_password(password)
-        db.session.add(new_user)
-        db.session.commit()
-        flash("회원가입 성공! 로그인해주세요.", "success")
-        return redirect(url_for("login"))
-
-    return render_template("register.html")
 # ✅ 실행
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
