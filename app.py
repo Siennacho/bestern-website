@@ -15,6 +15,11 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+    
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
 # ✅ 5. 라우팅
 @app.route("/")
 def home():
