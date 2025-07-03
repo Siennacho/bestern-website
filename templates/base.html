@@ -3,16 +3,20 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- 추가! -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bestern</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 
-<body>
+<body class="scroll-smooth">
 <header class="bg-black bg-opacity-60 backdrop-blur-md sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-    
     <!-- 로고 -->
     <a href="/" class="text-xl font-bold text-white hover:text-gray-200 transition">
       Bestern
@@ -20,13 +24,12 @@
 
     <!-- 메뉴 + 햄버거 영역 -->
     <div class="flex items-center space-x-4">
-
       <!-- 데스크탑 메뉴 (모바일에선 안보임) -->
       <nav class="hidden md:flex space-x-6 text-white text-sm md:text-base">
         <a href="/" class="hover:text-gray-200 transition">홈</a>
-        <a href="/about" class="hover:text-gray-200 transition">회사소개</a>
-        <a href="/services" class="hover:text-gray-200 transition">서비스</a>
-        <a href="/contact" class="hover:text-gray-200 transition">연락처</a>
+        <a href="/#about" class="hover:text-gray-200 transition">회사소개</a>
+        <a href="/#services" class="hover:text-gray-200 transition">서비스</a>
+        <a href="/#contact" class="hover:text-gray-200 transition">연락처</a>
         <a href="/board" class="hover:text-gray-200 transition">게시판</a>
         <a href="/login" class="hover:text-gray-200 transition">로그인</a>
         <a href="/register" class="hover:text-gray-200 transition">회원가입</a>
@@ -39,95 +42,92 @@
                 d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
-
     </div>
   </div>
 
   <!-- 모바일 메뉴 -->
   <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2 text-white text-sm bg-black bg-opacity-60 backdrop-blur-md">
     <a href="/" class="block hover:text-gray-200 transition">홈</a>
-    <a href="/about" class="block hover:text-gray-200 transition">회사소개</a>
-    <a href="/services" class="block hover:text-gray-200 transition">서비스</a>
-    <a href="/contact" class="block hover:text-gray-200 transition">연락처</a>
+    <a href="/#about" class="block hover:text-gray-200 transition">회사소개</a>
+    <a href="/#services" class="block hover:text-gray-200 transition">서비스</a>
+    <a href="/#contact" class="block hover:text-gray-200 transition">연락처</a>
     <a href="/board" class="block hover:text-gray-200 transition">게시판</a>
     <a href="/login" class="block hover:text-gray-200 transition">로그인</a>
     <a href="/register" class="block hover:text-gray-200 transition">회원가입</a>
   </div>
 </header>
 
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+<main>
+  {% block content %}{% endblock %}
+</main>
 
-  <footer class="bg-gray-900 text-white py-10 mt-16">
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-      <div>
-        <h4 class="font-bold mb-2">회사 정보</h4>
-        <p>Bestern<br>부동산 자산관리 전문 기업</p>
-      </div>
-      <div>
-        <h4 class="font-bold mb-2">빠른 링크</h4>
-        <ul class="space-y-1">
-          <li><a href="/about" class="hover:underline">회사소개</a></li>
-          <li><a href="/services" class="hover:underline">서비스</a></li>
-          <li><a href="/contact" class="hover:underline">연락처</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold mb-2">연락처</h4>
-        <p>Email: emlee@thebestamc.com</p>
-        <p>Tel: +82 2 510 5900</p>
-      </div>
+<footer id="contact" class="bg-gray-900 text-white py-10 mt-16">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+    <div>
+      <h4 class="font-bold mb-2">회사 정보</h4>
+      <p>Bestern<br>부동산 자산관리 전문 기업</p>
     </div>
-    <div class="text-center mt-8 text-gray-400 text-sm">&copy; 2025 Bestern. All rights reserved.</div>
-  </footer>
+    <div>
+      <h4 class="font-bold mb-2">빠른 링크</h4>
+      <ul class="space-y-1">
+        <li><a href="/#about" class="hover:underline">회사소개</a></li>
+        <li><a href="/#services" class="hover:underline">서비스</a></li>
+        <li><a href="/#contact" class="hover:underline">연락처</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-bold mb-2">연락처</h4>
+      <p>Email: emlee@thebestamc.com</p>
+      <p>Tel: +82 2 510 5900</p>
+    </div>
+  </div>
+  <div class="text-center mt-8 text-gray-400 text-sm">&copy; 2025 Bestern. All rights reserved.</div>
+</footer>
 
-  <!--  스크립트는 여기! -->
-  <script>
-    const bg = document.getElementById('hero-bg');
-    document.addEventListener('mousemove', e => {
-      const y = e.clientY;
-      const offset = (y - window.innerHeight / 2) * 0.02;
-      bg.style.transform = `translateY(${offset}px)`;    });
+<!-- Script -->
+<script>
+  const bg = document.getElementById('hero-bg');
+  document.addEventListener('mousemove', e => {
+    const y = e.clientY;
+    const offset = (y - window.innerHeight / 2) * 0.02;
+    if (bg) bg.style.transform = `translateY(${offset}px)`;
+  });
 
-    function animateCountUp(targetId, endValue, duration = 2000) {
-      const el = document.getElementById(targetId);
-      let start = 0;
-      const step = Math.ceil(endValue / (duration / 16));
-      const interval = setInterval(() => {
-        start += step;
-        if (start >= endValue) {
-          start = endValue;
-          clearInterval(interval);
-        }
-        el.textContent = "₩" + start.toLocaleString();
-      }, 16);
-    }
+  function animateCountUp(targetId, endValue, duration = 2000) {
+    const el = document.getElementById(targetId);
+    let start = 0;
+    const step = Math.ceil(endValue / (duration / 16));
+    const interval = setInterval(() => {
+      start += step;
+      if (start >= endValue) {
+        start = endValue;
+        clearInterval(interval);
+      }
+      el.textContent = "₩" + start.toLocaleString();
+    }, 16);
+  }
 
-  // IntersectionObserver로 asset-count가 보일 때만 실행
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        animateCountUp('asset-count', 3000000000000); // 3조
-        observer.unobserve(entry.target); // 한 번만 실행
+        animateCountUp('asset-count', 3000000000000);
+        observer.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.5 // 50% 이상 보이면 실행
+    threshold: 0.5
   });
 
   const assetSection = document.getElementById('asset-count');
-  observer.observe(assetSection);
-  </script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-<script>
+  if (assetSection) observer.observe(assetSection);
+
   function toggleMenu() {
     const menu = document.getElementById('mobile-menu');
     menu.classList.toggle('hidden');
   }
 </script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init();</script>
+
 </body>
 </html>
