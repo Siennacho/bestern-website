@@ -1,8 +1,33 @@
-
 {% extends "base.html" %}
 {% block content %}
 <section class="py-20 px-6 bg-white text-center">
   <h2 class="text-3xl font-bold mb-6">게시판</h2>
-  <p>여기에 게시글이 표시될 예정입니다.</p>
+
+  <div class="max-w-4xl mx-auto text-left">
+
+    <!-- 안내 메시지 -->
+    {% if user and user.is_admin %}
+      <p class="mb-4 text-green-600">✔️ 관리자 승인된 계정입니다. 글쓰기 가능!</p>
+      <a href="/post" class="inline-block mb-6 bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-950">글쓰기</a>
+    {% elif user %}
+      <p class="mb-4 text-yellow-600">🔒 로그인했지만 아직 관리자 승인이 필요합니다.</p>
+    {% else %}
+      <p class="mb-4 text-red-600">🛑 로그인 후 게시판을 이용하실 수 있습니다.</p>
+    {% endif %}
+
+    <!-- 게시글 리스트 -->
+    <ul class="space-y-4 mt-6">
+      {% for post in posts %}
+        <li class="border-b pb-4">
+          <h3 class="text-xl font-semibold">{{ post.title }}</h3>
+          <p class="text-sm text-gray-600">{{ post.author }} | {{ post.date }}</p>
+          <p class="mt-2 text-gray-700">{{ post.content }}</p>
+        </li>
+      {% else %}
+        <li class="text-gray-500">게시물이 없습니다.</li>
+      {% endfor %}
+    </ul>
+
+  </div>
 </section>
 {% endblock %}

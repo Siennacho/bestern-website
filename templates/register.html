@@ -1,16 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="py-20 px-6 text-center">
+  <h2 class="text-3xl font-bold mb-8">회원가입</h2>
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>회원가입</title>
-</head>
-<body>
-  <h2>회원가입</h2>
-  <form method="POST">
-    <label>아이디: <input type="text" name="username" required></label><br>
-    <label>비밀번호: <input type="password" name="password" required></label><br>
-    <button type="submit">회원가입</button>
+  <form method="POST" class="max-w-sm mx-auto text-left">
+    <label>아이디<br><input type="text" name="username" required class="w-full mb-4 border px-3 py-2"></label>
+    <label>비밀번호<br><input type="password" name="password" required class="w-full mb-4 border px-3 py-2"></label>
+    <button type="submit" class="w-full bg-blue-800 text-white py-2 rounded">회원가입</button>
   </form>
-</body>
-</html>
+</section>
+{% endblock %}

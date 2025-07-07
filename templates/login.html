@@ -1,29 +1,24 @@
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>로그인</title>
-</head>
-<body>
-  <h2>로그인</h2>
+{% extends "base.html" %}
+{% block content %}
+<section class="py-20 px-6 text-center">
+  <h2 class="text-3xl font-bold mb-8">로그인</h2>
 
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-      <ul>
+      <ul class="mb-4 text-sm">
         {% for category, message in messages %}
-          <li><strong>{{ category }}:</strong> {{ message }}</li>
+          <li class="text-{{ 'red' if category == 'danger' else 'green' }}-600">{{ message }}</li>
         {% endfor %}
       </ul>
     {% endif %}
   {% endwith %}
 
-  <form method="POST">
-    <label>아이디: <input type="text" name="username" required></label><br>
-    <label>비밀번호: <input type="password" name="password" required></label><br>
-    <button type="submit">로그인</button>
+  <form method="POST" class="max-w-sm mx-auto text-left">
+    <label>아이디<br><input type="text" name="username" required class="w-full mb-4 border px-3 py-2"></label>
+    <label>비밀번호<br><input type="password" name="password" required class="w-full mb-4 border px-3 py-2"></label>
+    <button type="submit" class="w-full bg-blue-800 text-white py-2 rounded">로그인</button>
   </form>
 
-  <p>아직 계정이 없다면? <a href="{{ url_for('register') }}">회원가입</a></p>
-</body>
-</html>
+  <p class="mt-4 text-sm">아직 계정이 없다면? <a href="{{ url_for('register') }}" class="underline text-blue-800">회원가입</a></p>
+</section>
+{% endblock %}
