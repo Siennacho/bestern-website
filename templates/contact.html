@@ -1,37 +1,26 @@
+
 {% extends "base.html" %}
 {% block content %}
 <section class="py-20 px-6 bg-white text-center">
   <h2 class="text-3xl font-bold mb-12">문의하기</h2>
-
   <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-    <!-- 연락 박스 -->
     <div class="bg-gray-100 p-6 rounded-lg shadow">
       <h3 class="text-2xl font-bold mb-4 text-blue-800">연락</h3>
       <p class="mb-2"><strong>이메일:</strong> emlee@thebestamc.com</p>
       <p class="mb-2"><strong>전화:</strong> +82 2 510 5900</p>
       <p><strong>팩스:</strong> +82 2 510 5901</p>
     </div>
-
-    <!-- 주소 박스 -->
     <div class="bg-gray-100 p-6 rounded-lg shadow">
       <h3 class="text-2xl font-bold mb-4 text-blue-800">주소</h3>
       <p class="mb-2">서울특별시 강남구 봉은사로 326, 6층 (역삼동, 남전빌딩)</p>
       <p>6F, 326, Bongeunsa-ro, Gangnam-gu, Seoul, Republic of Korea</p>
     </div>
   </div>
-
-    <!-- 지도 -->
-    <div class="max-w-4xl mx-auto mt-16">
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.228760379827!2d127.03011447647324!3d37.51078992842632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca1535b772cfb%3A0x23e400faadf552cc!2z7ISc7Jq47Yq567OE7IucIOyEnOuMgOq1rCDqs6HqtawgMzI26ri4IDYg6ri4!5e0!3m2!1sko!2skr!4v1719211080114!5m2!1sko!2skr"
-        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-    </div>
-
-  <!-- CTA 버튼 -->
+  <div class="max-w-4xl mx-auto mt-16">
+    <iframe src="https://www.google.com/maps/embed?..." width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
+  </div>
   <div class="mt-12">
-    <a href="mailto:emlee@thebestamc.com"
-       class="inline-block bg-blue-800 text-white font-semibold px-6 py-3 rounded hover:bg-blue-900 transition">
+    <a href="mailto:emlee@thebestamc.com" class="inline-block bg-blue-900 text-white font-semibold px-6 py-3 rounded hover:bg-blue-950 transition">
       이메일로 문의하기
     </a>
   </div>
