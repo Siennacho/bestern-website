@@ -110,7 +110,7 @@
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        animateCountUp('asset-count', 3000000000000);
+        animateCountUp('asset-count', 1400000000000);
         observer.unobserve(entry.target);
       }
     });
