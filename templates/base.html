@@ -4,16 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bestern</title>
+
+  <!-- Tailwind CSS & AOS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+
+  <!-- SEO & OG -->
+  <meta name="description" content="Bestern - 부동산 자산관리 전문 기업입니다.">
+  <meta property="og:title" content="Bestern">
+  <meta property="og:description" content="부동산 자산관리 전문 기업, Bestern입니다.">
+  <meta property="og:image" content="/static/og-image.png">
+
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans KR', sans-serif; }
     #mobile-menu {
       transition: transform 0.3s ease-in-out;
     }
@@ -25,23 +30,26 @@
     }
   </style>
 </head>
-<body class="scroll-smooth">
 
+<body class="scroll-smooth">
 <header class="bg-black bg-opacity-60 backdrop-blur-md sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-
     <!-- 로고 -->
     <a href="/" class="text-xl font-bold text-white hover:text-gray-200 transition">Bestern</a>
 
-    <!-- 우측: 로그인/회원가입 + 햄버거 -->
+    <!-- 로그인/회원가입 or 로그아웃 -->
     <div class="flex items-center space-x-4">
-      <nav class="flex space-x-4 text-white text-sm md:text-base">
-        <a href="/login" class="hover:text-gray-200">로그인</a>
-        <a href="/register" class="hover:text-gray-200">회원가입</a>
+      <nav class="hidden md:flex space-x-4 text-white text-sm md:text-base">
+        {% if session.user_id %}
+          <a href="/logout" class="hover:text-gray-200">로그아웃</a>
+        {% else %}
+          <a href="/login" class="hover:text-gray-200">로그인</a>
+          <a href="/register" class="hover:text-gray-200">회원가입</a>
+        {% endif %}
       </nav>
 
-      <!-- 햄버거 버튼 (모바일 + 데스크탑 공통) -->
-      <button onclick="toggleMenu()" class="block focus:outline-none">
+      <!-- 햄버거 버튼 -->
+      <button onclick="toggleMenu()" class="focus:outline-none" aria-label="메뉴 열기">
         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16" />
@@ -50,11 +58,11 @@
     </div>
   </div>
 
-  <!-- 슬라이딩 햄버거 메뉴 -->
-  <div id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-black bg-opacity-90 backdrop-blur-md text-white text-sm px-6 pt-6 hidden z-50">
+  <!-- 사이드 메뉴 (PC/모바일 공통) -->
+  <div id="mobile-menu" class="fixed top-0 right-0 w-64 max-w-[90%] h-full bg-black bg-opacity-90 backdrop-blur-md text-white text-sm px-6 pt-6 hidden z-50">
     <div class="flex justify-between items-center mb-6">
       <span class="text-lg font-semibold">메뉴</span>
-      <button onclick="toggleMenu()" class="text-white">
+      <button onclick="toggleMenu()" class="text-white" aria-label="메뉴 닫기">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M6 18L18 6M6 6l12 12" />
@@ -95,25 +103,30 @@
   <div class="text-center mt-8 text-gray-400 text-sm">&copy; 2025 Bestern. All rights reserved.</div>
 </footer>
 
-<!-- 햄버거 토글 -->
+<!-- 메뉴 토글 및 외부 클릭 감지 -->
 <script>
   function toggleMenu() {
     const menu = document.getElementById("mobile-menu");
-    if (menu.classList.contains("hidden")) {
-      menu.classList.remove("hidden");
-      menu.classList.add("visible");
-    } else {
+    menu.classList.toggle("hidden");
+    menu.classList.toggle("visible");
+  }
+
+  // 외부 클릭 시 닫기
+  document.addEventListener("click", function (event) {
+    const menu = document.getElementById("mobile-menu");
+    const button = event.target.closest("button");
+    if (!menu.contains(event.target) && !button && menu.classList.contains("visible")) {
       menu.classList.remove("visible");
       menu.classList.add("hidden");
     }
-  }
+  });
 </script>
 
-<!-- AOS 애니메이션 -->
+<!-- AOS 초기화 -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>AOS.init();</script>
 
-<!-- 운용자산 카운트 애니메이션 -->
+<!-- 운용자산 숫자 카운팅 -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     function animateCountUp(targetId, endValue, duration = 2000) {
@@ -131,7 +144,7 @@
       }, 16);
     }
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           animateCountUp('asset-count', 1400000000000);
