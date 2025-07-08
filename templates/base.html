@@ -54,13 +54,59 @@
     </div>
   </header>
 
-  <main class="pt-20 min-h-screen">
+  <main class="min-h-screen">
     {% block content %}{% endblock %}
   </main>
 
-  <!-- 푸터 추가 -->
-  <footer class="bg-black text-white text-center py-6">
-    <p class="text-sm">&copy; 2025 Bestern Asset Management. All rights reserved.</p>
+  <!-- 푸터 -->
+  <footer class="bg-gray-900 text-white py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+
+      <!-- 1. 회사 정보 -->
+      <div>
+        <h4 class="font-bold mb-3">회사 정보</h4>
+        <p>㈜Bestern 자산관리</p>
+        <p>대표자: - </p>
+        <p>사업자등록번호: - </p>
+        <p>서울특별시 강남구 봉은사로 326, 6층</p>
+      </div>
+
+      <!-- 2. 빠른 링크 -->
+      <div>
+        <h4 class="font-bold mb-3">빠른 링크</h4>
+        <ul class="space-y-1">
+          <li><a href="/" class="hover:underline">홈</a></li>
+          <li><a href="/about" class="hover:underline">회사 소개</a></li>
+          <li><a href="/#asset-management-section" class="hover:underline">자산관리</a></li>
+          <li><a href="/#asset-operation-section" class="hover:underline">자산운용</a></li>
+          <li><a href="/board" class="hover:underline">공지사항</a></li>
+          <li><a href="/contact" class="hover:underline">연락처</a></li>
+        </ul>
+      </div>
+
+      <!-- 3. 연락처 -->
+      <div>
+        <h4 class="font-bold mb-3">연락처</h4>
+        <p>Email: emlee@thebestamc.com</p>
+        <p>Tel: 02-510-5900</p>
+        <p>운영시간: 평일 09:00 ~ 18:00</p>
+      </div>
+
+      <!-- 4. 관련 사이트 -->
+      <div>
+        <h4 class="font-bold mb-3">관련 사이트</h4>
+        <ul class="space-y-1">
+          <li><a href="https://www.fss.or.kr" target="_blank" class="hover:underline">금융감독원</a></li>
+          <li><a href="https://www.kofia.or.kr" target="_blank" class="hover:underline">자본시장협회</a></li>
+          <li><a href="https://www.nts.go.kr" target="_blank" class="hover:underline">국세청</a></li>
+          <li><a href="https://www.bok.or.kr" target="_blank" class="hover:underline">한국은행</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center mt-10 text-gray-400 text-xs">
+      &copy; 2025 Bestern. All rights reserved. | <a href="#" class="underline">개인정보처리방침</a> | <a href="#" class="underline">이용약관</a>
+    </div>
   </footer>
 
   <!-- 햄버거 메뉴 스크립트 -->
