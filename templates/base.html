@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>{% block title %}Bestern{% endblock %}</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
@@ -28,7 +28,7 @@
       </nav>
 
       <!-- 모바일 햄버거 -->
-      <button onclick="toggleMenu()" class="md:hidden text-white" aria-label="메뉴 열기">
+      <button id="menuToggleBtn" class="md:hidden text-white" aria-label="메뉴 열기">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -36,10 +36,10 @@
     </div>
 
     <!-- 모바일 메뉴 -->
-    <div id="mobile-menu" class="fixed top-0 right-0 w-64 max-w-[90%] h-full bg-[rgba(0,0,0,0.9)] backdrop-blur-md text-white text-sm px-6 pt-6 z-50 shadow-lg transition-transform duration-300 transform translate-x-full overflow-y-auto">
-      <div class="flex justify-between items-center mb-6">
+    <div id="mobile-menu" class="fixed top-0 right-0 w-64 max-w-[90%] h-full bg-[rgba(0,0,0,0.9)] backdrop-blur-md text-white text-sm px-6 pt-16 z-50 shadow-lg transition-transform duration-300 transform translate-x-full overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
         <span class="text-lg font-semibold">메뉴</span>
-        <button onclick="toggleMenu()" class="text-white" aria-label="메뉴 닫기">
+        <button id="menuCloseBtn" class="text-white" aria-label="메뉴 닫기">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -49,8 +49,8 @@
 
       <!-- 회사소개 드롭다운 -->
       <div class="mb-2">
-        <button onclick="toggleMobileSubmenu()" class="w-full text-left py-2 hover:text-gray-300">회사 소개 ▼</button>
-        <div id="mobile-submenu" class="ml-4 hidden">
+        <button id="submenuToggleBtn" class="w-full text-left py-2 hover:text-gray-300">회사 소개 ▼</button>
+        <div id="mobile-submenu" class="ml-4 hidden transition-all duration-300">
           <a href="/company#greeting" class="block py-1 hover:text-gray-300">- 인사말</a>
           <a href="/company#intro" class="block py-1 hover:text-gray-300">- 회사소개</a>
           <a href="/company#members" class="block py-1 hover:text-gray-300">- 주요 임직원 소개</a>
@@ -65,46 +65,84 @@
     </div>
   </header>
 
-  <main class="min-h-screen pt-20">
+  <!-- Main Content -->
+  <main class="pt-[64px] min-h-screen">
     {% block content %}{% endblock %}
   </main>
 
-  <!-- 햄버거 메뉴 스크립트 -->
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+      <div>
+        <h4 class="font-bold mb-3">회사 정보</h4>
+        <p>㈜Bestern 자산관리</p>
+        <p>대표자: - </p>
+        <p>사업자등록번호: - </p>
+        <p>서울특별시 강남구 봉은사로 326, 6층</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">빠른 링크</h4>
+        <ul class="space-y-1">
+          <li><a href="/" class="hover:underline">홈</a></li>
+          <li><a href="/company" class="hover:underline">회사 소개</a></li>
+          <li><a href="/#asset-management-section" class="hover:underline">자산관리</a></li>
+          <li><a href="/#asset-operation-section" class="hover:underline">자산운용</a></li>
+          <li><a href="/notice" class="hover:underline">공지사항</a></li>
+          <li><a href="/#contact" class="hover:underline">연락처</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">연락처</h4>
+        <p>Email: emlee@thebestamc.com</p>
+        <p>Tel: 02-510-5900</p>
+        <p>운영시간: 평일 09:00 ~ 18:00</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">관련 사이트</h4>
+        <ul class="space-y-1">
+          <li><a href="https://www.fss.or.kr" target="_blank" class="hover:underline">금융감독원</a></li>
+          <li><a href="https://www.kofia.or.kr" target="_blank" class="hover:underline">자본시장협회</a></li>
+          <li><a href="https://www.nts.go.kr" target="_blank" class="hover:underline">국세청</a></li>
+          <li><a href="https://www.bok.or.kr" target="_blank" class="hover:underline">한국은행</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center mt-10 text-gray-400 text-xs">
+      &copy; 2025 Bestern. All rights reserved. | <a href="#" class="underline">개인정보처리방침</a> | <a href="#" class="underline">이용약관</a>
+    </div>
+  </footer>
+
+  <!-- Script -->
   <script>
-    function toggleMenu() {
+    document.addEventListener("DOMContentLoaded", function () {
       const menu = document.getElementById("mobile-menu");
-      const isOpen = menu.classList.contains("translate-x-0");
-      menu.classList.toggle("translate-x-full");
-      menu.classList.toggle("translate-x-0");
-      document.body.classList.toggle("overflow-hidden", !isOpen);
-    }
-
-    function toggleMobileSubmenu() {
       const submenu = document.getElementById("mobile-submenu");
-      submenu.classList.toggle("hidden");
-    }
 
-    document.addEventListener("click", function (event) {
-      const menu = document.getElementById("mobile-menu");
-      const buttonClicked = event.target.closest("button[onclick='toggleMenu()']");
-      const isInsideMenu = menu.contains(event.target);
+      document.getElementById("menuToggleBtn").addEventListener("click", () => {
+        menu.classList.toggle("translate-x-full");
+        menu.classList.toggle("translate-x-0");
+        document.body.classList.toggle("overflow-hidden");
+      });
 
-      if (!isInsideMenu && !buttonClicked && menu.classList.contains("translate-x-0")) {
-        menu.classList.add("translate-x-full");
-        menu.classList.remove("translate-x-0");
-        document.body.classList.remove("overflow-hidden");
-      }
-    });
-
-    document.querySelectorAll("#mobile-menu a").forEach(link => {
-      link.addEventListener("click", () => {
-        const menu = document.getElementById("mobile-menu");
+      document.getElementById("menuCloseBtn").addEventListener("click", () => {
         menu.classList.add("translate-x-full");
         menu.classList.remove("translate-x-0");
         document.body.classList.remove("overflow-hidden");
       });
+
+      document.getElementById("submenuToggleBtn").addEventListener("click", () => {
+        submenu.classList.toggle("hidden");
+      });
+
+      document.querySelectorAll("#mobile-menu a").forEach(link => {
+        link.addEventListener("click", () => {
+          menu.classList.add("translate-x-full");
+          menu.classList.remove("translate-x-0");
+          document.body.classList.remove("overflow-hidden");
+        });
+      });
     });
   </script>
-
 </body>
 </html>
