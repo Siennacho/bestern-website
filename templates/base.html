@@ -20,11 +20,42 @@
       <!-- PC 메뉴 -->
       <nav class="hidden md:flex space-x-6 text-sm md:text-base items-center">
         <a href="/" class="hover:text-blue-500">Home</a>
-        <a href="/company" class="hover:text-blue-500">회사소개</a>
-        <a href="/#asset-management-section" class="hover:text-blue-500">자산관리</a>
-        <a href="/#asset-operation-section" class="hover:text-blue-500">자산운용</a>
+
+        <!-- 회사소개 -->
+        <div class="group relative">
+          <a href="/company" class="hover:text-blue-500">회사소개</a>
+          <div class="absolute hidden group-hover:block bg-white shadow rounded mt-1 py-2 text-sm">
+            <a href="/company/greeting" class="block px-4 py-2 hover:bg-gray-100">인사말</a>
+            <a href="/company/overview" class="block px-4 py-2 hover:bg-gray-100">개요</a>
+            <a href="/company/orgchart" class="block px-4 py-2 hover:bg-gray-100">조직도</a>
+          </div>
+        </div>
+
+        <!-- 자산관리 -->
+        <div class="group relative">
+          <a href="/management" class="hover:text-blue-500">자산관리</a>
+          <div class="absolute hidden group-hover:block bg-white shadow rounded mt-1 py-2 text-sm">
+            <a href="/management/overview" class="block px-4 py-2 hover:bg-gray-100">개요</a>
+            <a href="/management/orgchart" class="block px-4 py-2 hover:bg-gray-100">조직도</a>
+            <a href="/management/secured" class="block px-4 py-2 hover:bg-gray-100">담보부NPL</a>
+            <a href="/management/unsecured" class="block px-4 py-2 hover:bg-gray-100">무담보부NPL</a>
+            <a href="/management/performance" class="block px-4 py-2 hover:bg-gray-100">관리실적</a>
+            <a href="/management/resources" class="block px-4 py-2 hover:bg-gray-100">자료실</a>
+          </div>
+        </div>
+
+        <!-- 자산운용 -->
+        <div class="group relative">
+          <a href="/operation" class="hover:text-blue-500">자산운용</a>
+          <div class="absolute hidden group-hover:block bg-white shadow rounded mt-1 py-2 text-sm">
+            <a href="/operation/orgchart" class="block px-4 py-2 hover:bg-gray-100">조직도</a>
+            <a href="/operation/philosophy" class="block px-4 py-2 hover:bg-gray-100">철학</a>
+            <a href="/operation/returns" class="block px-4 py-2 hover:bg-gray-100">수익률</a>
+          </div>
+        </div>
+
         <a href="/notice" class="hover:text-blue-500">공지사항</a>
-        <a href="/contact" class="hover:text-blue-500">Contact</a>
+        <a href="/contact" class="hover:text-blue-500">연락처</a>
         <span class="ml-4 text-sm font-medium border px-2 py-1 rounded cursor-pointer hover:bg-gray-200">KO | EN</span>
       </nav>
 
@@ -35,76 +66,11 @@
         </svg>
       </button>
     </div>
-
-    <!-- 모바일 메뉴 -->
-    <div id="mobile-menu" class="fixed top-0 right-0 w-64 max-w-[90%] h-full bg-white text-black text-sm px-6 pt-16 z-50 shadow-lg transition-transform duration-300 transform translate-x-full overflow-y-auto">
-      <div class="flex justify-between items-center mb-4">
-        <span class="text-lg font-semibold">메뉴</span>
-        <button id="menuCloseBtn" class="text-black" aria-label="메뉴 닫기">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <a href="/" class="block py-2 hover:text-blue-500">Home</a>
-
-      <!-- 회사소개 드롭다운 -->
-      <div class="mb-2">
-        <button id="submenuToggleBtn" class="w-full text-left py-2 hover:text-blue-500">회사 소개 ▼</button>
-        <div id="mobile-submenu" class="ml-4 hidden transition-all duration-300">
-          <a href="/company#greeting" class="block py-1 hover:text-blue-500">- 인사말</a>
-          <a href="/company#intro" class="block py-1 hover:text-blue-500">- 회사소개</a>
-          <a href="/company#members" class="block py-1 hover:text-blue-500">- 주요 임직원 소개</a>
-          <a href="/company#orgchart" class="block py-1 hover:text-blue-500">- 조직도</a>
-        </div>
-      </div>
-
-      <a href="/#asset-management-section" class="block py-2 hover:text-blue-500">자산관리</a>
-      <a href="/#asset-operation-section" class="block py-2 hover:text-blue-500">자산운용</a>
-      <a href="/notice" class="block py-2 hover:text-blue-500">공지사항</a>
-      <a href="/contact" class="block py-2 hover:text-blue-500">Contact</a>
-      <div class="border mt-4 text-center py-2 rounded hover:bg-gray-200 cursor-pointer">KO | EN</div>
-    </div>
   </header>
 
-  <!-- Main Content -->
   <main class="min-h-screen pt-20">
     {% block content %}{% endblock %}
   </main>
 
-  <!-- Footer (이전 그대로 유지) -->
-  {% include 'footer.html' %}
-
-  <!-- Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const menu = document.getElementById("mobile-menu");
-      const submenu = document.getElementById("mobile-submenu");
-
-      document.getElementById("menuToggleBtn").addEventListener("click", () => {
-        menu.classList.toggle("translate-x-full");
-        menu.classList.toggle("translate-x-0");
-        document.body.classList.toggle("overflow-hidden");
-      });
-
-      document.getElementById("menuCloseBtn").addEventListener("click", () => {
-        menu.classList.add("translate-x-full");
-        menu.classList.remove("translate-x-0");
-        document.body.classList.remove("overflow-hidden");
-      });
-
-      document.getElementById("submenuToggleBtn").addEventListener("click", () => {
-        submenu.classList.toggle("hidden");
-      });
-
-      document.querySelectorAll("#mobile-menu a").forEach(link => {
-        link.addEventListener("click", () => {
-          menu.classList.add("translate-x-full");
-          menu.classList.remove("translate-x-0");
-          document.body.classList.remove("overflow-hidden");
-        });
-      });
-    });
-  </script>
 </body>
 </html>

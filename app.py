@@ -1,83 +1,78 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
-from models import db, User
+from flask import Flask, render_template
 
 app = Flask(__name__)
-app.secret_key = "your-secret-key"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
-
-with app.app_context():
-    db.create_all()
-
 
 @app.route("/")
 def home():
     return render_template("home.html")
 
-@app.route("/about")
-def about():
-    return render_template("about.html")
+@app.route("/company")
+def company():
+    return render_template("company.html")
+
+@app.route("/company/greeting")
+def company_greeting():
+    return render_template("company/greeting.html")
+
+@app.route("/company/overview")
+def company_overview():
+    return render_template("company/overview.html")
+
+@app.route("/company/orgchart")
+def company_orgchart():
+    return render_template("company/orgchart.html")
+
+@app.route("/management")
+def management():
+    return render_template("management.html")
+
+@app.route("/management/overview")
+def management_overview():
+    return render_template("management/overview.html")
+
+@app.route("/management/orgchart")
+def management_orgchart():
+    return render_template("management/orgchart.html")
+
+@app.route("/management/secured")
+def management_secured():
+    return render_template("management/secured.html")
+
+@app.route("/management/unsecured")
+def management_unsecured():
+    return render_template("management/unsecured.html")
+
+@app.route("/management/performance")
+def management_performance():
+    return render_template("management/performance.html")
+
+@app.route("/management/resources")
+def management_resources():
+    return render_template("management/resources.html")
+
+@app.route("/operation")
+def operation():
+    return render_template("operation.html")
+
+@app.route("/operation/orgchart")
+def operation_orgchart():
+    return render_template("operation/orgchart.html")
+
+@app.route("/operation/philosophy")
+def operation_philosophy():
+    return render_template("operation/philosophy.html")
+
+@app.route("/operation/returns")
+def operation_returns():
+    return render_template("operation/returns.html")
+
+@app.route("/notice")
+def notice():
+    return render_template("notice.html")
 
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
-
-@app.route("/board")
-def board():
-    user = None
-    if "user_id" in session:
-        user = User.query.get(session["user_id"])
-    
-    posts = [
-        {"title": "예시 게시글 1", "author": "관리자", "date": "2025-07-01", "content": "이건 테스트용 게시글입니다."},
-        {"title": "예시 게시글 2", "author": "회원", "date": "2025-07-02", "content": "안녕하세요."}
-    ]
-
-    return render_template("board.html", user=user, posts=posts)
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-
-        user = User.query.filter_by(username=username).first()
-        if user and user.check_password(password):
-            session["user_id"] = user.id
-            flash("로그인 성공!", "success")
-            return redirect(url_for("home"))
-        else:
-            flash("아이디 또는 비밀번호가 틀렸습니다.", "danger")
-
-    return render_template("login.html")
-
-@app.route("/logout")
-def logout():
-    session.pop("user_id", None)
-    flash("로그아웃되었습니다.", "info")
-    return redirect(url_for("home"))
-
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-
-        if User.query.filter_by(username=username).first():
-            flash("이미 존재하는 아이디입니다.", "warning")
-            return redirect(url_for("register"))
-
-        user = User(username=username)
-        user.set_password(password)
-        db.session.add(user)
-        db.session.commit()
-        flash("회원가입 완료! 로그인 후 승인될 때까지 기다려주세요.", "success")
-        return redirect(url_for("login"))
-
-    return render_template("register.html")
-
-# 필요 시 글쓰기 라우트 추가 가능
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
