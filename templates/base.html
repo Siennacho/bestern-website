@@ -12,16 +12,16 @@
 </head>
 <body class="text-gray-800">
 
-  <!-- Header -->
+    <!-- Header -->
   <header class="fixed top-0 w-full z-50 bg-white bg-opacity-80 text-black backdrop-blur-md shadow-sm">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="text-xl font-bold">Bestern</div>
+      
+      <!-- 로고를 누르면 홈으로 이동 -->
+      <a href="/" class="text-xl font-bold">Bestern</a>
 
       <!-- PC 메뉴 -->
       <nav class="hidden md:flex space-x-6 text-sm md:text-base items-center">
-        <a href="/" class="hover:text-blue-500">Home</a>
-
-        <!-- 회사소개 -->
+        <!-- Home 제거됨 -->
         <div class="group relative">
           <a href="/company" class="hover:text-blue-500">회사소개</a>
           <div class="absolute hidden group-hover:block bg-white shadow rounded mt-1 py-2 text-sm">
@@ -31,7 +31,6 @@
           </div>
         </div>
 
-        <!-- 자산관리 -->
         <div class="group relative">
           <a href="/management" class="hover:text-blue-500">자산관리</a>
           <div class="absolute hidden group-hover:block bg-white shadow rounded mt-1 py-2 text-sm">
@@ -44,7 +43,6 @@
           </div>
         </div>
 
-        <!-- 자산운용 -->
         <div class="group relative">
           <a href="/operation" class="hover:text-blue-500">자산운용</a>
           <div class="absolute hidden group-hover:block bg-white shadow rounded mt-1 py-2 text-sm">
@@ -67,10 +65,72 @@
       </button>
     </div>
   </header>
+<!-- 모바일 메뉴 -->
+<div id="mobile-menu" class="fixed top-0 right-0 w-64 max-w-[90%] h-full bg-white text-black text-sm px-6 pt-16 z-50 shadow-lg transition-transform duration-300 transform translate-x-full overflow-y-auto">
+  <div class="flex justify-between items-center mb-4">
+    <span class="text-lg font-semibold">메뉴</span>
+    <button id="menuCloseBtn" class="text-black" aria-label="메뉴 닫기">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
 
-  <main class="min-h-screen pt-20">
+    <!-- 메뉴 항목들 -->
+    <a href="/company/greeting" class="block py-2 hover:text-blue-500">인사말</a>
+    <a href="/company/overview" class="block py-2 hover:text-blue-500">회사 개요</a>
+    <a href="/company/orgchart" class="block py-2 hover:text-blue-500">조직도</a>
+
+    <hr class="my-2" />
+
+    <a href="/management/overview" class="block py-2 hover:text-blue-500">자산관리 개요</a>
+    <a href="/management/orgchart" class="block py-2 hover:text-blue-500">자산관리 조직도</a>
+    <a href="/management/secured" class="block py-2 hover:text-blue-500">담보부 NPL</a>
+    <a href="/management/unsecured" class="block py-2 hover:text-blue-500">무담보부 NPL</a>
+    <a href="/management/performance" class="block py-2 hover:text-blue-500">관리실적</a>
+    <a href="/management/resources" class="block py-2 hover:text-blue-500">자료실</a>
+
+    <hr class="my-2" />
+
+    <a href="/operation/orgchart" class="block py-2 hover:text-blue-500">자산운용 조직도</a>
+    <a href="/operation/philosophy" class="block py-2 hover:text-blue-500">운용 철학</a>
+    <a href="/operation/returns" class="block py-2 hover:text-blue-500">수익률</a>
+
+    <hr class="my-2" />
+    <a href="/notice" class="block py-2 hover:text-blue-500">공지사항</a>
+    <a href="/contact" class="block py-2 hover:text-blue-500">연락처</a>
+    <div class="border mt-4 text-center py-2 rounded hover:bg-gray-200 cursor-pointer">KO | EN</div>
+  </div>
+
+
+  <main class="min-h-screen">
     {% block content %}{% endblock %}
   </main>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const menu = document.getElementById("mobile-menu");
 
+    document.getElementById("menuToggleBtn").addEventListener("click", () => {
+      menu.classList.remove("translate-x-full");
+      menu.classList.add("translate-x-0");
+      document.body.classList.add("overflow-hidden");
+    });
+
+    document.getElementById("menuCloseBtn").addEventListener("click", () => {
+      menu.classList.add("translate-x-full");
+      menu.classList.remove("translate-x-0");
+      document.body.classList.remove("overflow-hidden");
+    });
+
+    // 메뉴 링크 누르면 닫기
+    document.querySelectorAll("#mobile-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        menu.classList.add("translate-x-full");
+        menu.classList.remove("translate-x-0");
+        document.body.classList.remove("overflow-hidden");
+      });
+    });
+  });
+</script>
 </body>
 </html>
