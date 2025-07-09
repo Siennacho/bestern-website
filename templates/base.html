@@ -39,19 +39,19 @@
         style="background-color: rgba(152, 107, 63, 0.5);">
       <div class="w-full px-6 py-1 flex justify-between items-center max-w-7xl mx-auto" style="height: 64px;">
         <!-- 로고 -->
-        <a href="/" class="relative -translate-y-1">
-         <img src="{{ url_for('static', filename='img/logo.png') }}"
+        <a href="/">
+          <img src="{{ url_for('static', filename='img/logo.png') }}"
                alt="Bestern 로고"
-               class="h-20 md:h-24 object-contain"
-               style="max-height: 80px;" />
-       </a>
+               class="h-24 md:h-28 object-contain"
+               style="max-height: 96px;" />
+        </a>
       <!-- PC 메뉴 -->
       <nav class="hidden md:flex space-x-6 text-sm md:text-base items-center">
 
                 <!-- 회사소개 -->
         <div class="group relative">
           <a href="/company" class="hover:text-[#442404]">회사소개</a>
-          <div class="absolute left-1/2 -translate-x-1/2 mt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto hover:opacity-100 hover:pointer-events-auto transition-opacity duration-200 bg-white shadow-lg rounded py-2 text-sm z-50 w-max whitespace-nowrap">
+          <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 text-sm z-50 w-max whitespace-nowrap">
             <a href="/company/greeting" class="block px-4 py-2 text-gray-800 hover:text-[#986b3f] hover:bg-gray-100">인사말</a>
             <a href="/company/overview" class="block px-4 py-2 text-gray-800 hover:text-[#986b3f] hover:bg-gray-100">개요</a>
             <a href="/company/orgchart" class="block px-4 py-2 text-gray-800 hover:text-[#986b3f] hover:bg-gray-100">조직도</a>
@@ -61,7 +61,7 @@
         <!-- 자산관리 -->
         <div class="group relative">
           <a href="/management" class="hover:text-[#442404]">자산관리</a>
-          <div class="absolute left-1/2 -translate-x-1/2 mt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto hover:opacity-100 hover:pointer-events-auto transition-opacity duration-200 bg-white shadow-lg rounded py-2 text-sm z-50 w-max whitespace-nowrap">
+          <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 text-sm z-50 w-max whitespace-nowrap">
             <a href="/management/overview" class="block px-4 py-2 text-gray-800 hover:text-[#986b3f] hover:bg-gray-100">개요</a>
             <a href="/management/orgchart" class="block px-4 py-2 text-gray-800 hover:text-[#986b3f] hover:bg-gray-100">조직도</a>
             <a href="/management/secured" class="block px-4 py-2 text-gray-800 hover:text-[#986b3f] hover:bg-gray-100">담보부NPL</a>
@@ -74,7 +74,7 @@
         <!-- 자산운용 -->
         <div class="group relative">
           <a href="/operation" class="hover:text-[#442404]">자산운용</a>
-          <div class="absolute left-1/2 -translate-x-1/2 mt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto hover:opacity-100 hover:pointer-events-auto transition-opacity duration-200 bg-white shadow-lg rounded py-2 text-sm z-50 w-max whitespace-nowrap">
+          <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 text-sm z-50 w-max whitespace-nowrap">
             <a href="/operation/orgchart" class="block px-4 py-2 text-gray-800 hover:text-[#986b3f] hover:bg-gray-100">조직도</a>
             <a href="/operation/philosophy" class="block px-4 py-2 text-gray-800 hover:text-[#986b3f] hover:bg-gray-100">철학</a>
             <a href="/operation/returns" class="block px-4 py-2 text-gray-800 hover:text-[#986b3f] hover:bg-gray-100">수익률</a>
