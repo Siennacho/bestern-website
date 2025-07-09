@@ -6,22 +6,28 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
   
-  
   <style>
-  @font-face {
-    font-family: 'Font1';
-    src: url("{{ url_for('static', filename='fonts/font1.ttf') }}") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-  }
+    @font-face {
+      font-family: 'Font1';
+      src: url("{{ url_for('static', filename='fonts/font1.ttf') }}") format("truetype");
+    }
 
-  body {
-    font-family: 'Font1', 'Noto Sans KR', sans-serif;
-  }
+    @font-face {
+      font-family: 'Font2';
+      src: url("{{ url_for('static', filename='fonts/font2.otf') }}") format("opentype");
+    }
 
-  html {
-    scroll-behavior: smooth;
-  }
+    body {
+      font-family: 'Font1', 'Noto Sans KR', sans-serif;
+    }
+
+    .font-bestern {
+      font-family: 'Font2', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 </style>
 
 
@@ -30,9 +36,9 @@
 <body class="text-gray-800">
 
   <!-- Header -->
-  <header class="fixed top-0 w-full z-50 bg-white bg-opacity-80 text-black backdrop-blur-md shadow-sm">
+    <header class="fixed top-0 w-full z-50 text-white shadow-sm backdrop-blur-md"
+        style="background-color: rgba(64, 36, 0, 0.8);">
     <div class="w-full px-6 py-4 flex justify-between items-center max-w-7xl mx-auto">
-
       <!-- 로고 -->
       <a href="/">
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Bestern 로고" class="h-12 md:h-16" />
