@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}회사소개 - 조직도{% endblock %}
+{% block content %}
+<section class="pt-28 pb-16 px-6 max-w-5xl mx-auto">
+  <h2 class="text-3xl font-bold mb-8 text-center">조직도</h2>
+  <img src="{{ url_for('static', filename='img/company_orgchart.png') }}" alt="조직도" class="w-full max-w-3xl mx-auto shadow-md rounded" />
+</section>
+{% endblock %}

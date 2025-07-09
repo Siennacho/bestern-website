@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}자산관리 - 자료실{% endblock %}
+{% block content %}
+<section class="pt-28 pb-16 px-6 max-w-5xl mx-auto">
+  <h2 class="text-3xl font-bold mb-8 text-center">자료실</h2>
+  <ul class="text-blue-700 underline space-y-3 text-base">
+    <li><a href="{{ url_for('static', filename='docs/report2024.pdf') }}" target="_blank">2024년 상반기 보고서 다운로드</a></li>
+    <li><a href="{{ url_for('static', filename='docs/policy_guide.pdf') }}" target="_blank">운용 정책 안내서</a></li>
+  </ul>
+</section>
+{% endblock %}
