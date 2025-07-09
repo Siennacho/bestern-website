@@ -13,10 +13,10 @@
 <body class="text-gray-800">
 
   <!-- Header -->
-  <header class="fixed top-0 w-full z-50 bg-white bg-opacity-80 text-black backdrop-blur-md shadow-sm overflow-visible">
+  <header class="fixed top-0 w-full z-50 bg-white bg-opacity-80 text-black backdrop-blur-md shadow-sm">
     <div class="w-full px-6 py-4 flex justify-between items-center max-w-7xl mx-auto">
 
-      <!-- 로고 (홈으로 이동) -->
+      <!-- 로고 -->
       <a href="/" class="text-xl font-bold">Bestern</a>
 
       <!-- PC 메뉴 -->
@@ -24,7 +24,7 @@
         <!-- 회사소개 -->
         <div class="group relative">
           <a href="/company" class="hover:text-blue-500">회사소개</a>
-          <div class="absolute hidden group-hover:block bg-white shadow rounded mt-2 py-2 text-sm z-50">
+          <div class="absolute left-0 hidden group-hover:block bg-white shadow-lg rounded mt-2 py-2 text-sm z-50 min-w-[8rem]">
             <a href="/company/greeting" class="block px-4 py-2 hover:bg-gray-100">인사말</a>
             <a href="/company/overview" class="block px-4 py-2 hover:bg-gray-100">개요</a>
             <a href="/company/orgchart" class="block px-4 py-2 hover:bg-gray-100">조직도</a>
@@ -54,25 +54,51 @@
           </div>
         </div>
 
-        <!-- 기타 메뉴 -->
+        <!-- 기타 -->
         <a href="/notice" class="hover:text-blue-500">공지사항</a>
         <a href="/contact" class="hover:text-blue-500">연락처</a>
         <span class="ml-4 text-sm font-medium border px-2 py-1 rounded cursor-pointer hover:bg-gray-200">KO | EN</span>
       </nav>
 
-      <!-- 모바일 햄버거 버튼 -->
+      <!-- 모바일 메뉴 버튼 -->
       <button id="menuToggleBtn" class="md:hidden text-black" aria-label="메뉴 열기">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
   </header>
 
+  <!-- 모바일 메뉴 -->
+  <div id="mobileMenu" class="md:hidden fixed top-0 right-0 w-64 max-w-[80%] h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+    <div class="p-6 space-y-4">
+      <button onclick="toggleMobileMenu()" class="text-right w-full text-gray-600 hover:text-black">
+        ✕ 닫기
+      </button>
+      <a href="/company" class="block py-2 border-b">회사소개</a>
+      <a href="/management" class="block py-2 border-b">자산관리</a>
+      <a href="/operation" class="block py-2 border-b">자산운용</a>
+      <a href="/notice" class="block py-2 border-b">공지사항</a>
+      <a href="/contact" class="block py-2 border-b">연락처</a>
+      <span class="block mt-4 text-sm font-medium border px-2 py-1 rounded w-fit hover:bg-gray-200 cursor-pointer">KO | EN</span>
+    </div>
+  </div>
+
   <!-- 본문 -->
-  <main class="min-h-screen pt-24">
+  <main class="min-h-screen">
     {% block content %}{% endblock %}
   </main>
 
+  <!-- 모바일 메뉴 스크립트 -->
+  <script>
+    const menu = document.getElementById('mobileMenu');
+    const toggleMobileMenu = () => {
+      menu.classList.toggle('translate-x-full');
+      menu.classList.toggle('translate-x-0');
+    };
+
+    document.getElementById('menuToggleBtn').addEventListener('click', toggleMobileMenu);
+  </script>
 </body>
 </html>
