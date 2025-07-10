@@ -237,6 +237,27 @@
 
   document.getElementById('menuToggleBtn').addEventListener('click', toggleMobileMenu);
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleMobileMenu = () => {
+      const menu = document.getElementById('mobileMenu');
+      const isOpen = menu.classList.contains('translate-x-0');
+      menu.classList.toggle('translate-x-full');
+      menu.classList.toggle('translate-x-0');
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    };
 
+    const toggleSubMenu = (id) => {
+      const el = document.getElementById(id);
+      el.classList.toggle('hidden');
+    };
+
+    // 버튼 연결은 DOMContentLoaded 이후에 해야 안전
+    const menuBtn = document.getElementById('menuToggleBtn');
+    if (menuBtn) {
+      menuBtn.addEventListener('click', toggleMobileMenu);
+    }
+  });
+</script>
 </body>
 </html>
