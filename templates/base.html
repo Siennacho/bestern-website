@@ -35,17 +35,21 @@
 <body class="text-gray-800">
 
 <!-- Header -->
-<header class="fixed top-0 w-full z-50 text-[#755d46] shadow-sm backdrop-blur-md"
+<header class="fixed top-0 w-full z-50 text-[#442404] shadow-sm backdrop-blur-md"
         style="background-color: rgba(255, 255, 255, 0.6);">
-  <div class="w-full px-6 py-1 flex justify-between items-center max-w-7xl mx-auto" style="height: 64px;">
+  <div class="w-full px-6 py-3 flex justify-between items-center max-w-7xl mx-auto" style="min-height: 96px;">
+    
     <!-- 로고 -->
-    <a href="/">
+    <a href="/" class="flex items-center">
       <img src="{{ url_for('static', filename='img/logo.png') }}"
            alt="Bestern 로고"
            class="h-24 md:h-28 object-contain"
-           style="max-height: 96px;" />
+           style="max-height: 110px;" />
     </a>
 
+    <!-- 메뉴 (생략 or 유지) -->
+  </div>
+</header>
     <!-- PC 메뉴 -->
     <nav class="hidden md:flex space-x-6 text-sm md:text-base items-center">
 
@@ -88,7 +92,7 @@
       <span class="ml-4 text-sm font-medium border px-2 py-1 rounded cursor-pointer text-[#442404] hover:bg-[#755d46] hover:text-white transition">
         KO | EN
       </span>
-      
+
     <!-- 모바일 메뉴 버튼 -->
     <button id="menuToggleBtn" class="md:hidden text-[#755d46]" aria-label="모바일 메뉴 열기">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
