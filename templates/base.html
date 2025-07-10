@@ -47,12 +47,12 @@
     </a>
 
     <!-- PC 메뉴 -->
-    <nav class="hidden md:flex space-x-6 text-sm md:text-base items-center">
+    <nav class="hidden md:flex space-x-6 text-[17px] md:text-[18px] items-center">
 
       <!-- 회사소개 -->
       <div class="group relative">
         <span class="cursor-default text-[#442404] group-hover:text-[#755d46]">회사소개</span>
-        <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 text-sm z-50 w-max whitespace-nowrap">
+        <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 text-[16px] z-50 w-max whitespace-nowrap">
           <a href="/company/greeting" class="block px-4 py-2 text-gray-800 hover:text-[#755d46] hover:bg-gray-100">인사말</a>
           <a href="/company/overview" class="block px-4 py-2 text-gray-800 hover:text-[#755d46] hover:bg-gray-100">개요</a>
           <a href="/company/orgchart" class="block px-4 py-2 text-gray-800 hover:text-[#755d46] hover:bg-gray-100">조직도</a>
@@ -62,7 +62,7 @@
       <!-- 자산관리 -->
       <div class="group relative">
         <span class="cursor-default text-[#442404] group-hover:text-[#755d46]">자산관리</span>
-        <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 text-sm z-50 w-max whitespace-nowrap">
+        <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 text-[16px] z-50 w-max whitespace-nowrap">
           <a href="/management/overview" class="block px-4 py-2 text-gray-800 hover:text-[#755d46] hover:bg-gray-100">개요</a>
           <a href="/management/orgchart" class="block px-4 py-2 text-gray-800 hover:text-[#755d46] hover:bg-gray-100">조직도</a>
           <a href="/management/secured" class="block px-4 py-2 text-gray-800 hover:text-[#755d46] hover:bg-gray-100">담보부 NPL</a>
@@ -75,7 +75,7 @@
       <!-- 자산운용 -->
       <div class="group relative">
         <span class="cursor-default text-[#442404] group-hover:text-[#755d46]">자산운용</span>
-        <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 text-sm z-50 w-max whitespace-nowrap">
+        <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 text-[16px] z-50 w-max whitespace-nowrap">
           <a href="/operation/philosophy" class="block px-4 py-2 text-gray-800 hover:text-[#755d46] hover:bg-gray-100">철학</a>
           <a href="/operation/orgchart" class="block px-4 py-2 text-gray-800 hover:text-[#755d46] hover:bg-gray-100">조직도</a>
           <a href="/operation/returns" class="block px-4 py-2 text-gray-800 hover:text-[#755d46] hover:bg-gray-100">수익률</a>
@@ -85,9 +85,10 @@
       <!-- 기타 -->
       <a href="/notice" class="text-[#442404] hover:text-[#755d46] transition">공지사항</a>
       <a href="/contact" class="text-[#442404] hover:text-[#755d46] transition">연락처</a>
-      <span class="ml-4 text-sm font-medium border px-2 py-1 rounded cursor-pointer text-[#442404] hover:bg-[#755d46] hover:text-white transition">
+      <span class="ml-4 text-[15px] font-medium border px-2 py-1 rounded cursor-pointer text-[#442404] hover:bg-[#755d46] hover:text-white transition">
         KO | EN
       </span>
+    </nav>
 
     <!-- 모바일 메뉴 버튼 -->
     <button id="menuToggleBtn" class="md:hidden text-[#755d46]" aria-label="모바일 메뉴 열기">
@@ -105,7 +106,7 @@
       <!-- 회사소개 -->
       <div>
         <button onclick="toggleSubMenu('companySub')" class="w-full text-left py-2 border-b font-medium">회사소개</button>
-        <div id="companySub" class="pl-4 mt-1 hidden space-y-1 text-sm text-gray-700">
+        <div id="companySub" class="pl-4 mt-1 hidden space-y-1 text-[16px] text-gray-700">
           <a href="/company/greeting" class="block py-1 hover:underline">인사말</a>
           <a href="/company/overview" class="block py-1 hover:underline">개요</a>
           <a href="/company/orgchart" class="block py-1 hover:underline">조직도</a>
@@ -115,7 +116,7 @@
       <!-- 자산관리 -->
       <div>
         <button onclick="toggleSubMenu('managementSub')" class="w-full text-left py-2 border-b font-medium">자산관리</button>
-        <div id="managementSub" class="pl-4 mt-1 hidden space-y-1 text-sm text-gray-700">
+        <div id="managementSub" class="pl-4 mt-1 hidden space-y-1 text-[16px] text-gray-700">
           <a href="/management/overview" class="block py-1 hover:underline">개요</a>
           <a href="/management/orgchart" class="block py-1 hover:underline">조직도</a>
           <a href="/management/secured" class="block py-1 hover:underline">담보부 NPL</a>
@@ -128,7 +129,7 @@
       <!-- 자산운용 -->
       <div>
         <button onclick="toggleSubMenu('operationSub')" class="w-full text-left py-2 border-b font-medium">자산운용</button>
-        <div id="operationSub" class="pl-4 mt-1 hidden space-y-1 text-sm text-gray-700">
+        <div id="operationSub" class="pl-4 mt-1 hidden space-y-1 text-[16px] text-gray-700">
           <a href="/operation/orgchart" class="block py-1 hover:underline">조직도</a>
           <a href="/operation/philosophy" class="block py-1 hover:underline">철학</a>
           <a href="/operation/returns" class="block py-1 hover:underline">수익률</a>
@@ -138,10 +139,11 @@
       <!-- 기타 -->
       <a href="/notice" class="block py-2 border-b text-[#755d46] hover:text-[#c0b5ab]">공지사항</a>
       <a href="/contact" class="block py-2 border-b text-[#755d46] hover:text-[#c0b5ab]">연락처</a>
-      <span class="block mt-4 text-sm font-medium border px-2 py-1 rounded w-fit hover:bg-[#755d46] hover:text-white cursor-pointer transition">KO | EN</span>
+      <span class="block mt-4 text-[15px] font-medium border px-2 py-1 rounded w-fit hover:bg-[#755d46] hover:text-white cursor-pointer transition">KO | EN</span>
     </div>
   </div>
 </header>
+
   <!-- 본문 -->
   <main class="min-h-screen">
     {% block content %}{% endblock %}
