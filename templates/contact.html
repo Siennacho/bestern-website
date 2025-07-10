@@ -1,26 +1,36 @@
-
 {% extends "base.html" %}
 {% block content %}
 <section class="py-20 px-6 bg-white text-center">
-  <h2 class="text-3xl font-bold mb-12">문의하기</h2>
+  <h2 class="text-3xl font-bold mb-12">문의</h2>
+  
   <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
     <div class="bg-gray-100 p-6 rounded-lg shadow">
-      <h3 class="text-2xl font-bold mb-4 text-blue-800">연락</h3>
+      <h3 class="text-2xl font-bold mb-4 text-[#442404]">연락</h3>
       <p class="mb-2"><strong>이메일:</strong> emlee@thebestamc.com</p>
       <p class="mb-2"><strong>전화:</strong> +82 2 510 5900</p>
       <p><strong>팩스:</strong> +82 2 510 5901</p>
     </div>
+
     <div class="bg-gray-100 p-6 rounded-lg shadow">
-      <h3 class="text-2xl font-bold mb-4 text-blue-800">주소</h3>
-      <p class="mb-2">서울특별시 강남구 봉은사로 326, 6층 (역삼동, 남전빌딩)</p>
+      <h3 class="text-2xl font-bold mb-4 text-[#442404]">주소</h3>
+      <p class="mb-2">서울특별시 강남구 역삼동 682-7, 3층 (역삼동, 창일빌딩)</p>
       <p>6F, 326, Bongeunsa-ro, Gangnam-gu, Seoul, Republic of Korea</p>
     </div>
   </div>
+
   <div class="max-w-4xl mx-auto mt-16">
-    <iframe src="https://www.google.com/maps/embed?..." width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
+    <iframe 
+      src="https://www.google.com/maps/embed?..." 
+      width="100%" height="400" 
+      style="border:0;" 
+      allowfullscreen 
+      loading="lazy">
+    </iframe>
   </div>
+
   <div class="mt-12">
-    <a href="mailto:emlee@thebestamc.com" class="inline-block bg-blue-900 text-white font-semibold px-6 py-3 rounded hover:bg-blue-950 transition">
+    <a href="mailto:emlee@thebestamc.com" 
+       class="inline-block bg-[#755d46] text-white font-semibold px-6 py-3 rounded hover:bg-[#442404] transition">
       이메일로 문의하기
     </a>
   </div>
