@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <title>{% block title %}Bestern{% endblock %}</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 파비콘 -->
+  <!-- 기본 favicon (최신 브라우저용, SVG 우선) -->
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+
+  <!-- 구형 브라우저 및 일부 모바일 브라우저용 -->
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon-16x16.png') }}">
+
+  <!-- 애플 터치 아이콘 (iOS 홈 화면용) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
+
+  <!-- 웹 앱 매니페스트 (선택) -->
+  <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
   
   <style>
@@ -154,19 +166,20 @@
 <main class="min-h-screen">
   {% block content %}{% endblock %}
 </main>
+
 <footer class="bg-[#1a1a1a] text-white py-8 text-sm mt-20">
   <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-6">
 
     <!-- 회사 정보 -->
     <div>
-      <p class="font-bold text-lg text-[#c0b5ab] mb-2">BESTERN AMC</p>
+      <p class="font-bestern text-lg text-[#c0b5ab] mb-2">BESTERN AMC</p>
       <p>서울특별시 강남구 역삼동 682-7, 3층 (창일빌딩)</p>
       <p>대표번호: +82 2 510 5900</p>
       <p>팩스: +82 2 510 5901</p>
       <p>이메일: emlee@thebestamc.com</p>
     </div>
 
-    <!-- 메뉴 링크 -->
+    <!-- 회사 -->
     <div class="space-y-2">
       <p class="font-semibold text-[#c0b5ab] mb-1">회사</p>
       <a href="/company/greeting" class="block hover:text-[#c0b5ab]">인사말</a>
@@ -174,11 +187,20 @@
       <a href="/company/orgchart" class="block hover:text-[#c0b5ab]">조직도</a>
     </div>
 
+    <!-- 자산관리 -->
     <div class="space-y-2">
       <p class="font-semibold text-[#c0b5ab] mb-1">자산관리</p>
       <a href="/management/overview" class="block hover:text-[#c0b5ab]">개요</a>
       <a href="/management/secured" class="block hover:text-[#c0b5ab]">담보부 NPL</a>
       <a href="/management/unsecured" class="block hover:text-[#c0b5ab]">무담보 NPL</a>
+    </div>
+
+    <!-- 자산운용 -->
+    <div class="space-y-2">
+      <p class="font-semibold text-[#c0b5ab] mb-1">자산운용</p>
+      <a href="/operation/philosophy" class="block hover:text-[#c0b5ab]">철학</a>
+      <a href="/operation/orgchart" class="block hover:text-[#c0b5ab]">조직도</a>
+      <a href="/operation/returns" class="block hover:text-[#c0b5ab]">수익률</a>
     </div>
 
     <!-- 기타 -->
