@@ -1,0 +1,93 @@
+<!-- header.html -->
+<header class="fixed top-0 w-full z-50 text-[#755d46] shadow-sm backdrop-blur-md" style="background-color: rgba(255, 255, 255, 0.6);">
+  <div class="w-full px-6 py-1 flex justify-between items-center max-w-7xl mx-auto" style="height: 56px;">
+    <a href="/">
+      <img src="{{ url_for('static', filename='img/logo.png') }}"
+           alt="Bestern 로고"
+           class="h-12 md:h-14 object-contain"
+           style="max-height: 56px;" />
+    </a>
+
+    <!-- PC 메뉴 -->
+    <nav class="hidden md:flex space-x-6 text-[17px] md:text-[18px] items-center">
+      <!-- 회사소개 -->
+      <div class="group relative">
+        <span class="cursor-default text-[#442404] group-hover:text-[#755d46]">회사소개</span>
+        <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 text-[17px] z-50 w-max whitespace-nowrap">
+          <a href="/company/greeting" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">인사말</a>
+          <a href="/company/overview" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">개요</a>
+          <a href="/company/orgchart" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">조직도</a>
+        </div>
+      </div>
+      <!-- 자산관리 -->
+      <div class="group relative">
+        <span class="cursor-default text-[#442404] group-hover:text-[#755d46]">자산관리</span>
+        <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 z-50 w-max whitespace-nowrap">
+          <a href="/management/overview" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">개요</a>
+          <a href="/management/orgchart" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">조직도</a>
+          <a href="/management/secured" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">담보부 NPL</a>
+          <a href="/management/unsecured" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">무담보 NPL</a>
+          <a href="/management/performance" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">관리 실적</a>
+          <a href="/management/resources" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">자료실</a>
+        </div>
+      </div>
+      <!-- 자산운용 -->
+      <div class="group relative">
+        <span class="cursor-default text-[#442404] group-hover:text-[#755d46]">자산운용</span>
+        <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 z-50 w-max whitespace-nowrap">
+          <a href="/operation/philosophy" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">철학</a>
+          <a href="/operation/orgchart" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">조직도</a>
+          <a href="/operation/returns" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">수익률</a>
+        </div>
+      </div>
+      <a href="/notice" class="hover:text-[#755d46] transition">공지사항</a>
+      <a href="/contact" class="hover:text-[#755d46] transition">문의</a>
+      <span class="ml-4 text-sm border px-2 py-1 rounded cursor-pointer hover:bg-[#755d46] hover:text-white transition">KO | EN</span>
+    </nav>
+
+    <!-- 모바일 햄버거 -->
+    <button id="menuToggleBtn" class="md:hidden text-[#755d46]" aria-label="모바일 메뉴 열기">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- 모바일 메뉴 -->
+<div id="mobileMenu"
+     class="md:hidden fixed inset-0 bg-[#1a1a1a]/95 backdrop-blur-sm text-white shadow-lg transform translate-x-full transition-transform duration-300 z-[9999] overflow-y-auto">
+  <div class="relative p-6 pt-12 space-y-6 text-lg">
+    <button onclick="toggleMobileMenu()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white text-2xl font-bold rounded-full bg-[#333] hover:bg-[#555]">✕</button>
+    <div>
+      <button onclick="toggleSubMenu('companySub')" class="w-full text-left py-2 border-b border-[#333] font-semibold hover:text-[#c0b5ab]">회사소개</button>
+      <div id="companySub" class="pl-4 mt-2 hidden space-y-2 text-base">
+        <a href="/company/greeting" class="block hover:text-[#c0b5ab]">인사말</a>
+        <a href="/company/overview" class="block hover:text-[#c0b5ab]">개요</a>
+        <a href="/company/orgchart" class="block hover:text-[#c0b5ab]">조직도</a>
+      </div>
+    </div>
+    <div>
+      <button onclick="toggleSubMenu('managementSub')" class="w-full text-left py-2 border-b border-[#333] font-semibold hover:text-[#c0b5ab]">자산관리</button>
+      <div id="managementSub" class="pl-4 mt-2 hidden space-y-2 text-base">
+        <a href="/management/overview" class="block hover:text-[#c0b5ab]">개요</a>
+        <a href="/management/orgchart" class="block hover:text-[#c0b5ab]">조직도</a>
+        <a href="/management/secured" class="block hover:text-[#c0b5ab]">담보부 NPL</a>
+        <a href="/management/unsecured" class="block hover:text-[#c0b5ab]">무담보 NPL</a>
+        <a href="/management/performance" class="block hover:text-[#c0b5ab]">관리 실적</a>
+        <a href="/management/resources" class="block hover:text-[#c0b5ab]">자료실</a>
+      </div>
+    </div>
+    <div>
+      <button onclick="toggleSubMenu('operationSub')" class="w-full text-left py-2 border-b border-[#333] font-semibold hover:text-[#c0b5ab]">자산운용</button>
+      <div id="operationSub" class="pl-4 mt-2 hidden space-y-2 text-base">
+        <a href="/operation/philosophy" class="block hover:text-[#c0b5ab]">철학</a>
+        <a href="/operation/orgchart" class="block hover:text-[#c0b5ab]">조직도</a>
+        <a href="/operation/returns" class="block hover:text-[#c0b5ab]">수익률</a>
+      </div>
+    </div>
+    <a href="/notice" class="block py-2 border-b border-[#333] hover:text-[#c0b5ab]">공지사항</a>
+    <a href="/contact" class="block py-2 border-b border-[#333] hover:text-[#c0b5ab]">연락처</a>
+    <span class="block mt-4 text-sm font-semibold border px-3 py-2 rounded w-fit hover:bg-[#755d46] hover:text-white cursor-pointer">KO | EN</span>
+  </div>
+</div>
