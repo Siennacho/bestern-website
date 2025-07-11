@@ -4,29 +4,28 @@
 {% block content %}
 
 <!-- Hero Banner -->
-<section class="relative h-[320px] md:h-[420px]">
-  <img src="{{ url_for('static', filename='img/contact.jpg') }}" class="w-full h-full object-cover" alt="배경 이미지" />
+<section class="relative h-[280px] sm:h-[320px] md:h-[420px]">
+  <img src="{{ url_for('static', filename='img/contact.jpg') }}" class="w-full h-full object-cover" alt="문의 배경" />
   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
     <div class="text-white text-center px-4">
-      <h1 class="text-3xl md:text-4xl font-bold tracking-wider">문의</h1>
-      <p class="mt-3 text-base md:text-lg">Bestern에 궁금하신 사항이 있다면 언제든 연락 주세요.</p>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wider leading-snug">문의</h1>
+      <p class="mt-2 sm:mt-3 text-sm sm:text-base md:text-lg">Bestern에 궁금하신 사항이 있다면 언제든 연락 주세요.</p>
     </div>
   </div>
 </section>
 
-<!-- Contact Section -->
-<section class="py-20 px-6 bg-white text-center">
-
+<!-- Contact Info -->
+<section class="py-16 px-4 sm:px-6 bg-white text-center">
   <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
     <div class="bg-gray-100 p-6 rounded-lg shadow">
-      <h3 class="text-2xl font-bold mb-4 text-[#442404]">연락</h3>
+      <h3 class="text-xl sm:text-2xl font-bold mb-4 text-[#442404]">연락</h3>
       <p class="mb-2"><strong>이메일:</strong> emlee@thebestamc.com</p>
       <p class="mb-2"><strong>전화:</strong> +82 2 510 5900</p>
       <p><strong>팩스:</strong> +82 2 510 5901</p>
     </div>
 
     <div class="bg-gray-100 p-6 rounded-lg shadow">
-      <h3 class="text-2xl font-bold mb-4 text-[#442404]">주소</h3>
+      <h3 class="text-xl sm:text-2xl font-bold mb-4 text-[#442404]">주소</h3>
       <p class="mb-2">서울특별시 강남구 역삼동 682-7, 3층 (역삼동, 창일빌딩)</p>
       <p>3F, 682-7 Yeoksam-dong, Gangnam District, Seoul, Republic of Korea</p>
     </div>
