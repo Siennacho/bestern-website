@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block title %}자산운용 - 운용철학{% endblock %}
+
+{% block meta %}
+  <meta name="description" content="Bestern의 운용 철학은 안정성과 수익성의 균형을 바탕으로, 고객 자산의 보존과 성장이라는 원칙을 따릅니다.">
+{% endblock %}
+
 {% block content %}
 
 <!-- Hero Banner -->
@@ -7,7 +12,9 @@
   <img src="{{ url_for('static', filename='img/operation.jpg') }}" class="w-full h-full object-cover" alt="자산운용 배경 이미지" />
   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
     <div class="text-white text-center px-4">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-wide leading-snug">운용 철학</h1>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-snug drop-shadow-md font-serif">
+        운용 철학
+      </h1>
       <p class="mt-4 text-lg md:text-xl text-gray-200">안정성과 수익성의 균형, Bestern의 투자 원칙</p>
     </div>
   </div>
@@ -17,26 +24,27 @@
 <section class="py-20 px-6 max-w-5xl mx-auto text-center text-gray-800">
   <h2 class="text-3xl md:text-4xl font-bold text-[#442404] mb-10 tracking-tight">Bestern의 운용 철학</h2>
   
-  <p class="text-base md:text-lg leading-relaxed mb-10">
+  <p class="text-base md:text-lg leading-relaxed mb-10 max-w-3xl mx-auto">
     Bestern은 시장의 불확실성 속에서도<br class="hidden md:block">
-    고객 자산의 **보존(Preservation)**과 **성장(Growth)**이라는 두 축을 중심으로 운용 전략을 세웁니다.
+    고객 자산의 <strong class="text-[#442404]">보존(Preservation)</strong>과 
+    <strong class="text-[#442404]">성장(Growth)</strong>이라는 두 축을 중심으로 운용 전략을 세웁니다.
   </p>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">01. 안정성 중심</h3>
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition min-h-[160px]">
+      <h3 class="text-lg font-semibold text-[#755d46] mb-2">1. 안정성 중심</h3>
       <p class="text-sm text-gray-600 leading-relaxed">
         자산의 본질적 가치와 리스크를 철저히 분석하여, 위험을 최소화하고 신뢰를 지킵니다.
       </p>
     </div>
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">02. 수익성 추구</h3>
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition min-h-[160px]">
+      <h3 class="text-lg font-semibold text-[#755d46] mb-2">2. 수익성 추구</h3>
       <p class="text-sm text-gray-600 leading-relaxed">
         적극적인 기회 포착을 통해 고객의 수익을 극대화하며 지속 가능한 성과를 추구합니다.
       </p>
     </div>
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">03. 투명한 운용</h3>
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition min-h-[160px]">
+      <h3 class="text-lg font-semibold text-[#755d46] mb-2">3. 투명한 운용</h3>
       <p class="text-sm text-gray-600 leading-relaxed">
         투자 판단 기준과 결과를 명확하게 공유하며, 책임 있는 운용을 실현합니다.
       </p>

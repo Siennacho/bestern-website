@@ -4,12 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}Bestern{% endblock %}</title>
-  <!-- 파비콘 -->
+
+  <!-- Favicon -->
   <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon-16x16.png') }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
   <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+
+  <!-- SEO & Meta -->
+  <meta name="robots" content="index,follow" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  {% block meta %}{% endblock %}
 
   <!-- Tailwind 설정 -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -32,37 +38,45 @@
     };
   </script>
 
+  <!-- 웹폰트 로드 -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+
+  <!-- 커스텀 폰트 등록 -->
   <style>
     @font-face {
-      font-family: 'Font1';
+      font-family: 'Font1'; /* 본문 기본용 */
       src: url("{{ url_for('static', filename='fonts/font1.ttf') }}") format("truetype");
     }
     @font-face {
-      font-family: 'Font2';
+      font-family: 'Font2'; /* 로고/강조용 */
       src: url("{{ url_for('static', filename='fonts/font2.otf') }}") format("opentype");
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Font1', 'Noto Sans KR', sans-serif;
     }
+
     .font-bestern {
       font-family: 'Font2', sans-serif;
-    }
-    html {
-      scroll-behavior: smooth;
     }
   </style>
 </head>
 
-<body class="text-gray-800">
+<body class="text-gray-800 bg-white">
   {% include 'header.html' %}
 
-  <main class="h-screen snap-y snap-mandatory overflow-y-scroll">
+  <!-- 콘텐츠 영역 -->
+  <main class="min-h-screen">
     {% block content %}{% endblock %}
   </main>
 
   {% include 'footer.html' %}
 
+  <!-- 메뉴 토글 스크립트 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const toggleMobileMenu = () => {

@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block title %}자산관리 - 관리실적{% endblock %}
+
+{% block meta %}
+  <meta name="description" content="Bestern의 자산관리 실적을 수치로 확인하세요. 회수율, 자산 규모, 운영 SPC 수 등을 통해 전문성과 신뢰를 증명합니다.">
+{% endblock %}
+
 {% block content %}
 
 <!-- Hero Banner -->
@@ -7,7 +12,9 @@
   <img src="{{ url_for('static', filename='img/management.jpg') }}" class="w-full h-full object-cover" alt="자산관리 배경 이미지" />
   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
     <div class="text-white text-center px-4">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-wide leading-snug">성과로 증명하는 신뢰</h1>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-snug drop-shadow-md font-serif">
+        성과로 증명하는 신뢰
+      </h1>
       <p class="mt-4 text-lg md:text-xl text-gray-200">베스턴의 자산관리 실적을 확인해보세요.</p>
     </div>
   </div>
@@ -18,16 +25,19 @@
   <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-[#2e1c0f] tracking-tight">관리 실적</h2>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition min-h-[160px]">
       <p class="text-4xl font-bold text-[#755d46] mb-2">94%</p>
+      <div class="w-6 h-[2px] mx-auto bg-[#e2d4c5] mb-3"></div>
       <p class="text-gray-700 text-sm">2023년 누적 회수율</p>
     </div>
-    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition min-h-[160px]">
       <p class="text-4xl font-bold text-[#755d46] mb-2">1.2조 원</p>
+      <div class="w-6 h-[2px] mx-auto bg-[#e2d4c5] mb-3"></div>
       <p class="text-gray-700 text-sm">총 관리 자산 규모</p>
     </div>
-    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition min-h-[160px]">
       <p class="text-4xl font-bold text-[#755d46] mb-2">25개</p>
+      <div class="w-6 h-[2px] mx-auto bg-[#e2d4c5] mb-3"></div>
       <p class="text-gray-700 text-sm">운영 중인 SPC 수</p>
     </div>
   </div>

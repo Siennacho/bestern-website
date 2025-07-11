@@ -4,32 +4,29 @@
 
 <!-- HERO -->
 <section id="home" class="relative h-screen overflow-hidden">
-  <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
+  <video autoplay muted loop playsinline aria-hidden="true" class="absolute w-full h-full object-cover z-0">
     <!-- 데스크탑용 -->
     <source src="{{ url_for('static', filename='banner.mp4') }}" type="video/mp4" media="(min-width: 768px)">
     <!-- 모바일용 -->
     <source src="{{ url_for('static', filename='banner_mobile.mp4') }}" type="video/mp4" media="(max-width: 767px)">
   </video>
-  
-  <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
+
+  <div class="absolute inset-0 bg-black/40 flex items-center justify-center z-10">
     <div class="text-center text-white px-4">
-      <h1 class="text-5xl font-bold mb-4">
+      <h1 class="text-5xl sm:text-6xl font-bold mb-4 tracking-wide leading-tight">
         <span class="font-bestern">BESTERN</span>
       </h1>
-      <p class="text-lg sm:text-xl md:text-2xl text-white text-center whitespace-nowrap">
-      신뢰와 전문성으로 미래를 함께 만듭니다
+      <p class="text-lg sm:text-xl md:text-2xl text-white">
+        신뢰와 전문성으로 미래를 함께 만듭니다
       </p>
+      <div class="mt-6">
+        <a href="/company/overview"
+           class="inline-block bg-[#755d46] hover:bg-[#442404] text-white font-semibold py-3 px-6 rounded transition">
+          회사 소개 보기
+        </a>
+      </div>
     </div>
   </div>
 </section>
-
-<script>
-  function openContactModal() {
-    document.getElementById("contactModal").classList.remove("hidden");
-  }
-  function closeContactModal() {
-    document.getElementById("contactModal").classList.add("hidden");
-  }
-</script>
 
 {% endblock %}
