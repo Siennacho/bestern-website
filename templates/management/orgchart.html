@@ -1,13 +1,25 @@
 {% extends "base.html" %}
 {% block title %}자산관리 - 조직도{% endblock %}
 {% block content %}
-<section class="pt-28 pb-16 px-6 max-w-5xl mx-auto">
-  <h2 class="text-3xl font-bold mb-8 text-center">자산관리 조직도</h2>
-  <p class="text-gray-700 mb-6 text-lg text-center">
-    자산관리 부문은 안정적인 부실채권 회수와 효율적인 SPC 관리 업무를 수행하고 있습니다.
-  </p>
-  <img src="{{ url_for('static', filename='img/management_orgchart.png') }}"
-       alt="자산관리 조직도"
-       class="w-full max-w-3xl mx-auto shadow-md rounded" />
+
+<!-- Hero Banner -->
+<section class="relative h-[320px] md:h-[420px]">
+  <img src="{{ url_for('static', filename='img/management image.png') }}" class="w-full h-full object-cover" alt="자산관리 배경 이미지" />
+  <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+    <div class="text-white text-center px-4">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-wider">신뢰로 완성되는 체계</h1>
+      <p class="mt-3 text-base md:text-lg">베스턴의 자산관리 조직을 소개합니다.</p>
+    </div>
+  </div>
 </section>
+
+<!-- 조직도 본문 -->
+<section class="pt-16 pb-16 px-6 max-w-6xl mx-auto">
+  <h2 class="text-3xl font-bold mb-8 text-center text-[#442404]">조직도</h2>
+  <!-- 여기에 실제 조직도 이미지나 내용이 들어갑니다 -->
+  <div class="text-center">
+    <img src="{{ url_for('static', filename='img/orgchart-management.png') }}" alt="조직도 이미지" class="mx-auto max-w-full">
+  </div>
+</section>
+
 {% endblock %}

@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 {% block title %}자산관리 - 관리실적{% endblock %}
 {% block content %}
-<section class="pt-28 pb-16 px-6 max-w-5xl mx-auto">
+
+<!-- Hero Banner -->
+<section class="relative h-[320px] md:h-[420px]">
+  <img src="{{ url_for('static', filename='img/management image.png') }}" class="w-full h-full object-cover" alt="자산관리 배경 이미지" />
+  <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+    <div class="text-white text-center px-4">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-wider">성과로 증명하는 신뢰</h1>
+      <p class="mt-3 text-base md:text-lg">베스턴의 자산관리 실적을 확인해보세요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 실적 내용 -->
+<section class="pt-16 pb-16 px-6 max-w-5xl mx-auto">
   <h2 class="text-3xl font-bold mb-8 text-center">관리 실적</h2>
   <ul class="list-disc list-inside text-gray-800 space-y-2 text-lg">
     <li>2023년 누적 회수율 94%</li>
@@ -9,4 +22,5 @@
     <li>현재 운영 중인 SPC 수: 25개</li>
   </ul>
 </section>
+
 {% endblock %}

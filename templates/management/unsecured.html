@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 {% block title %}자산관리 - 무담보 NPL{% endblock %}
 {% block content %}
-<section class="pt-28 pb-16 px-6 max-w-5xl mx-auto">
+
+<!-- Hero Banner -->
+<section class="relative h-[320px] md:h-[420px]">
+  <img src="{{ url_for('static', filename='img/management image.png') }}" class="w-full h-full object-cover" alt="자산관리 배경 이미지" />
+  <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+    <div class="text-white text-center px-4">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-wider">무담보 NPL</h1>
+      <p class="mt-3 text-base md:text-lg">신용 기반 채권, 전략적 회수로 가치 실현</p>
+    </div>
+  </div>
+</section>
+
+<!-- 본문 내용 -->
+<section class="pt-16 pb-16 px-6 max-w-5xl mx-auto">
   <h2 class="text-3xl font-bold mb-8 text-center">무담보 NPL 관리</h2>
   <div class="text-gray-800 leading-relaxed text-lg space-y-5">
     <p>
@@ -18,4 +31,5 @@
     </ul>
   </div>
 </section>
+
 {% endblock %}

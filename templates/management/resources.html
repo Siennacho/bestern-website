@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 {% block title %}자산관리 - 자료실{% endblock %}
 {% block content %}
-<section class="pt-28 pb-16 px-6 max-w-5xl mx-auto">
-  <h2 class="text-3xl font-bold mb-8 text-center">자료실</h2>
-  <ul class="text-blue-700 underline space-y-3 text-base">
-    <li><a href="{{ url_for('static', filename='docs/report2024.pdf') }}" target="_blank">2024년 상반기 보고서 다운로드</a></li>
-    <li><a href="{{ url_for('static', filename='docs/policy_guide.pdf') }}" target="_blank">운용 정책 안내서</a></li>
-  </ul>
+
+<!-- Hero Banner -->
+<section class="relative h-[320px] md:h-[420px]">
+  <img src="{{ url_for('static', filename='img/management image.png') }}" class="w-full h-full object-cover" alt="자산관리 배경 이미지" />
+  <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+    <div class="text-white text-center px-4">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-wider">자료실</h1>
+      <p class="mt-3 text-base md:text-lg">베스턴의 공식 문서와 리포트를 확인하세요.</p>
+    </div>
+  </div>
 </section>
+
+<!-- 본문 내용 -->
+<section class="pt-16 pb-16 px-6 max-w-5xl mx-auto">
+  <h2 class="text-3xl font-bold mb-8 text-center">자료실</h2>
+  <p class="text-gray-700 text-lg text-center">
+    관련 문서가 이곳에 업로드됩니다. 현재 준비 중입니다.
+  </p>
+</section>
+
 {% endblock %}

@@ -1,10 +1,24 @@
 {% extends "base.html" %}
 {% block title %}자산운용 - 운용철학{% endblock %}
 {% block content %}
-<section class="pt-28 pb-16 px-6 max-w-5xl mx-auto">
+
+<!-- Hero Banner -->
+<section class="relative h-[320px] md:h-[420px]">
+  <img src="{{ url_for('static', filename='img/operation image.png') }}" class="w-full h-full object-cover" alt="자산운용 배경 이미지" />
+  <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+    <div class="text-white text-center px-4">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-wider">운용 철학</h1>
+      <p class="mt-3 text-base md:text-lg">안정성과 수익성의 균형, Bestern의 투자 원칙</p>
+    </div>
+  </div>
+</section>
+
+<!-- 본문 -->
+<section class="pt-16 pb-16 px-6 max-w-5xl mx-auto">
   <h2 class="text-3xl font-bold mb-8 text-center">운용 철학</h2>
   <p class="text-gray-800 text-lg leading-relaxed">
-    Bestern은 안정성과 수익성의 균형을 핵심 가치로 삼아 자산 운용에 임하고 있습니다
+    Bestern은 안정성과 수익성의 균형을 핵심 가치로 삼아 자산 운용에 임하고 있습니다.
   </p>
 </section>
+
 {% endblock %}
