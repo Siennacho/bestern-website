@@ -7,23 +7,38 @@
   <img src="{{ url_for('static', filename='img/company.jpg') }}" class="w-full h-full object-cover" alt="회사소개 배경 이미지" />
   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
     <div class="text-white text-center px-4">
-      <h1 class="text-3xl md:text-4xl font-bold tracking-wider">신뢰를 자산으로</h1>
-      <p class="mt-3 text-base md:text-lg">Bestern은 자산관리의 기준을 만듭니다.</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-wide leading-snug">신뢰를 자산으로</h1>
+      <p class="mt-4 text-lg md:text-xl text-gray-200">Bestern은 자산관리의 기준을 만듭니다.</p>
     </div>
   </div>
 </section>
 
-<!-- 회사 개요 테이블 -->
-<section class="pt-16 pb-16 px-6 max-w-6xl mx-auto">
-  <h2 class="text-3xl font-bold mb-8 text-center text-[#442404]">회사 개요</h2>
-  <table class="w-full text-left border border-gray-300 text-gray-800 text-sm md:text-base">
-    <tbody>
-      <tr class="border-b"><th class="p-3 bg-gray-100 w-40">회사명</th><td class="p-3">주식회사 베스턴자산관리</td></tr>
-      <tr class="border-b"><th class="p-3 bg-gray-100">설립일</th><td class="p-3">0000년 00월 00일</td></tr>
-      <tr class="border-b"><th class="p-3 bg-gray-100">대표이사</th><td class="p-3">000</td></tr>
-      <tr class="border-b"><th class="p-3 bg-gray-100">주요사업</th><td class="p-3">NPL 자산관리, 유동화, 자산운용</td></tr>
-    </tbody>
-  </table>
+<!-- 회사 개요 -->
+<section class="py-20 px-6 max-w-4xl mx-auto">
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#2e1c0f] tracking-tight">회사 개요</h2>
+
+  <div class="overflow-x-auto rounded-lg shadow-lg">
+    <table class="w-full table-auto border border-gray-200 text-gray-800 text-sm md:text-base bg-white">
+      <tbody>
+        <tr class="border-b">
+          <th class="bg-[#f4f1ee] px-5 py-4 w-40 text-left font-semibold text-[#442404]">회사명</th>
+          <td class="px-5 py-4">주식회사 베스턴자산관리</td>
+        </tr>
+        <tr class="border-b">
+          <th class="bg-[#f4f1ee] px-5 py-4 text-left font-semibold text-[#442404]">설립일</th>
+          <td class="px-5 py-4">0000년 00월 00일</td>
+        </tr>
+        <tr class="border-b">
+          <th class="bg-[#f4f1ee] px-5 py-4 text-left font-semibold text-[#442404]">대표이사</th>
+          <td class="px-5 py-4">000</td>
+        </tr>
+        <tr>
+          <th class="bg-[#f4f1ee] px-5 py-4 text-left font-semibold text-[#442404]">주요사업</th>
+          <td class="px-5 py-4">NPL 자산관리, 유동화, 자산운용</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 {% endblock %}
