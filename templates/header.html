@@ -7,13 +7,11 @@
            style="max-height: 56px;" />
     </a>
 
-    <!-- PC 메뉴 -->
-    <nav class="hidden md:flex space-x-10 text-[17px] md:text-[18px] items-center">
+<!-- PC 메뉴 -->
+<nav class="hidden md:flex items-center space-x-8 text-[17px] font-semibold text-[#442404]">
     <!-- 회사소개 -->
     <div class="group relative">
-        <button class="cursor-pointer text-[#442404] group-hover:text-[#755d46] font-semibold" aria-haspopup="true">
-        회사소개
-        </button>
+        <button class="group-hover:text-[#755d46]" aria-haspopup="true">회사소개</button>
         <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 z-50 w-max whitespace-nowrap">
         <a href="/company/greeting" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">인사말</a>
         <a href="/company/overview" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">개요</a>
@@ -23,9 +21,7 @@
 
     <!-- 자산관리 -->
     <div class="group relative">
-        <button class="cursor-pointer text-[#442404] group-hover:text-[#755d46] font-semibold" aria-haspopup="true">
-        자산관리
-        </button>
+        <button class="group-hover:text-[#755d46]" aria-haspopup="true">자산관리</button>
         <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 z-50 w-max whitespace-nowrap">
         <a href="/management/overview" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">개요</a>
         <a href="/management/orgchart" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">조직도</a>
@@ -38,9 +34,7 @@
 
     <!-- 자산운용 -->
     <div class="group relative">
-        <button class="cursor-pointer text-[#442404] group-hover:text-[#755d46] font-semibold" aria-haspopup="true">
-        자산운용
-        </button>
+        <button class="group-hover:text-[#755d46]" aria-haspopup="true">자산운용</button>
         <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 z-50 w-max whitespace-nowrap">
         <a href="/operation/philosophy" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">철학</a>
         <a href="/operation/orgchart" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">조직도</a>
@@ -49,17 +43,20 @@
     </div>
 
     <!-- 공시 및 공지 -->
-    <a href="/notice" class="font-semibold text-[#442404] hover:text-[#755d46]">공시 및 공지</a>
+    <a href="/notice" class="hover:text-[#755d46]">공시 및 공지</a>
 
     <!-- 채용 -->
-    <a href="/recruit" class="font-semibold text-[#442404] hover:text-[#755d46]">채용</a>
+    <a href="/recruit" class="hover:text-[#755d46]">채용</a>
 
-    <!-- 언어변경 -->
-    <button class="px-4 py-1.5 text-[17px] border border-[#755d46] rounded text-[#442404] hover:bg-[#755d46] hover:text-white transition">
+    <!-- 언어 변경 -->
+    <button class="px-3 py-1 border border-[#755d46] rounded-md hover:bg-[#755d46] hover:text-white transition text-[#442404]">
         KO | EN
     </button>
     </nav>
-        <!-- 모바일 햄버거 -->
+
+
+
+    <!-- 모바일 햄버거 -->
         <button id="menuToggleBtn" class="md:hidden text-[#755d46]" aria-label="모바일 메뉴 열기">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -109,12 +106,12 @@
 
     <!-- 공시 및 공지 -->
     <div class="pt-4 border-t border-[#444]">
-    <a href="/notice" class="block w-full text-left py-2 font-semibold hover:text-[#c0b5ab]">공시 및 공지</a>
+    <a href="/notice" class="block w-full text-left py-2 font-semibold text-white hover:text-[#c0b5ab]">공시 및 공지</a>
     </div>
 
     <!-- 채용 -->
     <div class="pt-4 border-t border-[#444]">
-    <a href="/recruit" class="block w-full text-left py-2 font-semibold hover:text-[#c0b5ab]">채용</a>
+    <a href="/recruit" class="block w-full text-left py-2 font-semibold text-white hover:text-[#c0b5ab]">채용</a>
     </div>
 
     <!-- 언어 변경 버튼 -->
