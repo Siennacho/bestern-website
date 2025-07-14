@@ -102,6 +102,25 @@ def submit_secret():
     flash('게시글이 성공적으로 등록되었습니다!', 'success')
     return redirect('/')
 
+@app.route('/posts')
+def view_posts():
+    posts = []
+
+    if os.path.exists("secret_posts.txt"):
+        with open("secret_posts.txt", "r", encoding='utf-8') as f:
+            content = f.read()
+
+        # 게시글을 구분선으로 분리
+        raw_posts = content.strip().split('-' * 40)
+        for post in raw_posts:
+            lines = post.strip().split('\n')
+            if len(lines) >= 2:
+                title = lines[0].replace('제목: ', '')
+                content = '\n'.join(lines[1:]).replace('내용: ', '')
+                posts.append({'title': title, 'content': content})
+
+    return render_template('posts.html', posts=posts)
+
 # 앱 실행
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
