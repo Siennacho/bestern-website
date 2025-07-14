@@ -59,8 +59,9 @@
   </style>
 </head>
 <body class="text-gray-800 bg-white">
+  <div class="hidden translate-x-0 opacity-100 pointer-events-auto"></div>
   {% include 'header.html' %}
-
+  
   <!-- 메인 콘텐츠 영역 -->
   <main class="min-h-screen">
     {% block content %}{% endblock %}
@@ -68,43 +69,6 @@
 
   {% include 'footer.html' %}
 
-  <!-- ✅ 모바일 메뉴 작동 스크립트 -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const menu = document.getElementById("mobileMenu");
-      const menuBtn = document.getElementById("menuToggleBtn");
-      const closeBtn = document.getElementById("mobileCloseBtn");
 
-      function toggleMobileMenu() {
-        const isOpen = menu.classList.contains("translate-x-0");
-
-        menu.classList.toggle("translate-x-full", isOpen);
-        menu.classList.toggle("translate-x-0", !isOpen);
-
-        menu.classList.toggle("opacity-0", isOpen);
-        menu.classList.toggle("opacity-100", !isOpen);
-
-        menu.classList.toggle("pointer-events-none", isOpen);
-
-        document.body.style.overflow = isOpen ? "" : "hidden";
-      }
-
-      function toggleSubMenu(id) {
-        const el = document.getElementById(id);
-        if (el) el.classList.toggle("hidden");
-      }
-
-      if (menuBtn) menuBtn.addEventListener("click", toggleMobileMenu);
-      if (closeBtn) closeBtn.addEventListener("click", toggleMobileMenu);
-
-      document.querySelectorAll("[onclick^='toggleSubMenu']").forEach(btn => {
-        const match = btn.getAttribute("onclick").match(/'([^']+)'/);
-        if (match) {
-          const id = match[1];
-          btn.addEventListener("click", () => toggleSubMenu(id));
-        }
-      });
-    });
-  </script>
 </body>
 </html>
