@@ -6,9 +6,16 @@
   <title>{% block title %}BESTERN{% endblock %}</title>
 
   <!-- Favicon & Meta -->
-  ...
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon-16x16.png') }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
+  <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+  <meta name="robots" content="index,follow" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  {% block meta %}{% endblock %}
 
-  <!-- Tailwind -->
+  <!-- Tailwind 설정 -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -29,20 +36,39 @@
     };
   </script>
 
-  <!-- Fonts -->
-  ...
-
+  <!-- 웹폰트 & 커스텀 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'Font1';
+      src: url("{{ url_for('static', filename='fonts/font1.ttf') }}") format("truetype");
+    }
+    @font-face {
+      font-family: 'Font2';
+      src: url("{{ url_for('static', filename='fonts/font2.otf') }}") format("opentype");
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Font1', 'Noto Sans KR', sans-serif;
+    }
+    .font-bestern {
+      font-family: 'Font2', sans-serif;
+    }
+  </style>
 </head>
 <body class="text-gray-800 bg-white">
   {% include 'header.html' %}
 
+  <!-- 메인 콘텐츠 영역 -->
   <main class="min-h-screen">
     {% block content %}{% endblock %}
   </main>
 
   {% include 'footer.html' %}
 
-  <!-- ✅ 모바일 메뉴 스크립트 -->
+  <!-- ✅ 모바일 메뉴 작동 스크립트 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const menu = document.getElementById("mobileMenu");
