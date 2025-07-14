@@ -4,14 +4,14 @@
 
 <!-- HERO -->
 <section id="home" class="relative h-screen overflow-hidden">
-  <video autoplay muted loop playsinline aria-hidden="true" class="absolute w-full h-full object-cover z-[-0]">
+  <video autoplay muted loop playsinline aria-hidden="true" class="absolute w-full h-full object-cover z-0">
     <!-- 데스크탑용 -->
     <source src="{{ url_for('static', filename='banner.mp4') }}" type="video/mp4" media="(min-width: 768px)">
     <!-- 모바일용 -->
     <source src="{{ url_for('static', filename='banner_mobile.mp4') }}" type="video/mp4" media="(max-width: 767px)">
   </video>
 
-  <div class="absolute inset-0 bg-black/40 flex items-center justify-center z-10">
+  <div class="absolute inset-0 bg-black/40 flex items-center justify-center z-20">
     <div class="text-center text-white px-4">
       <h1 class="text-5xl sm:text-6xl font-bold mb-4 tracking-wide leading-tight">
         <span class="font-bestern">BESTERN</span>
