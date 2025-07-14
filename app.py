@@ -34,7 +34,6 @@ CATEGORIES = {
 
 posts = []
 
-# 기본 라우트
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -55,12 +54,10 @@ def operation(subpage):
 def recruit():
     return render_template("recruit.html")
 
-# 게시판 홈
 @app.route("/management/board")
 def board_home():
     return render_template("management/board/board_home.html", categories=CATEGORIES)
 
-# 게시판 목록
 @app.route("/management/board/<category>")
 def board_list(category):
     if category not in CATEGORIES:
@@ -75,7 +72,6 @@ def board_list(category):
                            category_name=CATEGORIES[category],
                            posts=category_posts)
 
-# 글쓰기 비밀번호 확인
 @app.route("/management/board/<category>/check", methods=['GET', 'POST'])
 def board_check(category):
     if request.method == 'POST':
@@ -86,7 +82,6 @@ def board_check(category):
                            category=category,
                            category_name=CATEGORIES.get(category, ""))
 
-# 게시글 작성
 @app.route("/management/board/<category>/write", methods=['GET', 'POST'])
 def board_write(category):
     if category not in CATEGORIES:
@@ -96,20 +91,26 @@ def board_write(category):
         title = request.form.get('title')
         content = request.form.get('content')
         author = request.form.get('author')
-        file = request.files.get('file')
+        attachments = request.files.get('file')
+        image_files = request.files.getlist('images')
 
-        image_url = None
+        image_urls = []
         file_url = None
 
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+        if image_files:
+            for image in image_files:
+                if image and allowed_file(image.filename) and is_image(image.filename):
+                    filename = secure_filename(image.filename)
+                    path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    image.save(path)
+                    url = '/' + path.replace("\\", "/")
+                    image_urls.append(url)
+
+        if attachments and allowed_file(attachments.filename) and not is_image(attachments.filename):
+            filename = secure_filename(attachments.filename)
             path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(path)
-            url = '/' + path.replace("\\", "/")
-            if is_image(filename):
-                image_url = url
-            else:
-                file_url = url
+            attachments.save(path)
+            file_url = '/' + path.replace("\\", "/")
 
         post = {
             'id': len(posts) + 1,
@@ -117,7 +118,7 @@ def board_write(category):
             'title': title,
             'content': content,
             'author': author,
-            'image_url': image_url,
+            'image_urls': image_urls,
             'file_url': file_url,
             'date': datetime.now().strftime('%Y-%m-%d')
         }
@@ -129,7 +130,6 @@ def board_write(category):
                            category=category,
                            category_name=CATEGORIES[category])
 
-# 게시글 상세보기
 @app.route("/management/board/<category>/post/<int:post_id>")
 def board_post(category, post_id):
     post = next((p for p in posts if p['id'] == post_id and p['category'] == category), None)
@@ -140,7 +140,6 @@ def board_post(category, post_id):
                            category=category,
                            category_name=CATEGORIES[category])
 
-# 게시글 수정
 @app.route("/management/board/<category>/edit/<int:post_id>", methods=['GET', 'POST'])
 def board_edit(category, post_id):
     post = next((p for p in posts if p['id'] == post_id and p['category'] == category), None)
@@ -159,7 +158,6 @@ def board_edit(category, post_id):
                            category=category,
                            category_name=CATEGORIES[category])
 
-# 게시글 삭제
 @app.route("/management/board/<category>/delete/<int:post_id>", methods=['POST'])
 def board_delete(category, post_id):
     global posts

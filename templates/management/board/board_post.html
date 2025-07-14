@@ -17,19 +17,26 @@
     {{ post.content|default('') }}
   </div>
 
-  <!-- 이미지 출력 -->
-  {% if post.image_url %}
-    <div class="mb-10">
-      <img src="{{ post.image_url }}" alt="첨부 이미지" class="max-w-full rounded shadow-md" />
+  <!-- 이미지 출력 (여러 장) -->
+  {% if post.image_urls %}
+    <div class="mb-10 space-y-6">
+      {% for img in post.image_urls %}
+        <img src="{{ img }}" alt="첨부 이미지" class="max-w-full rounded shadow-md" />
+      {% endfor %}
     </div>
   {% endif %}
 
-  <!-- 첨부파일 출력 -->
-  {% if post.file_url %}
-    <div class="mb-10">
-      📎 <a href="{{ post.file_url }}" target="_blank" class="text-[#755d46] underline hover:text-[#442404]">
-        첨부파일 다운로드
-      </a>
+  <!-- 첨부파일 출력 (여러 개) -->
+  {% if post.file_urls %}
+    <div class="mb-10 space-y-2">
+      {% for file in post.file_urls %}
+        <div>
+          📎 
+          <a href="{{ file }}" target="_blank" class="text-[#755d46] underline hover:text-[#442404]">
+            {{ file.split('/')[-1] }} 다운로드
+          </a>
+        </div>
+      {% endfor %}
     </div>
   {% endif %}
 
