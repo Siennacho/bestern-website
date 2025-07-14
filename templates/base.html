@@ -73,14 +73,19 @@
     document.addEventListener("DOMContentLoaded", () => {
       const menu = document.getElementById("mobileMenu");
       const menuBtn = document.getElementById("menuToggleBtn");
-      const closeBtn = menu.querySelector("button[onclick*='toggleMobileMenu']");
+      const closeBtn = document.getElementById("mobileCloseBtn");
 
       function toggleMobileMenu() {
         const isOpen = menu.classList.contains("translate-x-0");
-        menu.classList.toggle("translate-x-full");
-        menu.classList.toggle("translate-x-0");
-        menu.classList.toggle("opacity-0");
-        menu.classList.toggle("opacity-100");
+
+        menu.classList.toggle("translate-x-full", isOpen);
+        menu.classList.toggle("translate-x-0", !isOpen);
+
+        menu.classList.toggle("opacity-0", isOpen);
+        menu.classList.toggle("opacity-100", !isOpen);
+
+        menu.classList.toggle("pointer-events-none", isOpen);
+
         document.body.style.overflow = isOpen ? "" : "hidden";
       }
 
