@@ -2,9 +2,10 @@ from flask import Flask, render_template, request, flash, redirect
 import os
 
 app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY', 'dev_secret_key')  # 실제 배포 시 환경변수 설정 권장
+POST_PASSWORD = os.environ.get('POST_PASSWORD', 'bestern_pw')    # 작성용 비밀번호
 
-app.secret_key = 'your_secret_key_here'  # 임의의 보안 문자열 (실제 배포 시 환경변수로)
-
+# 기본 페이지 라우팅
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -28,7 +29,6 @@ def company_orgchart():
 @app.route("/company/contact")
 def company_contact():
     return render_template("company/contact.html")
-
 
 @app.route("/management")
 def management():
@@ -58,7 +58,6 @@ def management_performance():
 def management_resources():
     return render_template("management/resources.html")
 
-
 @app.route("/operation")
 def operation():
     return render_template("operation.html")
@@ -79,38 +78,31 @@ def notice():
 def recruit():
     return render_template("recruit.html")
 
-
+# 🔐 비밀번호 확인 페이지
 @app.route('/write-secret', methods=['GET', 'POST'])
 def write_secret():
     if request.method == 'POST':
         password = request.form.get('password')
-        if password == 'bestern_pw':  # 비밀번호 설정 (나중에 더 안전하게 관리 가능)
-            return render_template('write_form.html')  # 게시물 작성 페이지로 이동
+        if password == POST_PASSWORD:
+            return render_template('write_form.html')  # 비공개 글 작성 페이지
         else:
             flash('비밀번호가 틀렸습니다.', 'error')
-    return render_template('password_check.html')
+    return render_template('password_check.html')  # 비밀번호 입력 화면
 
-
+# 📝 비공개 게시글 제출 처리
 @app.route('/submit-secret', methods=['POST'])
 def submit_secret():
     title = request.form.get('title')
     content = request.form.get('content')
 
-    # 🔧 게시글을 파일로 임시 저장
+    # 파일에 저장
     with open("secret_posts.txt", "a", encoding='utf-8') as f:
         f.write(f"제목: {title}\n내용: {content}\n{'-'*40}\n")
 
     flash('게시글이 성공적으로 등록되었습니다!', 'success')
     return redirect('/')
 
-    # TODO: 데이터베이스에 저장하는 코드
-    # 예시:
-    # db.session.add(Post(title=title, content=content))
-    # db.session.commit()
-
-    flash('게시글이 성공적으로 등록되었습니다!', 'success')
-    return redirect('/')
-
+# 앱 실행
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
