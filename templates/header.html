@@ -71,5 +71,76 @@
   </div>
 </header>
 
+<!-- 모바일 메뉴 -->
+<div id="mobileMenu"
+     class="md:hidden fixed inset-0 bg-[#1a1a1a]/85 backdrop-blur-sm text-white shadow-lg transform transition-transform duration-300 z-[9999] overflow-y-auto translate-x-full">
+  <div class="relative p-6 pt-12 space-y-6 text-lg">
+    <button onclick="toggleMobileMenu()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white text-2xl font-bold rounded-full bg-[#333] hover:bg-[#555]">✕</button>
 
+    <!-- 회사소개 -->
+    <div class="pt-4 border-t border-[#444]">
+      <button onclick="toggleSubMenu('companySub')" class="w-full text-left py-2 font-semibold hover:text-[#c0b5ab]">회사소개</button>
+      <div id="companySub" class="pl-4 mt-2 hidden space-y-2 text-base">
+        <a href="/company/greeting" class="block hover:text-[#c0b5ab]">인사말</a>
+        <a href="/company/overview" class="block hover:text-[#c0b5ab]">개요</a>
+        <a href="/company/orgchart" class="block hover:text-[#c0b5ab]">조직도</a>
+        <a href="/company/contact" class="block hover:text-[#c0b5ab]">연락처</a>
+      </div>
+    </div>
+
+    <!-- 자산관리 -->
+    <div class="pt-4 border-t border-[#444]">
+      <button onclick="toggleSubMenu('managementSub')" class="w-full text-left py-2 font-semibold hover:text-[#c0b5ab]">자산관리</button>
+      <div id="managementSub" class="pl-4 mt-2 hidden space-y-2 text-base">
+        <a href="/management/overview" class="block hover:text-[#c0b5ab]">개요</a>
+        <a href="/management/orgchart" class="block hover:text-[#c0b5ab]">조직도</a>
+        <a href="/management/secured" class="block hover:text-[#c0b5ab]">담보부 NPL</a>
+        <a href="/management/unsecured" class="block hover:text-[#c0b5ab]">무담보 NPL</a>
+        <a href="/management/performance" class="block hover:text-[#c0b5ab]">관리 실적</a>
+        <a href="/management/resources" class="block hover:text-[#c0b5ab]">자료실</a>
+      </div>
+    </div>
+
+    <!-- 자산운용 -->
+    <div class="pt-4 border-t border-[#444]">
+      <button onclick="toggleSubMenu('operationSub')" class="w-full text-left py-2 font-semibold hover:text-[#c0b5ab]">자산운용</button>
+      <div id="operationSub" class="pl-4 mt-2 hidden space-y-2 text-base">
+        <a href="/operation/philosophy" class="block hover:text-[#c0b5ab]">철학</a>
+        <a href="/operation/orgchart" class="block hover:text-[#c0b5ab]">조직도</a>
+      </div>
+    </div>
+
+    <!-- 공시 및 공지 -->
+    <div class="pt-4 border-t border-[#444]">
+      <a href="/notice" class="block w-full text-left py-2 font-semibold hover:text-[#c0b5ab]">공시 및 공지</a>
+    </div>
+
+    <!-- 채용 -->
+    <div class="pt-4 border-t border-[#444]">
+      <a href="/recruit" class="block w-full text-left py-2 font-semibold hover:text-[#c0b5ab]">채용</a>
+    </div>
+
+    <!-- 언어 변경 -->
+    <button class="block mt-4 px-4 py-2 border rounded text-[#c0b5ab] border-[#c0b5ab] hover:bg-[#755d46] hover:text-white transition w-full">
+      언어 전환: KO | EN
+    </button>
+  </div>
+</div>
+
+<script>
+function toggleMobileMenu() {
+  const menu = document.getElementById("mobileMenu");
+  if (menu.classList.contains("translate-x-full")) {
+    menu.classList.remove("translate-x-full");
+    menu.classList.add("translate-x-0");
+  } else {
+    menu.classList.add("translate-x-full");
+    menu.classList.remove("translate-x-0");
+  }
+}
+
+function toggleSubMenu(id) {
+  const subMenu = document.getElementById(id);
+  subMenu.classList.toggle("hidden");
+}
 </script>
