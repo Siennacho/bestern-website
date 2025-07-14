@@ -15,7 +15,7 @@
     <ul class="divide-y divide-gray-300">
       {% for post in posts %}
         <li class="py-4">
-          <a href="{{ url_for('board_post', category=category, post_id=post.id) }}"
+          <a href="{{ url_for('board_post', category=category, post_id=post['id']) }}"
              class="text-lg font-medium text-[#442404] hover:underline">
             {{ post.title }}
           </a>
