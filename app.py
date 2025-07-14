@@ -122,6 +122,21 @@ def view_posts():
     return render_template('posts.html', posts=posts)
 
 
+@app.route("/board/<category>")
+def board_list(category):
+    if category not in CATEGORIES:
+        return "존재하지 않는 게시판입니다.", 404
+
+    category_name = CATEGORIES[category]
+    category_posts = [p for p in posts if p['category'] == category]
+
+    return render_template(
+        "board_list.html",
+        category=category,
+        category_name=category_name,
+        posts=category_posts
+    )
+
 # --- 게시판 관련 로직 시작 ---
 
 from datetime import datetime
