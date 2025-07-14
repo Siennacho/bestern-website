@@ -15,6 +15,7 @@ CATEGORIES = {
     'assets': '기타 유동화 자산관련 공고',
     'qna': 'QnA'
 }
+
 posts = []
 
 # 기본 페이지
@@ -34,36 +35,33 @@ def management(subpage):
 def operation(subpage):
     return render_template(f"operation/{subpage}.html")
 
-@app.route("/notice")
-def notice():
-    return render_template("notice.html")
-
 @app.route("/recruit")
 def recruit():
     return render_template("recruit.html")
 
-@app.route("/board")
+# 📌 자산관리 > 자료실
+@app.route("/management/board")
 def board_home():
-    return render_template("board_home.html", categories=CATEGORIES)
+    return render_template("management/board/board_home.html", categories=CATEGORIES)
 
-@app.route("/board/<category>")
+@app.route("/management/board/<category>")
 def board_list(category):
     if category not in CATEGORIES:
         return "존재하지 않는 게시판입니다.", 404
     category_name = CATEGORIES[category]
     category_posts = [p for p in posts if p['category'] == category]
-    return render_template("board_list.html", category=category, category_name=category_name, posts=category_posts)
+    return render_template("management/board/board_list.html", category=category, category_name=category_name, posts=category_posts)
 
-@app.route("/board/<category>/check", methods=['GET', 'POST'])
+@app.route("/management/board/<category>/check", methods=['GET', 'POST'])
 def board_check(category):
     if request.method == 'POST':
         password = request.form.get('password')
         if password == POST_PASSWORD:
             return redirect(url_for('board_write', category=category))
         flash("비밀번호가 틀렸습니다.", "error")
-    return render_template("board_check.html", category=category, category_name=CATEGORIES.get(category, ""))
+    return render_template("management/board/board_check.html", category=category, category_name=CATEGORIES.get(category, ""))
 
-@app.route("/board/<category>/write", methods=['GET', 'POST'])
+@app.route("/management/board/<category>/write", methods=['GET', 'POST'])
 def board_write(category):
     if category not in CATEGORIES:
         return "존재하지 않는 게시판입니다.", 404
@@ -80,27 +78,67 @@ def board_write(category):
         posts.append(post)
         flash("게시글이 등록되었습니다.", "success")
         return redirect(url_for('board_list', category=category))
-    return render_template("board_write.html", category=category, category_name=CATEGORIES[category])
+    return render_template("management/board/board_write.html", category=category, category_name=CATEGORIES[category])
 
-@app.route("/board/<category>/post/<int:post_id>")
+@app.route("/management/board/<category>/post/<int:post_id>")
 def board_post(category, post_id):
     post = next((p for p in posts if p['id'] == post_id and p['category'] == category), None)
     if not post:
         return "게시글을 찾을 수 없습니다.", 404
-    return render_template("board_post.html", post=post, category=category, category_name=CATEGORIES[category])
+    return render_template("management/board/board_post.html", post=post, category=category, category_name=CATEGORIES[category])
 
-# 비밀번호 확인 후 게시글 작성
+# 📌 공시 및 공지사항
+@app.route("/notice")
+def notice_home():
+    return render_template("notice/notice_home.html")
+
+@app.route("/notice/list")
+def notice_list():
+    return render_template("notice/notice_list.html")
+
+@app.route("/notice/check", methods=['GET', 'POST'])
+def notice_check():
+    if request.method == 'POST':
+        password = request.form.get('password')
+        if password == POST_PASSWORD:
+            return redirect(url_for('notice_write'))
+        flash("비밀번호가 틀렸습니다.", "error")
+    return render_template("notice/notice_password_check.html")
+
+@app.route("/notice/write", methods=['GET', 'POST'])
+def notice_write():
+    if request.method == 'POST':
+        title = request.form.get('title')
+        content = request.form.get('content')
+        post = {
+            'id': len(posts) + 1,
+            'category': 'notice',
+            'title': title,
+            'content': content,
+            'date': datetime.now().strftime('%Y-%m-%d')
+        }
+        posts.append(post)
+        flash("공지사항이 등록되었습니다.", "success")
+        return redirect(url_for('notice_list'))
+    return render_template("notice/notice_write.html")
+
+@app.route("/notice/post/<int:post_id>")
+def notice_post(post_id):
+    post = next((p for p in posts if p['id'] == post_id and p['category'] == 'notice'), None)
+    if not post:
+        return "공지사항을 찾을 수 없습니다.", 404
+    return render_template("notice/notice_post.html", post=post)
+
+# 📌 비공개 게시글 작성
 @app.route('/write-secret', methods=['GET', 'POST'])
 def write_secret():
     if request.method == 'POST':
         password = request.form.get('password')
         if password == POST_PASSWORD:
             return render_template('write_form.html')
-        else:
-            flash('비밀번호가 틀렸습니다.', 'error')
+        flash('비밀번호가 틀렸습니다.', 'error')
     return render_template('password_check.html')
 
-# 게시글 제출
 @app.route('/submit-secret', methods=['POST'])
 def submit_secret():
     title = request.form.get('title')
@@ -110,7 +148,6 @@ def submit_secret():
     flash('게시글이 성공적으로 등록되었습니다!', 'success')
     return redirect('/')
 
-# 게시글 보기
 @app.route('/posts')
 def view_posts():
     posts = []
