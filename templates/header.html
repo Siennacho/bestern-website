@@ -62,10 +62,12 @@
       </button>
     </nav>
 
-    <!-- 모바일 햄버거 버튼 -->
-    <button id="mobileCloseBtn" onclick="toggleMobileMenu()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white text-2xl font-bold rounded-full bg-[#333] hover:bg-[#555]">✕</button>      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
+   <!-- 모바일 햄버거 버튼 (열기용) -->
+    <button id="menuToggleBtn" onclick="toggleMobileMenu()" class="md:hidden text-[#755d46]" aria-label="모바일 메뉴 열기">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
     </button>
   </div>
 </header>
@@ -127,19 +129,28 @@
 </div>
 
 <script>
-function toggleMobileMenu() {
-  const menu = document.getElementById("mobileMenu");
-  if (menu.classList.contains("translate-x-full")) {
-    menu.classList.remove("translate-x-full");
-    menu.classList.add("translate-x-0");
-  } else {
-    menu.classList.add("translate-x-full");
-    menu.classList.remove("translate-x-0");
+  function toggleMobileMenu() {
+    const menu = document.getElementById("mobileMenu");
+    menu.classList.toggle("translate-x-full");
+    menu.classList.toggle("translate-x-0");
   }
-}
 
-function toggleSubMenu(id) {
-  const subMenu = document.getElementById(id);
-  subMenu.classList.toggle("hidden");
-}
+  function toggleSubMenu(id) {
+    const subMenu = document.getElementById(id);
+    subMenu.classList.toggle("hidden");
+  }
+
+  // 외부 클릭 시 메뉴 닫기
+  document.addEventListener("click", function (e) {
+    const menu = document.getElementById("mobileMenu");
+    const toggleBtn = document.getElementById("menuToggleBtn");
+
+    // 메뉴가 열려있고, 클릭한 대상이 메뉴나 버튼 외부일 때
+    if (!menu.classList.contains("translate-x-full") &&
+        !menu.contains(e.target) &&
+        !toggleBtn.contains(e.target)) {
+      menu.classList.add("translate-x-full");
+      menu.classList.remove("translate-x-0");
+    }
+  });
 </script>
