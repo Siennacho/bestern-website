@@ -5,19 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}BESTERN{% endblock %}</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon-16x16.png') }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
-  <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+  <!-- Favicon & Meta -->
+  ...
 
-  <!-- SEO & Meta -->
-  <meta name="robots" content="index,follow" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  {% block meta %}{% endblock %}
-
-  <!-- Tailwind 설정 -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -38,75 +29,48 @@
     };
   </script>
 
-  <!-- 웹폰트 로드 -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+  <!-- Fonts -->
+  ...
 
-  <!-- 커스텀 폰트 등록 -->
-  <style>
-    @font-face {
-      font-family: 'Font1';
-      src: url("{{ url_for('static', filename='fonts/font1.ttf') }}") format("truetype");
-    }
-    @font-face {
-      font-family: 'Font2';
-      src: url("{{ url_for('static', filename='fonts/font2.otf') }}") format("opentype");
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Font1', 'Noto Sans KR', sans-serif;
-    }
-    .font-bestern {
-      font-family: 'Font2', sans-serif;
-    }
-  </style>
 </head>
 <body class="text-gray-800 bg-white">
   {% include 'header.html' %}
 
-  <!-- 콘텐츠 영역 -->
   <main class="min-h-screen">
     {% block content %}{% endblock %}
   </main>
 
   {% include 'footer.html' %}
 
-  <!-- 메뉴 토글 스크립트 -->
+  <!-- ✅ 모바일 메뉴 스크립트 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const menu = document.getElementById('mobileMenu');
-      const menuBtn = document.getElementById('menuToggleBtn');
-      const closeBtn = document.querySelector('#mobileMenu button[onclick*="toggleMobileMenu"]');
+      const menu = document.getElementById("mobileMenu");
+      const menuBtn = document.getElementById("menuToggleBtn");
+      const closeBtn = menu.querySelector("button[onclick*='toggleMobileMenu']");
 
-      const toggleMobileMenu = () => {
-        const isOpen = menu.classList.contains('translate-x-0');
-        menu.classList.toggle('translate-x-full');
-        menu.classList.toggle('translate-x-0');
-        menu.classList.toggle('opacity-0');
-        menu.classList.toggle('opacity-100');
-        document.body.style.overflow = isOpen ? '' : 'hidden';
-      };
+      function toggleMobileMenu() {
+        const isOpen = menu.classList.contains("translate-x-0");
+        menu.classList.toggle("translate-x-full");
+        menu.classList.toggle("translate-x-0");
+        menu.classList.toggle("opacity-0");
+        menu.classList.toggle("opacity-100");
+        document.body.style.overflow = isOpen ? "" : "hidden";
+      }
 
-      const toggleSubMenu = (id) => {
+      function toggleSubMenu(id) {
         const el = document.getElementById(id);
-        el.classList.toggle('hidden');
-      };
+        if (el) el.classList.toggle("hidden");
+      }
 
-      if (menuBtn) menuBtn.addEventListener('click', toggleMobileMenu);
-      if (closeBtn) closeBtn.addEventListener('click', toggleMobileMenu);
+      if (menuBtn) menuBtn.addEventListener("click", toggleMobileMenu);
+      if (closeBtn) closeBtn.addEventListener("click", toggleMobileMenu);
 
-      document.querySelectorAll('[onclick^="toggleSubMenu"]').forEach(btn => {
-        const id = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
-        btn.addEventListener('click', () => toggleSubMenu(id));
-      });
-
-      // Active 메뉴 처리
-      const currentPath = window.location.pathname;
-      document.querySelectorAll('nav a, nav button, #mobileMenu a, #mobileMenu button').forEach(link => {
-        const href = link.getAttribute('href') || '';
-        if (href && currentPath.startsWith(href)) {
-          link.classList.add('text-primary', 'underline', 'underline-offset-4');
+      document.querySelectorAll("[onclick^='toggleSubMenu']").forEach(btn => {
+        const match = btn.getAttribute("onclick").match(/'([^']+)'/);
+        if (match) {
+          const id = match[1];
+          btn.addEventListener("click", () => toggleSubMenu(id));
         }
       });
     });
