@@ -42,10 +42,12 @@
     @font-face {
       font-family: 'Font1';
       src: url("{{ url_for('static', filename='fonts/font1.ttf') }}") format("truetype");
+      font-display: swap;
     }
     @font-face {
       font-family: 'Font2';
       src: url("{{ url_for('static', filename='fonts/font2.otf') }}") format("opentype");
+      font-display: swap;
     }
     html {
       scroll-behavior: smooth;
@@ -60,29 +62,32 @@
 </head>
 <body class="text-gray-800 bg-white">
 
+  <!-- ✅ 헤더 포함 -->
   {% include 'header.html' %}
 
-  <!-- ㅇㅇㅇㅇ -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        <div class="max-w-3xl mx-auto px-4 py-4">
-          {% for category, message in messages %}
-            <div class="mb-4 p-4 rounded text-white {% if category == 'success' %}bg-green-500{% elif category == 'error' %}bg-red-500{% endif %}">
-              {{ message }}
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %}
-    {% endwith %}
+  <!-- ✅ Flash 메시지 -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4">
+        {% for category, message in messages %}
+          <div class="mb-4 p-4 rounded text-white 
+                      {% if category == 'success' %}bg-green-500
+                      {% elif category == 'error' %}bg-red-500
+                      {% else %}bg-gray-600{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
 
-  
-  <!-- 메인 콘텐츠 영역 -->
+  <!-- ✅ 메인 콘텐츠 영역 -->
   <main class="min-h-screen">
     {% block content %}{% endblock %}
   </main>
 
+  <!-- ✅ 푸터 포함 -->
   {% include 'footer.html' %}
-
 
 </body>
 </html>

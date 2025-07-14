@@ -11,17 +11,18 @@
     <div>
       <label for="title" class="block mb-2 text-sm font-medium">제목</label>
       <input type="text" id="title" name="title" required
+             value="{{ request.form.get('title', '') }}"
              class="w-full border border-gray-300 px-4 py-2 rounded" />
     </div>
 
     <div>
       <label for="content" class="block mb-2 text-sm font-medium">내용</label>
       <textarea id="content" name="content" rows="6" required
-                class="w-full border border-gray-300 px-4 py-2 rounded"></textarea>
+                class="w-full border border-gray-300 px-4 py-2 rounded">{{ request.form.get('content', '') }}</textarea>
     </div>
 
     <button type="submit"
-            class="px-6 py-2 bg-[#755d46] text-white font-semibold rounded hover:bg-[#442404]">
+            class="px-6 py-2 bg-[#755d46] text-white font-semibold rounded hover:bg-[#442404] transition-colors">
       등록하기
     </button>
   </form>

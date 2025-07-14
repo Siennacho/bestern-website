@@ -35,7 +35,8 @@
           <a href="/management/secured" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">담보부 NPL</a>
           <a href="/management/unsecured" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">무담보 NPL</a>
           <a href="/management/performance" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">관리 실적</a>
-          <a href="/board" class="{{ 'text-[#755d46] font-bold' if path.startswith('/board') else 'text-[#442404]' }}">자료실</a>        </div>
+          <a href="/board" class="{{ 'text-[#755d46] font-bold' if path.startswith('/board') else 'text-[#442404]' }}">자료실</a>
+        </div>
       </div>
 
       <!-- 자산운용 -->
@@ -61,12 +62,11 @@
       </button>
     </nav>
 
-   <!-- 모바일 햄버거 버튼 (열기용) -->
+    <!-- 모바일 햄버거 버튼 -->
     <button id="menuToggleBtn" onclick="toggleMobileMenu()" class="md:hidden text-[#755d46]" aria-label="모바일 메뉴 열기">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
     </button>
   </div>
 </header>
@@ -98,6 +98,7 @@
         <a href="/management/unsecured" class="block hover:text-[#c0b5ab]">무담보 NPL</a>
         <a href="/management/performance" class="block hover:text-[#c0b5ab]">관리 실적</a>
         <a href="/board" class="block py-2 hover:text-[#c0b5ab]">자료실</a>
+      </div>
     </div>
 
     <!-- 자산운용 -->
@@ -138,13 +139,11 @@
     subMenu.classList.toggle("hidden");
   }
 
-  // 외부 클릭 시 메뉴 닫기
   document.addEventListener("click", function (e) {
     const menu = document.getElementById("mobileMenu");
     const toggleBtn = document.getElementById("menuToggleBtn");
-
-    // 메뉴가 열려있고, 클릭한 대상이 메뉴나 버튼 외부일 때
-    if (!menu.classList.contains("translate-x-full") &&
+    if (menu && toggleBtn &&
+        !menu.classList.contains("translate-x-full") &&
         !menu.contains(e.target) &&
         !toggleBtn.contains(e.target)) {
       menu.classList.add("translate-x-full");
