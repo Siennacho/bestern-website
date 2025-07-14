@@ -13,13 +13,16 @@
 
   {% if posts %}
     <ul class="divide-y divide-gray-300">
-      {% for post in posts %}
+      {% for post in posts|sort(attribute='date', reverse=True) %}
         <li class="py-4">
           <a href="{{ url_for('board_post', category=category, post_id=post['id']) }}"
              class="text-lg font-medium text-[#442404] hover:underline">
             {{ post['title'] }}
           </a>
-          <div class="text-sm text-gray-500 mt-1">{{ post['date']|default('') }}</div>
+          <div class="text-sm text-gray-500 mt-1">
+            작성자: {{ post['author']|default('익명') }} | 
+            {{ post['date']|default('') }}
+          </div>
         </li>
       {% endfor %}
     </ul>

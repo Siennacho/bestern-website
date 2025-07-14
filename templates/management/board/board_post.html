@@ -4,27 +4,55 @@
 {% block content %}
 <section class="py-20 px-4 max-w-4xl mx-auto" aria-label="게시글 상세보기">
   <!-- 제목 -->
-  <h2 class="text-2xl font-bold text-[#442404] mb-4">{{ post.title|default('제목 없음') }}</h2>
-  <p class="text-sm text-gray-500 mb-10">{{ post.date|default('') }}</p>
+  <h2 class="text-2xl font-bold text-[#442404] mb-2">{{ post.title|default('제목 없음') }}</h2>
+
+  <!-- 작성자 및 날짜 -->
+  <div class="text-sm text-gray-500 mb-6">
+    <span>작성자: {{ post.author|default('익명') }}</span> |
+    <span>작성일: {{ post.date|default('') }}</span>
+  </div>
 
   <!-- 본문 내용 -->
   <div class="text-base leading-relaxed whitespace-pre-wrap text-[#333] mb-8">
     {{ post.content|default('') }}
   </div>
 
-  <!-- 이미지가 있는 경우 출력 -->
+  <!-- 이미지 출력 -->
   {% if post.image_url %}
     <div class="mb-10">
       <img src="{{ post.image_url }}" alt="첨부 이미지" class="max-w-full rounded shadow-md" />
     </div>
   {% endif %}
 
-  <!-- 목록 버튼 -->
-  <div class="mt-12 text-right">
+  <!-- 첨부파일 출력 -->
+  {% if post.file_url %}
+    <div class="mb-10">
+      📎 <a href="{{ post.file_url }}" target="_blank" class="text-[#755d46] underline hover:text-[#442404]">
+        첨부파일 다운로드
+      </a>
+    </div>
+  {% endif %}
+
+  <!-- 목록 및 수정/삭제 버튼 -->
+  <div class="mt-12 flex justify-between items-center">
     <a href="{{ url_for('board_list', category=category) }}"
        class="inline-block px-4 py-2 bg-[#755d46] text-white rounded hover:bg-[#442404] transition-colors">
       목록으로
     </a>
+
+    <div class="space-x-2">
+      <a href="{{ url_for('board_edit', category=category, post_id=post.id) }}"
+         class="inline-block px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400">
+        수정
+      </a>
+      <form method="POST" action="{{ url_for('board_delete', category=category, post_id=post.id) }}" style="display:inline;">
+        <button type="submit"
+                class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                onclick="return confirm('정말 삭제하시겠습니까?');">
+          삭제
+        </button>
+      </form>
+    </div>
   </div>
 </section>
 {% endblock %}
