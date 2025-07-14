@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block content %}
+<section class="py-16 max-w-5xl mx-auto px-4">
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-2xl font-bold text-[#442404]">{{ category_name }}</h2>
+    <a href="{{ url_for('board_check', category=category) }}" 
+       class="bg-[#755d46] text-white px-4 py-2 rounded hover:bg-[#442404]">
+      글쓰기
+    </a>
+  </div>
+
+  {% if posts %}
+    <ul class="divide-y divide-gray-300">
+      {% for post in posts %}
+        <li class="py-4">
+          <a href="{{ url_for('board_post', category=category, post_id=post.id) }}"
+             class="text-lg font-medium text-[#442404] hover:underline">
+            {{ post.title }}
+          </a>
+          <div class="text-sm text-gray-500 mt-1">{{ post.date }}</div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-gray-500">작성된 게시글이 없습니다.</p>
+  {% endif %}
+</section>
+{% endblock %}

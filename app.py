@@ -121,6 +121,71 @@ def view_posts():
 
     return render_template('posts.html', posts=posts)
 
+
+# --- 게시판 관련 로직 시작 ---
+
+from datetime import datetime
+
+CATEGORIES = {
+    'policy': '개인채무자보호법 관련 내부 기준',
+    'auction': '경매 예정 통기서',
+    'notice': '개인 채무자보호 관련 공고',
+    'privacy': '개인정보 처리방침',
+    'assets': '기타 유동화 자산관련 공고',
+    'qna': 'QnA'
+}
+
+posts = []
+
+@app.route("/board/<category>")
+def board_list(category):
+    if category not in CATEGORIES:
+        return "존재하지 않는 게시판입니다.", 404
+    category_name = CATEGORIES[category]
+    category_posts = [p for p in posts if p['category'] == category]
+    return render_template("board_list.html", category=category, category_name=category_name, posts=category_posts)
+
+@app.route("/board/<category>/check", methods=['GET', 'POST'])
+def board_check(category):
+    if request.method == 'POST':
+        password = request.form.get('password')
+        if password == os.environ.get("POST_PASSWORD", "bestern_pw"):
+            return redirect(url_for('board_write', category=category))
+        flash("비밀번호가 틀렸습니다.", "error")
+    return render_template("board_check.html", category=category, category_name=CATEGORIES.get(category, ""))
+
+@app.route("/board/<category>/write", methods=['GET', 'POST'])
+def board_write(category):
+    if category not in CATEGORIES:
+        return "존재하지 않는 게시판입니다.", 404
+    if request.method == 'POST':
+        title = request.form.get('title')
+        content = request.form.get('content')
+        post = {
+            'id': len(posts) + 1,
+            'category': category,
+            'title': title,
+            'content': content,
+            'date': datetime.now().strftime('%Y-%m-%d')
+        }
+        posts.append(post)
+        flash("게시글이 등록되었습니다.", "success")
+        return redirect(url_for('board_list', category=category))
+    return render_template("board_write.html", category=category, category_name=CATEGORIES[category])
+
+@app.route("/board/<category>/post/<int:post_id>")
+def board_post(category, post_id):
+    post = next((p for p in posts if p['id'] == post_id and p['category'] == category), None)
+    if not post:
+        return "게시글을 찾을 수 없습니다.", 404
+    return render_template("board_post.html", post=post, category=category, category_name=CATEGORIES[category])
+
+
+@app.route("/board")
+def board_home():
+    return render_template("board_home.html", categories=CATEGORIES)
+
+
 # 앱 실행
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
