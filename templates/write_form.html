@@ -1,0 +1,25 @@
+<!-- templates/write_form.html -->
+{% extends "base.html" %}
+{% block title %}비공개 게시글 작성{% endblock %}
+
+{% block content %}
+<section class="py-20 px-6 max-w-3xl mx-auto">
+  <h2 class="text-2xl font-bold mb-6 text-center text-[#442404]">게시글 작성</h2>
+
+  <form action="/submit-secret" method="POST" class="space-y-6">
+    <div>
+      <label for="title" class="block mb-2 text-sm font-medium">제목</label>
+      <input type="text" id="title" name="title" required class="w-full border border-gray-300 px-4 py-2 rounded" />
+    </div>
+
+    <div>
+      <label for="content" class="block mb-2 text-sm font-medium">내용</label>
+      <textarea id="content" name="content" rows="6" required class="w-full border border-gray-300 px-4 py-2 rounded"></textarea>
+    </div>
+
+    <button type="submit" class="px-6 py-2 bg-[#755d46] text-white font-semibold rounded hover:bg-[#442404]">
+      등록하기
+    </button>
+  </form>
+</section>
+{% endblock %}

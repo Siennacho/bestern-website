@@ -59,6 +59,21 @@
   </style>
 </head>
 <body class="text-gray-800 bg-white">
+
+  <!-- ㅇㅇㅇㅇ -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="max-w-3xl mx-auto px-4 py-4">
+      {% for category, message in messages %}
+        <div class="mb-4 p-4 rounded text-white {% if category == 'success' %}bg-green-500{% elif category == 'error' %}bg-red-500{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
   <div class="hidden translate-x-0 opacity-100 pointer-events-auto"></div>
   {% include 'header.html' %}
   
