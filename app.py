@@ -1,10 +1,21 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 import os
 from datetime import datetime
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev_secret_key')
 POST_PASSWORD = os.environ.get('POST_PASSWORD', 'bestern_pw')
+
+# 업로드 폴더 및 확장자 설정
+UPLOAD_FOLDER = os.path.join('static', 'uploads')
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # 게시판 카테고리 정의
 CATEGORIES = {
@@ -39,11 +50,12 @@ def operation(subpage):
 def recruit():
     return render_template("recruit.html")
 
-# 📌 자산관리 > 자료실
+# 게시판 홈
 @app.route("/management/board")
 def board_home():
     return render_template("management/board/board_home.html", categories=CATEGORIES)
 
+# 게시판 목록
 @app.route("/management/board/<category>")
 def board_list(category):
     if category not in CATEGORIES:
@@ -52,6 +64,7 @@ def board_list(category):
     category_posts = [p for p in posts if p['category'] == category]
     return render_template("management/board/board_list.html", category=category, category_name=category_name, posts=category_posts)
 
+# 게시판 글쓰기 전 비밀번호 확인
 @app.route("/management/board/<category>/check", methods=['GET', 'POST'])
 def board_check(category):
     if request.method == 'POST':
@@ -61,25 +74,39 @@ def board_check(category):
         flash("비밀번호가 틀렸습니다.", "error")
     return render_template("management/board/board_check.html", category=category, category_name=CATEGORIES.get(category, ""))
 
+# 게시판 글쓰기
 @app.route("/management/board/<category>/write", methods=['GET', 'POST'])
 def board_write(category):
     if category not in CATEGORIES:
         return "존재하지 않는 게시판입니다.", 404
+
     if request.method == 'POST':
         title = request.form.get('title')
         content = request.form.get('content')
+        image_file = request.files.get('image')
+        image_url = None
+
+        if image_file and allowed_file(image_file.filename):
+            filename = secure_filename(image_file.filename)
+            save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            image_file.save(save_path)
+            image_url = '/' + save_path.replace("\\", "/")  # 윈도우 대응
+
         post = {
             'id': len(posts) + 1,
             'category': category,
             'title': title,
             'content': content,
+            'image_url': image_url,
             'date': datetime.now().strftime('%Y-%m-%d')
         }
         posts.append(post)
         flash("게시글이 등록되었습니다.", "success")
         return redirect(url_for('board_list', category=category))
+
     return render_template("management/board/board_write.html", category=category, category_name=CATEGORIES[category])
 
+# 게시판 게시글 보기
 @app.route("/management/board/<category>/post/<int:post_id>")
 def board_post(category, post_id):
     post = next((p for p in posts if p['id'] == post_id and p['category'] == category), None)
@@ -87,14 +114,15 @@ def board_post(category, post_id):
         return "게시글을 찾을 수 없습니다.", 404
     return render_template("management/board/board_post.html", post=post, category=category, category_name=CATEGORIES[category])
 
-# 📌 공시 및 공지사항
+# 공지사항
 @app.route("/notice")
 def notice_home():
     return render_template("notice/notice_home.html")
 
 @app.route("/notice/list")
 def notice_list():
-    return render_template("notice/notice_list.html")
+    notice_posts = [p for p in posts if p['category'] == 'notice']
+    return render_template("notice/notice_list.html", posts=notice_posts)
 
 @app.route("/notice/check", methods=['GET', 'POST'])
 def notice_check():
@@ -129,7 +157,7 @@ def notice_post(post_id):
         return "공지사항을 찾을 수 없습니다.", 404
     return render_template("notice/notice_post.html", post=post)
 
-# 📌 비공개 게시글 작성
+# 비밀글 게시판
 @app.route('/write-secret', methods=['GET', 'POST'])
 def write_secret():
     if request.method == 'POST':
@@ -163,7 +191,6 @@ def view_posts():
                 posts.append({'title': title, 'content': content})
     return render_template('posts.html', posts=posts)
 
-# 실행
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)

@@ -7,7 +7,7 @@
     {{ category_name }} - 게시글 작성
   </h2>
 
-  <form method="POST" class="space-y-6">
+  <form method="POST" enctype="multipart/form-data" class="space-y-6">
     <div>
       <label for="title" class="block mb-2 text-sm font-medium">제목</label>
       <input type="text" id="title" name="title" required
@@ -19,6 +19,12 @@
       <label for="content" class="block mb-2 text-sm font-medium">내용</label>
       <textarea id="content" name="content" rows="6" required
                 class="w-full border border-gray-300 px-4 py-2 rounded">{{ request.form.get('content', '') }}</textarea>
+    </div>
+
+    <div>
+      <label for="image" class="block mb-2 text-sm font-medium">이미지 업로드</label>
+      <input type="file" id="image" name="image" accept="image/*"
+             class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-[#e7d8c9] file:text-[#442404] hover:file:bg-[#d2b8a3]">
     </div>
 
     <button type="submit"

@@ -3,12 +3,23 @@
 
 {% block content %}
 <section class="py-20 px-4 max-w-4xl mx-auto" aria-label="게시글 상세보기">
+  <!-- 제목 -->
   <h2 class="text-2xl font-bold text-[#442404] mb-4">{{ post.title|default('제목 없음') }}</h2>
   <p class="text-sm text-gray-500 mb-10">{{ post.date|default('') }}</p>
-  <div class="text-base leading-relaxed whitespace-pre-wrap text-[#333]">
+
+  <!-- 본문 내용 -->
+  <div class="text-base leading-relaxed whitespace-pre-wrap text-[#333] mb-8">
     {{ post.content|default('') }}
   </div>
-  
+
+  <!-- 이미지가 있는 경우 출력 -->
+  {% if post.image_url %}
+    <div class="mb-10">
+      <img src="{{ post.image_url }}" alt="첨부 이미지" class="max-w-full rounded shadow-md" />
+    </div>
+  {% endif %}
+
+  <!-- 목록 버튼 -->
   <div class="mt-12 text-right">
     <a href="{{ url_for('board_list', category=category) }}"
        class="inline-block px-4 py-2 bg-[#755d46] text-white rounded hover:bg-[#442404] transition-colors">
