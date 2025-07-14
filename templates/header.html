@@ -8,10 +8,11 @@
     </a>
 
 <!-- PC 메뉴 -->
-<nav class="hidden md:flex items-center space-x-8 text-[17px] font-semibold text-[#442404]">
+{% set path = request.path %}
+<nav class="hidden md:flex items-center space-x-8 text-[17px] font-semibold">
     <!-- 회사소개 -->
     <div class="group relative">
-        <button class="group-hover:text-[#755d46]" aria-haspopup="true">회사소개</button>
+        <button class="group-hover:text-[#755d46] {{ 'text-[#755d46] font-bold' if path.startswith('/company') or path == '/contact' else 'text-[#442404]' }}" aria-haspopup="true">회사소개</button>
         <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 z-50 w-max whitespace-nowrap">
         <a href="/company/greeting" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">인사말</a>
         <a href="/company/overview" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">개요</a>
@@ -20,65 +21,64 @@
         </div>
     </div>
 
-    <!-- 자산관리 -->
+    <!-- 자사관리 -->
     <div class="group relative">
-        <button class="group-hover:text-[#755d46]" aria-haspopup="true">자산관리</button>
+        <button class="group-hover:text-[#755d46] {{ 'text-[#755d46] font-bold' if path.startswith('/management') else 'text-[#442404]' }}" aria-haspopup="true">자사관리</button>
         <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 z-50 w-max whitespace-nowrap">
         <a href="/management/overview" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">개요</a>
         <a href="/management/orgchart" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">조직도</a>
-        <a href="/management/secured" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">담보부 NPL</a>
-        <a href="/management/unsecured" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">무담보 NPL</a>
+        <a href="/management/secured" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">단보부 NPL</a>
+        <a href="/management/unsecured" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">무단보 NPL</a>
         <a href="/management/performance" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">관리 실적</a>
         <a href="/management/resources" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">자료실</a>
         </div>
     </div>
 
-    <!-- 자산운용 -->
+    <!-- 자사운용 -->
     <div class="group relative">
-        <button class="group-hover:text-[#755d46]" aria-haspopup="true">자산운용</button>
+        <button class="group-hover:text-[#755d46] {{ 'text-[#755d46] font-bold' if path.startswith('/operation') else 'text-[#442404]' }}" aria-haspopup="true">자사운용</button>
         <div class="absolute left-0 top-full mt-0 hidden group-hover:block bg-white shadow-lg rounded py-2 z-50 w-max whitespace-nowrap">
-        <a href="/operation/philosophy" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">철학</a>
+        <a href="/operation/philosophy" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">책화</a>
         <a href="/operation/orgchart" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">조직도</a>
         <a href="/operation/returns" class="block px-4 py-2 hover:text-[#755d46] hover:bg-gray-100">관리 실적</a>
         </div>
     </div>
 
-    <!-- 공시 및 공지 -->
-    <a href="/notice" class="hover:text-[#755d46]">공시 및 공지</a>
+    <!-- 공신 및 공지 -->
+    <a href="/notice" class="hover:text-[#755d46] {{ 'text-[#755d46] font-bold' if path.startswith('/notice') else 'text-[#442404]' }}">공신 및 공지</a>
 
-    <!-- 채용 -->
-    <a href="/recruit" class="hover:text-[#755d46]">채용</a>
+    <!-- 차용 -->
+    <a href="/recruit" class="hover:text-[#755d46] {{ 'text-[#755d46] font-bold' if path.startswith('/recruit') else 'text-[#442404]' }}">차용</a>
 
     <!-- 언어 변경 -->
     <button class="px-3 py-1 border border-[#755d46] rounded-md hover:bg-[#755d46] hover:text-white transition text-[#442404]">
         KO | EN
     </button>
-    </nav>
+</nav>
 
     <!-- 모바일 햄버거 -->
-        <button id="menuToggleBtn" class="md:hidden text-[#755d46]" aria-label="모바일 메뉴 열기">
+        <button id="menuToggleBtn" onclick="toggleMobileMenu()" class="md:hidden text-[#755d46]" aria-label="모바일 메뉴 열기">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
         </button>
     </div>
-    </header>
+</header>
 
 <!-- 모바일 메뉴 -->
-<div id="mobileMenu"
-     class="md:hidden fixed inset-0 bg-[#1a1a1a]/85 backdrop-blur-sm text-white shadow-lg transform translate-x-full transition-transform duration-300 z-[9999] overflow-y-auto">
+<div id="mobileMenu" class="md:hidden fixed inset-0 bg-[#1a1a1a]/85 backdrop-blur-sm text-white shadow-lg transform translate-x-full transition-transform duration-300 z-[9999] overflow-y-auto">
   <div class="relative p-6 pt-12 space-y-6 text-lg">
     <button onclick="toggleMobileMenu()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white text-2xl font-bold rounded-full bg-[#333] hover:bg-[#555]">✕</button>
 
     <!-- 회사소개 -->
     <div class="pt-4 border-t border-[#444]">
       <button onclick="toggleSubMenu('companySub')" class="w-full text-left py-2 font-semibold hover:text-[#c0b5ab]">회사소개</button>
-        <div id="companySub" class="pl-4 mt-2 hidden space-y-2 text-base">
+      <div id="companySub" class="pl-4 mt-2 hidden space-y-2 text-base">
         <a href="/company/greeting" class="block hover:text-[#c0b5ab]">인사말</a>
         <a href="/company/overview" class="block hover:text-[#c0b5ab]">개요</a>
         <a href="/company/orgchart" class="block hover:text-[#c0b5ab]">조직도</a>
         <a href="/company/contact" class="block hover:text-[#c0b5ab]">연락처</a>
-        </div>
+      </div>
     </div>
 
     <!-- 자산관리 -->
@@ -106,12 +106,12 @@
 
     <!-- 공시 및 공지 -->
     <div class="pt-4 border-t border-[#444]">
-    <a href="/notice" class="block w-full text-left py-2 font-semibold text-white hover:text-[#c0b5ab]">공시 및 공지</a>
+      <a href="/notice" class="block w-full text-left py-2 font-semibold hover:text-[#c0b5ab] {{ 'text-[#c0b5ab] font-bold' if path.startswith('/notice') else 'text-white' }}">공시 및 공지</a>
     </div>
 
     <!-- 채용 -->
     <div class="pt-4 border-t border-[#444]">
-    <a href="/recruit" class="block w-full text-left py-2 font-semibold text-white hover:text-[#c0b5ab]">채용</a>
+      <a href="/recruit" class="block w-full text-left py-2 font-semibold hover:text-[#c0b5ab] {{ 'text-[#c0b5ab] font-bold' if path.startswith('/recruit') else 'text-white' }}">채용</a>
     </div>
 
     <!-- 언어 변경 버튼 -->
@@ -120,3 +120,16 @@
     </button>
   </div>
 </div>
+
+<script>
+function toggleMobileMenu() {
+  const menu = document.getElementById("mobileMenu");
+  menu.classList.toggle("translate-x-full");
+  menu.classList.toggle("translate-x-0");
+}
+
+function toggleSubMenu(id) {
+  const subMenu = document.getElementById(id);
+  subMenu.classList.toggle("hidden");
+}
+</script>
