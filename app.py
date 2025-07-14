@@ -23,6 +23,11 @@ def company_overview():
 def company_orgchart():
     return render_template("company/orgchart.html")
 
+@app.route("/company/contact")
+def company_contact():
+    return render_template("company/contact.html")
+
+
 @app.route("/management")
 def management():
     return render_template("management.html")
@@ -51,6 +56,7 @@ def management_performance():
 def management_resources():
     return render_template("management/resources.html")
 
+
 @app.route("/operation")
 def operation():
     return render_template("operation.html")
@@ -63,17 +69,14 @@ def operation_orgchart():
 def operation_philosophy():
     return render_template("operation/philosophy.html")
 
-@app.route("/operation/returns")
-def operation_returns():
-    return render_template("operation/returns.html")
-
 @app.route("/notice")
 def notice():
     return render_template("notice.html")
 
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
+@app.route("/recruit")
+def recruit():
+    return render_template("recruit.html")
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

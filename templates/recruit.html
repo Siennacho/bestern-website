@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}채용 - Bestern{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="relative h-[320px] md:h-[420px]">
+  <img src="{{ url_for('static', filename='img/recruit.jpg') }}" alt="채용 배경" class="w-full h-full object-cover" />
+  <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+    <div class="text-white text-center px-4">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-wide">채용안내</h1>
+      <p class="mt-4 text-lg md:text-xl text-gray-200">BESTERN과 함께 성장할 인재를 기다립니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 채용 메시지 -->
+<section class="max-w-4xl mx-auto px-6 py-20">
+  <h2 class="text-2xl md:text-3xl font-bold mb-6 text-[#442404]">인재상</h2>
+  <p class="mb-8 text-gray-700 leading-relaxed">
+    BESTERN은 책임감 있고 도전정신이 강한 인재를 환영합니다.<br/>
+    함께 성장하며 새로운 가치를 창출할 수 있는 여러분의 지원을 기다립니다.
+  </p>
+
+  <h2 class="text-2xl md:text-3xl font-bold mb-6 text-[#442404]">채용분야</h2>
+  <ul class="space-y-4 mb-8">
+    <li>• 자산관리 및 분석</li>
+    <li>• 부동산 및 NPL 투자심사</li>
+    <li>• 금융 관련 사무 및 운영</li>
+    <li>• 백오피스 및 경영지원</li>
+  </ul>
+
+  <h2 class="text-2xl md:text-3xl font-bold mb-6 text-[#442404]">지원방법</h2>
+  <p class="text-gray-700 leading-relaxed mb-6">
+    이메일 접수: <a href="mailto:recruit@bestern.co.kr" class="text-primary underline">recruit@bestern.co.kr</a><br/>
+    이력서 및 자기소개서를 첨부해 주시기 바랍니다.
+  </p>
+
+  <p class="text-sm text-gray-500">※ 제출된 서류는 반환되지 않으며, 채용 목적 외에 사용되지 않습니다.</p>
+</section>
+
+{% endblock %}
