@@ -87,7 +87,7 @@ def board_write(category):
         image_urls = []
         file_urls = []
 
-
+        # ✅ 이미지 저장 (중복 제거 및 오류 방지 완료)
         for image in image_files:
             if image and allowed_file(image.filename) and is_image(image.filename):
                 filename = secure_filename(image.filename)
@@ -98,18 +98,24 @@ def board_write(category):
                 try:
                     image.save(filepath)
                     print(f"[✔] 이미지 저장 성공: {filepath}")
+                    image_url = url_for('static', filename=f'uploads/{new_filename}')
+                    image_urls.append(image_url)
                 except Exception as e:
                     print(f"[✘] 이미지 저장 실패: {e}")
 
-        image_url = url_for('static', filename=f'uploads/{new_filename}')
-        image_urls.append(image_url)        
+        # ✅ 첨부파일 저장
         for file in attachment_files:
             if file and allowed_file(file.filename) and not is_image(file.filename):
                 filename = secure_filename(file.filename)
                 path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                file.save(path)
-                file_urls.append('/' + path.replace("\\", "/"))
+                try:
+                    file.save(path)
+                    file_urls.append('/' + path.replace("\\", "/"))
+                    print(f"[✔] 파일 저장 성공: {path}")
+                except Exception as e:
+                    print(f"[✘] 파일 저장 실패: {e}")
 
+        # ✅ 게시글 객체 저장
         post = {
             'id': len(posts) + 1,
             'category': category,
@@ -126,6 +132,8 @@ def board_write(category):
         return redirect(url_for('board_list', category=category))
 
     return render_template("management/board/board_write.html", category=category, category_name=CATEGORIES[category])
+
+
 
 @app.route("/management/board/<category>/post/<int:post_id>")
 def board_post(category, post_id):

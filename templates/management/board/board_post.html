@@ -14,7 +14,7 @@
       작성자: {{ post.author }} | 날짜: {{ post.date }}
     </p>
     <div class="text-base leading-relaxed text-gray-800 whitespace-pre-line">
-      {{ post.content }}
+      {{ post.content | safe }}
     </div>
 
     <!-- 이미지 출력 -->
@@ -22,8 +22,9 @@
       <div class="mt-6">
         <h4 class="font-semibold mb-2 text-[#442404]">첨부 이미지</h4>
         <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-          {% for img_url in post.image_urls %}
-            <img src="{{ img_url }}" alt="첨부 이미지" class="rounded shadow-sm w-full object-contain max-h-64" />
+          {% for idx, img_url in enumerate(post.image_urls) %}
+            <img src="{{ img_url }}" alt="첨부 이미지 {{ idx + 1 }}"
+                 class="rounded shadow-sm w-full object-contain max-h-64" />
           {% endfor %}
         </div>
       </div>
@@ -36,8 +37,9 @@
         <ul class="list-disc list-inside text-[#442404]">
           {% for file_url in post.file_urls %}
             <li>
-              <a href="{{ file_url }}" target="_blank" class="underline hover:text-[#755d46]">
-                {{ file_url.split('/')[-1] }}
+              <a href="{{ file_url }}" target="_blank" download
+                 class="underline hover:text-[#755d46] flex items-center gap-1">
+                📎 {{ file_url | replace('/static/uploads/', '') }}
               </a>
             </li>
           {% endfor %}
@@ -47,9 +49,10 @@
 
     <!-- 버튼 영역 -->
     <div class="flex justify-end mt-6 space-x-4">
-      <a href="{{ url_for('board_edit', category=category, post_id=post.id) }}"
+      <a href="{{ url_for('board_edit_check', category=category, post_id=post.id) }}"
          class="px-4 py-2 bg-[#d2b8a3] text-white rounded hover:bg-[#b99f8b]">수정</a>
       <form method="POST" action="{{ url_for('board_delete', category=category, post_id=post.id) }}">
+        <!-- 추후 Flask-WTF 적용 시: {{ form.hidden_tag() }} -->
         <button type="submit"
                 class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
                 onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
