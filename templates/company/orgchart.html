@@ -1,58 +1,50 @@
 {% extends "base.html" %}
-{% block title %}회사소개 - Bestern{% endblock %}
+{% block title %}조직도 - Bestern{% endblock %}
 
 {% block meta %}
-  <meta name="description" content="Bestern의 설립 배경, 핵심 가치, 연혁을 소개합니다. 신뢰를 바탕으로 자산운용의 기준을 제시합니다.">
+  <meta name="description" content="Bestern의 조직도를 소개합니다. CEO부터 각 팀의 역할과 구성까지 확인하세요.">
 {% endblock %}
 
 {% block content %}
 
 <!-- Hero Banner -->
 <section class="relative h-[320px] md:h-[420px]">
-  <img src="{{ url_for('static', filename='img/company.jpg') }}" class="w-full h-full object-cover" alt="배경 이미지" />
+  <img src="{{ url_for('static', filename='img/orgchart.jpg') }}" class="w-full h-full object-cover" alt="조직도 배경 이미지" />
   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
     <div class="text-white text-center px-4">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-snug drop-shadow-md font-bestern">신뢰를 자산으로</h1>
-      <p class="mt-4 text-lg md:text-xl text-gray-200"><span class="font-bestern">BESTERN</span>은 자산관리의 기준을 만듭니다.</p>    </div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-snug drop-shadow-md font-bestern">조직도</h1>
+      <p class="mt-4 text-lg md:text-xl text-gray-200">Bestern의 체계적인 조직 구조를 소개합니다.</p>
+    </div>
   </div>
 </section>
 
-<!-- 회사 소개 메시지 -->
+<!-- 조직도 구조 -->
 <section class="max-w-5xl mx-auto px-6 py-20 text-center">
-  <h2 class="text-3xl md:text-4xl font-bold mb-8 text-[#2e1c0f] tracking-tight">인사말</h2>
-  <p class="text-lg md:text-xl text-[#444] leading-relaxed tracking-tight">
-    <span class="font-bestern">BESTERN</span>은 <span class="font-semibold text-[#2e1c0f]">부실채권 자산관리에 특화된</span> 자산관리회사입니다.<br class="hidden md:block">
-    고객의 자산 가치를 극대화하고,<br class="md:hidden">
-    <span class="font-semibold text-[#2e1c0f]">신뢰와 전문성</span>을 바탕으로 시장을 선도합니다.
-  </p>
-</section>
+  <h2 class="text-3xl md:text-4xl font-bold mb-10 text-[#2e1c0f] tracking-tight">조직 구성</h2>
 
-<!-- 핵심 가치 카드 -->
-<section class="bg-[#f9f7f4] py-16">
-  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition duration-300 min-h-[180px]">
-      <h3 class="text-xl font-semibold text-[#5e432f] mb-3">전문성</h3>
-      <p class="text-gray-700 text-base leading-relaxed">10조원 이상 자산관리 경험을 보유한 AM이 직접 관리합니다.</p>
+  <div class="flex flex-col items-center space-y-10 text-[#2e1c0f]">
+    <!-- CEO -->
+    <div>
+      <div class="text-xl font-bold border-b-2 border-[#755d46] inline-block pb-1 mb-2">대표이사 (CEO)</div>
+      <p class="text-sm text-gray-600">최고 경영 책임자</p>
     </div>
-    <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition duration-300 min-h-[180px]">
-      <h3 class="text-xl font-semibold text-[#5e432f] mb-3">신뢰</h3>
-      <p class="text-gray-700 text-base leading-relaxed">금융감독원 승인 자산관리사로서 법적 요건을 충족합니다.</p>
-    </div>
-    <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition duration-300 min-h-[180px]">
-      <h3 class="text-xl font-semibold text-[#5e432f] mb-3">투명성</h3>
-      <p class="text-gray-700 text-base leading-relaxed">SPC 회계관리, 투자자 보고, 공시 등 업무를 체계적으로 수행합니다.</p>
+
+    <!-- 주요 부서 -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4 w-full max-w-4xl">
+      <div class="bg-[#fefcf9] p-6 rounded-lg shadow">
+        <h3 class="text-lg font-semibold text-[#5e432f] mb-2">자산운용팀</h3>
+        <p class="text-sm text-gray-700">NPL 운용, SPC 관리, 수익 분석</p>
+      </div>
+      <div class="bg-[#fefcf9] p-6 rounded-lg shadow">
+        <h3 class="text-lg font-semibold text-[#5e432f] mb-2">리스크관리팀</h3>
+        <p class="text-sm text-gray-700">법률 검토, 리스크 분석, 내부통제</p>
+      </div>
+      <div class="bg-[#fefcf9] p-6 rounded-lg shadow">
+        <h3 class="text-lg font-semibold text-[#5e432f] mb-2">경영지원팀</h3>
+        <p class="text-sm text-gray-700">회계, 인사, 총무, 대외업무</p>
+      </div>
     </div>
   </div>
-</section>
-
-<!-- 연혁 -->
-<section class="max-w-5xl mx-auto px-6 py-16">
-  <h2 class="text-2xl md:text-3xl font-bold text-[#2e1c0f] mb-8 tracking-tight">연혁</h2>
-  <ul class="space-y-4 text-[#444] text-base md:text-lg leading-relaxed">
-    <li class="flex items-start gap-3"><span class="font-bold text-[#755d46] w-16">2021</span> <span>더베스트자산관리 설립</span></li>
-    <li class="flex items-start gap-3"><span class="font-bold text-[#755d46] w-16">2022</span> <span>10개 SPC 수탁 및 관리 계약 체결</span></li>
-    <li class="flex items-start gap-3"><span class="font-bold text-[#755d46] w-16">2024</span> <span>누적 자산 10조원 달성</span></li>
-  </ul>
 </section>
 
 {% endblock %}
