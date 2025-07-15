@@ -22,8 +22,8 @@
       <div class="mt-6">
         <h4 class="font-semibold mb-2 text-[#442404]">첨부 이미지</h4>
         <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-          {% for idx, img_url in enumerate(post.image_urls) %}
-            <img src="{{ img_url }}" alt="첨부 이미지 {{ idx + 1 }}"
+          {% for img_url in post.image_urls %}
+            <img src="{{ img_url }}" alt="첨부 이미지 {{ loop.index }}"
                  class="rounded shadow-sm w-full object-contain max-h-64" />
           {% endfor %}
         </div>
@@ -52,7 +52,7 @@
       <a href="{{ url_for('board_edit_check', category=category, post_id=post.id) }}"
          class="px-4 py-2 bg-[#d2b8a3] text-white rounded hover:bg-[#b99f8b]">수정</a>
       <form method="POST" action="{{ url_for('board_delete', category=category, post_id=post.id) }}">
-        <!-- 추후 Flask-WTF 적용 시: {{ form.hidden_tag() }} -->
+        <!-- form.hidden_tag() 제거함 -->
         <button type="submit"
                 class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
                 onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
