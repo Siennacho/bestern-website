@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}게시글 작성 비밀번호 확인{% endblock %}
+
+{% block content %}
+<section class="py-20 px-6 max-w-xl mx-auto text-center">
+  <h1 class="text-2xl font-bold mb-6">비밀번호 확인</h1>
+  <p class="mb-4 text-gray-600">게시글을 작성하려면 비밀번호를 입력하세요.</p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="mb-4">
+        {% for category, message in messages %}
+          <p class="text-red-500">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST">
+    <input type="password" name="password" placeholder="비밀번호 입력"
+           class="border px-4 py-2 rounded w-full mb-4" required>
+    <button type="submit"
+            class="bg-[#755d46] text-white px-6 py-2 rounded hover:bg-[#5a4432]">
+      확인
+    </button>
+  </form>
+</section>
+{% endblock %}

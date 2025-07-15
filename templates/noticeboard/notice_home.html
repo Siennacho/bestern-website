@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}공시 및 공지사항 - Bestern{% endblock %}
+{% block content %}
+
+<!-- Hero Banner -->
+<section class="relative h-[280px] sm:h-[320px] md:h-[420px]">
+  <img src="{{ url_for('static', filename='img/notice.jpg') }}" class="w-full h-full object-cover" alt="공시 배경" />
+  <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+    <div class="text-white text-center px-4">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">공시 및 공지사항</h1>
+      <p class="mt-4 text-base md:text-lg text-gray-200">Bestern의 주요 공지사항을 확인하세요</p>
+    </div>
+  </div>
+</section>
+
+<!-- 안내 및 바로가기 -->
+<section class="py-16 px-4 sm:px-6 max-w-5xl mx-auto text-center">
+  <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-[#442404]">공지사항 열람 및 등록</h2>
+  <p class="text-gray-700 mb-10">
+    본 게시판은 Bestern의 주요 공시 및 공식 공지사항을 제공합니다. <br />
+    관련 게시물을 등록하거나 수정하려면 인증이 필요합니다.
+  </p>
+
+  <div class="flex flex-col sm:flex-row justify-center gap-6">
+    <a href="{{ url_for('notice_list') }}" class="px-6 py-3 bg-[#755d46] hover:bg-[#604531] text-white rounded-lg font-semibold">공지 목록 보기</a>
+    <a href="{{ url_for('notice_write') }}" class="px-6 py-3 bg-white text-[#755d46] border border-[#755d46] hover:bg-[#f7f5f3] rounded-lg font-semibold">공지 등록하기</a>
+  </div>
+</section>
+
+{% endblock %}

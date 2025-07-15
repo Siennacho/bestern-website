@@ -15,6 +15,7 @@ ALLOWED_FILE_EXTENSIONS = {'pdf', 'xls', 'xlsx', 'doc', 'docx', 'hwp', 'zip'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 posts = []
+notice_posts = []
 
 CATEGORIES = {
     'policy': '개인채무자보호법 관련 내부 기준',
@@ -178,6 +179,39 @@ def board_delete(category, post_id):
     posts = [p for p in posts if not (p['id'] == post_id and p['category'] == category)]
     flash("게시글이 삭제되었습니다.", "success")
     return redirect(url_for('board_list', category=category))
+
+
+@app.route("/notice")
+def notice_list():
+    sorted_posts = sorted(notice_posts, key=lambda x: x['date'], reverse=True)
+    return render_template("noticeboard/notice_list.html", posts=sorted_posts)
+
+@app.route("/notice/write", methods=['GET', 'POST'])
+def notice_write():
+    if request.method == 'POST':
+        title = request.form.get('title')
+        content = request.form.get('content')
+        author = request.form.get('author')
+
+        new_post = {
+            'id': len(notice_posts) + 1,
+            'title': title,
+            'content': content,
+            'author': author,
+            'date': datetime.now().strftime('%Y-%m-%d')
+        }
+        notice_posts.append(new_post)
+        flash("공시 게시글이 등록되었습니다.", "success")
+        return redirect(url_for('notice_list'))
+    return render_template("noticeboard/notice_write.html")
+
+@app.route("/notice/<int:post_id>")
+def notice_post(post_id):
+    post = next((p for p in notice_posts if p['id'] == post_id), None)
+    if not post:
+        return "게시글을 찾을 수 없습니다.", 404
+    return render_template("noticeboard/notice_post.html", post=post)
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

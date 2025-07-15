@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}공시/공지사항 수정 - Bestern{% endblock %}
+{% block content %}
+
+<!-- Hero -->
+<section class="relative h-[280px] sm:h-[320px] md:h-[420px]">
+  <img src="{{ url_for('static', filename='img/notice.jpg') }}" class="w-full h-full object-cover" alt="공지사항 배경" />
+  <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+    <div class="text-white text-center px-4">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">공시 및 공지사항 수정</h1>
+    </div>
+  </div>
+</section>
+
+<!-- 수정 폼 -->
+<section class="py-16 px-4 sm:px-6 max-w-3xl mx-auto">
+  <form method="POST" enctype="multipart/form-data" class="space-y-6">
+    <div>
+      <label for="title" class="block font-semibold text-lg mb-2">제목</label>
+      <input type="text" id="title" name="title" value="{{ post.title }}" required class="w-full border border-gray-300 rounded px-4 py-2" />
+    </div>
+
+    <div>
+      <label for="author" class="block font-semibold text-lg mb-2">작성자</label>
+      <input type="text" id="author" name="author" value="{{ post.author }}" required class="w-full border border-gray-300 rounded px-4 py-2" />
+    </div>
+
+    <div>
+      <label for="content" class="block font-semibold text-lg mb-2">내용</label>
+      <textarea id="content" name="content" rows="10" required class="w-full border border-gray-300 rounded px-4 py-2">{{ post.content }}</textarea>
+    </div>
+
+    <div class="flex justify-end space-x-4">
+      <a href="{{ url_for('notice_post', post_id=post.id) }}" class="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded">취소</a>
+      <button type="submit" class="px-6 py-2 bg-[#755d46] hover:bg-[#604531] text-white rounded">수정하기</button>
+    </div>
+  </form>
+</section>
+
+{% endblock %}

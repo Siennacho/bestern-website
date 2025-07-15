@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}공지사항 목록 - Bestern{% endblock %}
+{% block content %}
+
+<!-- Hero Banner -->
+<section class="relative h-[280px] sm:h-[320px] md:h-[420px]">
+  <img src="{{ url_for('static', filename='img/notice.jpg') }}" class="w-full h-full object-cover" alt="공지사항 배경" />
+  <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+    <div class="text-white text-center px-4">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">공시 및 공지사항</h1>
+      <p class="mt-4 text-base md:text-lg text-gray-200">중요한 소식을 안내드립니다</p>
+    </div>
+  </div>
+</section>
+
+<!-- 게시글 목록 -->
+<section class="py-16 px-4 sm:px-6 max-w-5xl mx-auto">
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-xl sm:text-2xl font-bold text-[#442404]">공지사항 목록</h2>
+    <a href="{{ url_for('notice_write') }}" class="text-sm sm:text-base px-4 py-2 bg-[#755d46] hover:bg-[#604531] text-white rounded-lg font-medium">글쓰기</a>
+  </div>
+
+  {% if posts %}
+    <ul class="divide-y divide-gray-200">
+      {% for post in posts %}
+      <li class="py-4 flex justify-between items-center">
+        <div>
+          <a href="{{ url_for('notice_post', post_id=post.id) }}" class="text-lg font-semibold text-[#2e1c0f] hover:underline">
+            {{ post.title }}
+          </a>
+          <div class="text-sm text-gray-500 mt-1">{{ post.author }} · {{ post.date }}</div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-gray-600 text-center py-12">등록된 공지사항이 없습니다.</p>
+  {% endif %}
+</section>
+
+{% endblock %}

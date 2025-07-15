@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}공시 작성 - 공시 및 공지사항{% endblock %}
+{% block content %}
+
+<section class="py-16 px-4 max-w-3xl mx-auto">
+  <h1 class="text-2xl md:text-3xl font-bold text-[#2e1c0f] mb-8 text-center">공시 등록</h1>
+
+  <form method="POST">
+    <div class="mb-6">
+      <label for="title" class="block text-sm font-semibold mb-2 text-gray-700">제목</label>
+      <input type="text" id="title" name="title" required
+             class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#755d46]" />
+    </div>
+
+    <div class="mb-6">
+      <label for="author" class="block text-sm font-semibold mb-2 text-gray-700">작성자</label>
+      <input type="text" id="author" name="author" required
+             class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#755d46]" />
+    </div>
+
+    <div class="mb-6">
+      <label for="content" class="block text-sm font-semibold mb-2 text-gray-700">내용</label>
+      <textarea id="content" name="content" rows="10" required
+                class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#755d46]"></textarea>
+    </div>
+
+    <div class="flex justify-center mt-10">
+      <button type="submit"
+              class="px-6 py-2 bg-[#755d46] hover:bg-[#604531] text-white text-sm font-semibold rounded-lg">
+        등록하기
+      </button>
+    </div>
+  </form>
+</section>
+
+{% endblock %}
