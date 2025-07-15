@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}비밀번호 확인{% endblock %}
+{% block title %}비밀번호 확인 - 삭제{% endblock %}
 
 {% block content %}
 <section class="py-20 max-w-md mx-auto text-center">
@@ -7,15 +7,15 @@
     {{ category_name or '비공개 게시판' }}
   </h2>
   <p class="mb-6 text-gray-700">
-    게시글 작성을 위해 비밀번호를 입력해 주세요.
+    게시글을 삭제하려면 비밀번호를 입력해 주세요.
   </p>
 
   <form method="post" autocomplete="off" class="space-y-4">
     <input type="password" name="password" placeholder="비밀번호" required
            class="w-full border border-gray-300 px-4 py-2 rounded" />
     <button type="submit"
-            class="w-full bg-[#755d46] text-white px-4 py-2 rounded hover:bg-[#442404] transition">
-      입장하기
+            class="w-full bg-[#9b1c1c] text-white px-4 py-2 rounded hover:bg-[#6b0f0f] transition">
+      삭제하기
     </button>
   </form>
 

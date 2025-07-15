@@ -29,24 +29,39 @@
     </div>
 
     <div>
-      <label class="block mb-2 text-sm font-medium">현재 이미지</label>
-      {% if post.image_url %}
-        <img src="{{ post.image_url }}" alt="현재 이미지" class="max-w-xs mb-2 rounded shadow" />
+      <label class="block mb-2 text-sm font-medium">기존 이미지</label>
+      {% if post.image_urls %}
+        <div class="space-y-2">
+          {% for img in post.image_urls %}
+            <div class="flex items-center space-x-2">
+              <img src="{{ img }}" alt="첨부 이미지" class="w-32 rounded shadow">
+              <input type="checkbox" name="delete_images" value="{{ img }}"> 삭제
+            </div>
+          {% endfor %}
+        </div>
       {% else %}
         <p class="text-sm text-gray-400">이미지가 없습니다.</p>
       {% endif %}
-      <input type="file" id="image" name="image" accept="image/*"
+      <input type="file" id="images" name="images" accept="image/*" multiple
              class="mt-2 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-[#e7d8c9] file:text-[#442404] hover:file:bg-[#d2b8a3]">
     </div>
 
     <div>
-      <label class="block mb-2 text-sm font-medium">현재 첨부파일</label>
-      {% if post.file_url %}
-        <a href="{{ post.file_url }}" class="text-[#755d46] underline hover:text-[#442404]" target="_blank">기존 첨부파일 다운로드</a>
+      <label class="block mb-2 text-sm font-medium">기존 첨부파일</label>
+      {% if post.file_urls %}
+        <div class="space-y-2">
+          {% for file in post.file_urls %}
+            <div>
+              <a href="{{ file }}" target="_blank" class="text-[#755d46] underline hover:text-[#442404]">
+                {{ file.split('/')[-1] }} 다운로드</a>
+              <input type="checkbox" name="delete_files" value="{{ file }}"> 삭제
+            </div>
+          {% endfor %}
+        </div>
       {% else %}
         <p class="text-sm text-gray-400">첨부파일이 없습니다.</p>
       {% endif %}
-      <input type="file" id="attachment" name="attachment" accept=".pdf,.xls,.xlsx,.csv"
+      <input type="file" id="files" name="files" multiple accept=".pdf,.xls,.xlsx,.csv,.doc,.docx,.hwp,.zip"
              class="mt-2 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-[#e7d8c9] file:text-[#442404] hover:file:bg-[#d2b8a3]">
     </div>
 

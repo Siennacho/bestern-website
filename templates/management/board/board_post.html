@@ -1,63 +1,58 @@
 {% extends "base.html" %}
-{% block title %}{{ post.title|default('제목 없음') }}{% endblock %}
+{% block title %}게시글 보기{% endblock %}
 
 {% block content %}
-<section class="py-20 px-4 max-w-4xl mx-auto" aria-label="게시글 상세보기">
-  <!-- 제목 -->
-  <h2 class="text-2xl font-bold text-[#442404] mb-2">{{ post.title|default('제목 없음') }}</h2>
+<section class="py-20 px-6 max-w-4xl mx-auto">
+  <h2 class="text-2xl font-bold mb-6 text-center text-[#442404]">
+    {{ category_name }} - 게시글 상세
+  </h2>
 
-  <!-- 작성자 및 날짜 -->
-  <div class="text-sm text-gray-500 mb-6">
-    <span>작성자: {{ post.author|default('익명') }}</span> |
-    <span>작성일: {{ post.date|default('') }}</span>
-  </div>
-
-  <!-- 본문 내용 -->
-  <div class="text-base leading-relaxed whitespace-pre-wrap text-[#333] mb-8">
-    {{ post.content|default('') }}
-  </div>
-
-  <!-- 이미지 출력 (여러 장) -->
-  {% if post.image_urls %}
-    <div class="mb-10 space-y-6">
-      {% for img in post.image_urls %}
-        <img src="{{ img }}" alt="첨부 이미지" class="max-w-full rounded shadow-md" />
-      {% endfor %}
+  <!-- 게시글 정보 -->
+  <div class="space-y-4 border border-gray-200 rounded-lg p-6 bg-white shadow-sm">
+    <h3 class="text-xl font-bold text-[#2e1c0f]">{{ post.title }}</h3>
+    <p class="text-sm text-gray-600">
+      작성자: {{ post.author }} | 날짜: {{ post.date }}
+    </p>
+    <div class="text-base leading-relaxed text-gray-800 whitespace-pre-line">
+      {{ post.content }}
     </div>
-  {% endif %}
 
-  <!-- 첨부파일 출력 (여러 개) -->
-  {% if post.file_urls %}
-    <div class="mb-10 space-y-2">
-      {% for file in post.file_urls %}
-        <div>
-          📎 
-          <a href="{{ file }}" target="_blank" class="text-[#755d46] underline hover:text-[#442404]">
-            {{ file.split('/')[-1] }} 다운로드
-          </a>
+    <!-- 이미지 출력 -->
+    {% if post.image_urls %}
+      <div class="mt-6">
+        <h4 class="font-semibold mb-2 text-[#442404]">첨부 이미지</h4>
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+          {% for img_url in post.image_urls %}
+            <img src="{{ img_url }}" alt="첨부 이미지" class="rounded shadow-sm" />
+          {% endfor %}
         </div>
-      {% endfor %}
-    </div>
-  {% endif %}
+      </div>
+    {% endif %}
 
-  <!-- 목록 및 수정/삭제 버튼 -->
-  <div class="mt-12 flex justify-between items-center">
-    <a href="{{ url_for('board_list', category=category) }}"
-       class="inline-block px-4 py-2 bg-[#755d46] text-white rounded hover:bg-[#442404] transition-colors">
-      목록으로
-    </a>
+    <!-- 첨부파일 출력 -->
+    {% if post.file_urls %}
+      <div class="mt-6">
+        <h4 class="font-semibold mb-2 text-[#442404]">첨부파일</h4>
+        <ul class="list-disc list-inside text-[#442404]">
+          {% for file_url in post.file_urls %}
+            <li>
+              <a href="{{ file_url }}" target="_blank" class="underline hover:text-[#755d46]">
+                {{ file_url.split('/')[-1] }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
 
-    <div class="space-x-2">
+    <!-- 버튼 영역 -->
+    <div class="flex justify-end mt-6 space-x-4">
       <a href="{{ url_for('board_edit', category=category, post_id=post.id) }}"
-         class="inline-block px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400">
-        수정
-      </a>
-      <form method="POST" action="{{ url_for('board_delete', category=category, post_id=post.id) }}" style="display:inline;">
+         class="px-4 py-2 bg-[#d2b8a3] text-white rounded hover:bg-[#b99f8b]">수정</a>
+      <form method="POST" action="{{ url_for('board_delete', category=category, post_id=post.id) }}">
         <button type="submit"
                 class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                onclick="return confirm('정말 삭제하시겠습니까?');">
-          삭제
-        </button>
+                onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
       </form>
     </div>
   </div>

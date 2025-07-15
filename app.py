@@ -7,7 +7,6 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev_secret_key')
 POST_PASSWORD = os.environ.get('POST_PASSWORD', 'bestern_pw')
 
-# 업로드 설정
 UPLOAD_FOLDER = os.path.join('static', 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -15,14 +14,8 @@ ALLOWED_IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 ALLOWED_FILE_EXTENSIONS = {'pdf', 'xls', 'xlsx', 'doc', 'docx', 'hwp', 'zip'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-def allowed_file(filename):
-    ext = filename.rsplit('.', 1)[-1].lower()
-    return '.' in filename and (ext in ALLOWED_IMAGE_EXTENSIONS or ext in ALLOWED_FILE_EXTENSIONS)
+posts = []
 
-def is_image(filename):
-    return filename.rsplit('.', 1)[-1].lower() in ALLOWED_IMAGE_EXTENSIONS
-
-# 카테고리
 CATEGORIES = {
     'policy': '개인채무자보호법 관련 내부 기준',
     'auction': '경매 예정 통기서',
@@ -32,7 +25,12 @@ CATEGORIES = {
     'qna': 'QnA'
 }
 
-posts = []
+def allowed_file(filename):
+    ext = filename.rsplit('.', 1)[-1].lower()
+    return '.' in filename and (ext in ALLOWED_IMAGE_EXTENSIONS or ext in ALLOWED_FILE_EXTENSIONS)
+
+def is_image(filename):
+    return filename.rsplit('.', 1)[-1].lower() in ALLOWED_IMAGE_EXTENSIONS
 
 @app.route("/")
 def home():
@@ -62,15 +60,8 @@ def board_home():
 def board_list(category):
     if category not in CATEGORIES:
         return "존재하지 않는 게시판입니다.", 404
-    category_posts = sorted(
-        [p for p in posts if p['category'] == category],
-        key=lambda x: x['date'],
-        reverse=True
-    )
-    return render_template("management/board/board_list.html",
-                           category=category,
-                           category_name=CATEGORIES[category],
-                           posts=category_posts)
+    category_posts = sorted([p for p in posts if p['category'] == category], key=lambda x: x['date'], reverse=True)
+    return render_template("management/board/board_list.html", category=category, category_name=CATEGORIES[category], posts=category_posts)
 
 @app.route("/management/board/<category>/check", methods=['GET', 'POST'])
 def board_check(category):
@@ -78,9 +69,7 @@ def board_check(category):
         if request.form.get('password') == POST_PASSWORD:
             return redirect(url_for('board_write', category=category))
         flash("비밀번호가 틀렸습니다.", "error")
-    return render_template("management/board/board_check.html",
-                           category=category,
-                           category_name=CATEGORIES.get(category, ""))
+    return render_template("management/board/board_check.html", category=category, category_name=CATEGORIES.get(category, ""))
 
 @app.route("/management/board/<category>/write", methods=['GET', 'POST'])
 def board_write(category):
@@ -91,26 +80,25 @@ def board_write(category):
         title = request.form.get('title')
         content = request.form.get('content')
         author = request.form.get('author')
-        attachments = request.files.get('file')
         image_files = request.files.getlist('images')
+        attachment_files = request.files.getlist('files')
 
         image_urls = []
-        file_url = None
+        file_urls = []
 
-        if image_files:
-            for image in image_files:
-                if image and allowed_file(image.filename) and is_image(image.filename):
-                    filename = secure_filename(image.filename)
-                    path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    image.save(path)
-                    url = '/' + path.replace("\\", "/")
-                    image_urls.append(url)
+        for image in image_files:
+            if image and allowed_file(image.filename) and is_image(image.filename):
+                filename = secure_filename(image.filename)
+                path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                image.save(path)
+                image_urls.append('/' + path.replace("\\", "/"))
 
-        if attachments and allowed_file(attachments.filename) and not is_image(attachments.filename):
-            filename = secure_filename(attachments.filename)
-            path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            attachments.save(path)
-            file_url = '/' + path.replace("\\", "/")
+        for file in attachment_files:
+            if file and allowed_file(file.filename) and not is_image(file.filename):
+                filename = secure_filename(file.filename)
+                path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(path)
+                file_urls.append('/' + path.replace("\\", "/"))
 
         post = {
             'id': len(posts) + 1,
@@ -119,26 +107,30 @@ def board_write(category):
             'content': content,
             'author': author,
             'image_urls': image_urls,
-            'file_url': file_url,
+            'file_urls': file_urls,
             'date': datetime.now().strftime('%Y-%m-%d')
         }
+
         posts.append(post)
         flash("게시글이 등록되었습니다.", "success")
         return redirect(url_for('board_list', category=category))
 
-    return render_template("management/board/board_write.html",
-                           category=category,
-                           category_name=CATEGORIES[category])
+    return render_template("management/board/board_write.html", category=category, category_name=CATEGORIES[category])
 
 @app.route("/management/board/<category>/post/<int:post_id>")
 def board_post(category, post_id):
     post = next((p for p in posts if p['id'] == post_id and p['category'] == category), None)
     if not post:
         return "게시글을 찾을 수 없습니다.", 404
-    return render_template("management/board/board_post.html",
-                           post=post,
-                           category=category,
-                           category_name=CATEGORIES[category])
+    return render_template("management/board/board_post.html", post=post, category=category, category_name=CATEGORIES[category])
+
+@app.route("/management/board/<category>/edit/<int:post_id>/check", methods=['GET', 'POST'])
+def board_edit_check(category, post_id):
+    if request.method == 'POST':
+        if request.form.get('password') == POST_PASSWORD:
+            return redirect(url_for('board_edit', category=category, post_id=post_id))
+        flash("비밀번호가 틀렸습니다.", "error")
+    return render_template("management/board/board_check_edit.html", category=category, post_id=post_id)
 
 @app.route("/management/board/<category>/edit/<int:post_id>", methods=['GET', 'POST'])
 def board_edit(category, post_id):
@@ -150,13 +142,35 @@ def board_edit(category, post_id):
         post['title'] = request.form.get('title')
         post['author'] = request.form.get('author')
         post['content'] = request.form.get('content')
+
+        new_images = request.files.getlist('images')
+        for image in new_images:
+            if image and allowed_file(image.filename) and is_image(image.filename):
+                filename = secure_filename(image.filename)
+                path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                image.save(path)
+                post.setdefault('image_urls', []).append('/' + path.replace("\\", "/"))
+
+        new_files = request.files.getlist('files')
+        for file in new_files:
+            if file and allowed_file(file.filename) and not is_image(file.filename):
+                filename = secure_filename(file.filename)
+                path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(path)
+                post.setdefault('file_urls', []).append('/' + path.replace("\\", "/"))
+
         flash("게시글이 수정되었습니다.", "success")
         return redirect(url_for('board_post', category=category, post_id=post_id))
 
-    return render_template("management/board/board_edit.html",
-                           post=post,
-                           category=category,
-                           category_name=CATEGORIES[category])
+    return render_template("management/board/board_edit.html", post=post, category=category, category_name=CATEGORIES[category])
+
+@app.route("/management/board/<category>/delete/<int:post_id>/check", methods=['GET', 'POST'])
+def board_delete_check(category, post_id):
+    if request.method == 'POST':
+        if request.form.get('password') == POST_PASSWORD:
+            return redirect(url_for('board_delete', category=category, post_id=post_id))
+        flash("비밀번호가 틀렸습니다.", "error")
+    return render_template("management/board/board_check_delete.html", category=category, post_id=post_id)
 
 @app.route("/management/board/<category>/delete/<int:post_id>", methods=['POST'])
 def board_delete(category, post_id):
