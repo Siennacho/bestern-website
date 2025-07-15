@@ -91,11 +91,18 @@ def board_write(category):
         for image in image_files:
             if image and allowed_file(image.filename) and is_image(image.filename):
                 filename = secure_filename(image.filename)
-                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                image.save(filepath)
-                image_url = url_for('static', filename=f'uploads/{filename}')
-                image_urls.append(image_url)
-        
+                timestamp = datetime.now().strftime('%Y%m%d%H%M%S%f')
+                new_filename = f"{timestamp}_{filename}"
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], new_filename)
+
+                try:
+                    image.save(filepath)
+                    print(f"[✔] 이미지 저장 성공: {filepath}")
+                except Exception as e:
+                    print(f"[✘] 이미지 저장 실패: {e}")
+
+        image_url = url_for('static', filename=f'uploads/{new_filename}')
+        image_urls.append(image_url)        
         for file in attachment_files:
             if file and allowed_file(file.filename) and not is_image(file.filename):
                 filename = secure_filename(file.filename)
