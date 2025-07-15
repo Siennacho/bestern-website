@@ -87,13 +87,15 @@ def board_write(category):
         image_urls = []
         file_urls = []
 
+
         for image in image_files:
             if image and allowed_file(image.filename) and is_image(image.filename):
                 filename = secure_filename(image.filename)
-                path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                image.save(path)
-                image_urls.append('/' + path.replace("\\", "/"))
-
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                image.save(filepath)
+                image_url = url_for('static', filename=f'uploads/{filename}')
+                image_urls.append(image_url)
+        
         for file in attachment_files:
             if file and allowed_file(file.filename) and not is_image(file.filename):
                 filename = secure_filename(file.filename)
@@ -193,13 +195,36 @@ def notice_write():
         content = request.form.get('content')
         author = request.form.get('author')
 
+        image_files = request.files.getlist('images')
+        attachment_files = request.files.getlist('files')
+
+        image_urls = []
+        file_urls = []
+
+        for image in image_files:
+            if image and allowed_file(image.filename) and is_image(image.filename):
+                filename = secure_filename(image.filename)
+                path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                image.save(path)
+                image_urls.append('/' + path.replace("\\", "/"))
+
+        for file in attachment_files:
+            if file and allowed_file(file.filename) and not is_image(file.filename):
+                filename = secure_filename(file.filename)
+                path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(path)
+                file_urls.append('/' + path.replace("\\", "/"))
+
         new_post = {
             'id': len(notice_posts) + 1,
             'title': title,
             'content': content,
             'author': author,
+            'image_urls': image_urls,
+            'file_urls': file_urls,
             'date': datetime.now().strftime('%Y-%m-%d')
         }
+
         notice_posts.append(new_post)
         flash("공시 게시글이 등록되었습니다.", "success")
         return redirect(url_for('notice_list'))

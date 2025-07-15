@@ -23,7 +23,7 @@
         <h4 class="font-semibold mb-2 text-[#442404]">첨부 이미지</h4>
         <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {% for img_url in post.image_urls %}
-            <img src="{{ img_url }}" alt="첨부 이미지" class="rounded shadow-sm" />
+            <img src="{{ img_url }}" alt="첨부 이미지" class="rounded shadow-sm w-full object-contain max-h-64" />
           {% endfor %}
         </div>
       </div>

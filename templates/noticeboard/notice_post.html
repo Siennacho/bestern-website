@@ -14,6 +14,28 @@
     {{ post.content | safe }}
   </div>
 
+  {% if post.image_urls %}
+    <div class="mb-10">
+      <h2 class="text-lg font-semibold text-[#2e1c0f] mb-3">첨부 이미지</h2>
+      <div class="flex flex-wrap gap-4">
+        {% for img in post.image_urls %}
+          <img src="{{ img }}" alt="첨부 이미지" class="max-w-xs rounded shadow" />
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if post.file_urls %}
+    <div class="mb-10">
+      <h2 class="text-lg font-semibold text-[#2e1c0f] mb-3">첨부 파일</h2>
+      <ul class="list-disc pl-5 text-sm text-blue-700">
+        {% for file in post.file_urls %}
+          <li><a href="{{ file }}" download class="hover:underline">{{ file.split('/')[-1] }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
   <div class="text-center">
     <a href="{{ url_for('notice_list') }}"
        class="inline-block px-6 py-2 bg-[#755d46] hover:bg-[#604531] text-white text-sm font-semibold rounded-lg">
