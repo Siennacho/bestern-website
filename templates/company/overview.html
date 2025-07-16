@@ -16,49 +16,32 @@
       <p class="mt-4 text-lg md:text-xl text-gray-200">BESTERN은 자산관리의 기준을 만듭니다.</p>
     </div>
   </div>
+</section>
+
 <!-- 회사 개요 -->
 <section class="py-20 px-6 max-w-4xl mx-auto">
   <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#2e1c0f] tracking-tight">회사 개요</h2>
 
-  <div class="overflow-x-auto rounded-lg shadow-lg">
-    <table class="w-full table-auto border border-gray-200 text-gray-800 text-sm md:text-base bg-white">
+  <div class="overflow-x-auto rounded-lg shadow-md">
+    <table class="w-full border border-gray-200 text-gray-800 text-sm md:text-base bg-white">
       <tbody>
+        {% set company_info = [
+          ('회사명', '베스턴'),
+          ('대표이사', '조정연'),
+          ('설립일', '2014년 6월 11일'),
+          ('자본금', '15억원'),
+          ('임직원 수', '40명'),
+          ('회사 주소', '서울특별시 강남구 봉은사로 328, 3층 (역삼동, 창일빌딩)'),
+          ('홈페이지 주소', 'http://www.bestern.co.kr/'),
+          ('자산운용업 허가일', 'N/A'),
+          ('더베스트 등기 일자', '2021년 2월 23일')
+        ] %}
+        {% for label, value in company_info %}
         <tr class="border-b hover:bg-gray-50">
-          <th class="bg-[#f4f1ee] px-6 py-4 w-48 text-left font-semibold text-[#442404]">회사명</th>
-          <td class="px-6 py-4">베스턴</td>
+          <th class="bg-[#f4f1ee] px-6 py-4 text-left font-semibold text-[#442404] whitespace-nowrap w-48">{{ label }}</th>
+          <td class="px-6 py-4">{{ value }}</td>
         </tr>
-        <tr class="border-b hover:bg-gray-50">
-          <th class="bg-[#f4f1ee] px-6 py-4 text-left font-semibold text-[#442404]">대표이사</th>
-          <td class="px-6 py-4">조정연</td>
-        </tr>
-        <tr class="border-b hover:bg-gray-50">
-          <th class="bg-[#f4f1ee] px-6 py-4 text-left font-semibold text-[#442404]">설립일</th>
-          <td class="px-6 py-4">2014년 6월 11일</td>
-        </tr>
-        <tr class="border-b hover:bg-gray-50">
-          <th class="bg-[#f4f1ee] px-6 py-4 text-left font-semibold text-[#442404]">자본금</th>
-          <td class="px-6 py-4">15억원</td>
-        </tr>
-        <tr class="border-b hover:bg-gray-50">
-          <th class="bg-[#f4f1ee] px-6 py-4 text-left font-semibold text-[#442404]">임직원 수</th>
-          <td class="px-6 py-4">40명</td>
-        </tr>
-        <tr class="border-b hover:bg-gray-50">
-          <th class="bg-[#f4f1ee] px-6 py-4 text-left font-semibold text-[#442404]">회사 주소</th>
-          <td class="px-6 py-4">서울특별시 강남구 봉은사로 328, 3층 (역삼동, 창일빌딩)</td>
-        </tr>
-        <tr class="border-b hover:bg-gray-50">
-          <th class="bg-[#f4f1ee] px-6 py-4 text-left font-semibold text-[#442404]">홈페이지 주소</th>
-          <td class="px-6 py-4">http://www.bestern.co.kr/</td>
-        </tr>
-        <tr class="border-b hover:bg-gray-50">
-          <th class="bg-[#f4f1ee] px-6 py-4 text-left font-semibold text-[#442404]">자산운용업 허가일</th>
-          <td class="px-6 py-4">N/A</td>
-        </tr>
-        <tr class="hover:bg-gray-50">
-          <th class="bg-[#f4f1ee] px-6 py-4 text-left font-semibold text-[#442404]">더베스트 등기 일자</th>
-          <td class="px-6 py-4">2021년 2월 23일</td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
@@ -69,8 +52,7 @@
   <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#401E01] tracking-tight">주요 연혁</h2>
 
   <div class="relative">
-    <div class="flex items-start justify-between overflow-x-auto scrollbar-hide">
-
+    <div class="flex items-start justify-start overflow-x-auto gap-8 pb-4 scrollbar-hide">
       {% set history = [
         ('2014.6.11', '주식회사 제이케이제이엔 설립'),
         ('2019.3.20', '우영에비뉴어드바이저스로 변경'),
@@ -79,17 +61,17 @@
         ('2025', '자본금 1,500백만원 증자'),
         ('2025', '관리자산 1조 돌파')
       ] %}
-
       {% for date, event in history %}
-      <div class="flex flex-col items-center text-center mx-4 min-w-[140px]">
-        <div class="w-3 h-3 bg-[#755d46] rounded-full mb-2"></div>
-        <p class="text-sm font-semibold text-[#755d46] mb-1">{{ date }}</p>
-        <p class="text-sm text-gray-700">{{ event }}</p>
+      <div class="flex flex-col items-center text-center min-w-[160px] relative">
+        <div class="w-4 h-4 bg-[#755d46] rounded-full z-10 mb-2"></div>
+        <div class="text-sm font-semibold text-[#755d46] mb-1">{{ date }}</div>
+        <div class="text-sm text-gray-700 whitespace-nowrap">{{ event }}</div>
       </div>
       {% endfor %}
-
     </div>
-    <div class="absolute top-[1.15rem] left-0 right-0 h-[2px] bg-[#ccc] z-[-1]"></div>
+    <!-- 타임라인 줄 -->
+    <div class="absolute top-[0.95rem] left-0 right-0 h-[2px] bg-[#ccc] z-0"></div>
   </div>
 </section>
+
 {% endblock %}
