@@ -53,6 +53,7 @@
 
   <div class="relative">
     <div class="flex items-start justify-start overflow-x-auto gap-8 pb-4 scrollbar-hide">
+
       {% set history = [
         ('2014.6.11', '주식회사 제이케이제이엔 설립'),
         ('2019.3.20', '우영에비뉴어드바이저스로 변경'),
@@ -61,17 +62,20 @@
         ('2025', '자본금 1,500백만원 증자'),
         ('2025', '관리자산 1조 돌파')
       ] %}
+
       {% for date, event in history %}
-      <div class="flex flex-col items-center text-center min-w-[160px] relative">
-        <div class="w-4 h-4 bg-[#755d46] rounded-full z-10 mb-2"></div>
-        <div class="text-sm font-semibold text-[#755d46] mb-1">{{ date }}</div>
-        <div class="text-sm text-gray-700 whitespace-nowrap">{{ event }}</div>
+      <div class="flex flex-col items-center text-center min-w-[180px] max-w-[200px] px-2">
+        <div class="w-4 h-4 bg-[#755d46] rounded-full mb-2 z-10"></div>
+        <p class="text-sm font-semibold text-[#755d46] mb-1 whitespace-nowrap">{{ date }}</p>
+        <p class="text-sm text-gray-700 break-words leading-relaxed">{{ event }}</p>
       </div>
       {% endfor %}
     </div>
-    <!-- 타임라인 줄 -->
-    <div class="absolute top-[0.95rem] left-0 right-0 h-[2px] bg-[#ccc] z-0"></div>
+
+    <!-- 수평선 -->
+    <div class="absolute top-[1rem] left-0 right-0 h-[2px] bg-[#ccc] z-0"></div>
   </div>
+</section>
 </section>
 
 {% endblock %}
