@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% block title %}자산관리 - 무담보 NPL{% endblock %}
+{% block title %}자산관리 - 무담보 부실채권 및 채무조정제도{% endblock %}
 
 {% block meta %}
-  <meta name="description" content="Bestern의 무담보 NPL 자산관리 방식입니다. 담보 없는 채권에 대해 회수 전략, 정보 분석, 전문가 네트워크로 대응합니다.">
+  <meta name="description" content="BESTERN의 무담보 부실채권 유형과 채무조정제도를 소개합니다. NPL 정의부터 제도 비교까지 실무에 필요한 핵심 정보를 확인해보세요.">
 {% endblock %}
 
 {% block content %}
@@ -13,40 +13,126 @@
   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
     <div class="text-white text-center px-4">
       <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-snug drop-shadow-md">
-        무담보 NPL
+        무담보 부실채권 & 채무조정제도
       </h1>
-      <p class="mt-4 text-lg md:text-xl text-gray-200">신용 기반 채권, 전략적 회수로 가치 실현</p>
+      <p class="mt-4 text-lg md:text-xl text-gray-200">
+        다양한 채권 유형과 제도 비교를 통해 BESTERN의 전략적 자산관리를 이해합니다.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- 본문 내용 -->
-<section class="py-20 px-6 max-w-6xl mx-auto text-center">
-  <h2 class="text-3xl md:text-4xl font-bold text-[#442404] mb-10">무담보 NPL 관리</h2>
-  <p class="text-gray-700 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
-    <span class="font-semibold text-[#442404]">무담보 NPL</span>은 담보 없이 채무자의 신용을 기반으로 발생한 채권으로,<br class="hidden md:inline">
-    철저한 <span class="font-semibold text-[#442404]">정보 분석</span>과 <span class="font-semibold text-[#442404]">맞춤형 회수 전략</span>이 핵심입니다.
-  </p>
+<!-- 채권 유형 설명 -->
+<section class="py-20 px-6 max-w-6xl mx-auto">
+  <h2 class="text-3xl md:text-4xl font-bold text-[#2e1c0f] mb-12 text-center tracking-tight">채권 유형 설명</h2>
 
-  <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">1. 회수 전략</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">
-        채권의 특성에 따라 맞춤형 회수 프로세스를 설계하고 집행합니다.
-      </p>
+  <div class="grid md:grid-cols-2 gap-6">
+    <!-- NPL채권 -->
+    <div class="p-6 border-l-4 border-[#755d46] bg-white rounded shadow">
+      <h3 class="text-xl font-semibold mb-2 text-[#5e432f]">NPL채권 (Non Performing Loan)</h3>
+      <p class="text-sm"><strong>정의:</strong> 금융기관이 회수 가능성이 낮거나 어려운 부실채권</p>
+      <p class="text-sm text-gray-700 mt-1">여신거래로 인한 채권 중 채무자의 변제를 기대할 수 없어 회수조치 또는 관리가 필요한 채권</p>
     </div>
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">2. 정보 분석</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">
-        채무자의 재무 상태와 상환 능력을 정밀 분석하여 회수 가능성을 높입니다.
-      </p>
+
+    <!-- 무담보 부실채권 -->
+    <div class="p-6 border-l-4 border-[#755d46] bg-white rounded shadow">
+      <h3 class="text-xl font-semibold mb-2 text-[#5e432f]">무담보 부실채권</h3>
+      <p class="text-sm"><strong>정의:</strong> 신용 기반 대출로 담보 없이 발생한 회수되지 않은 채권</p>
+      <p class="text-sm text-gray-700 mt-1">채무자의 일반재산으로부터 회수해야 하는 잔존 채권</p>
     </div>
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">3. 협력 네트워크</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">
-        변호사, 법무사 등 외부 전문가와의 협업을 통해 복잡한 채권에도 유연하게 대응합니다.
-      </p>
+
+    <!-- 채무조정채권 -->
+    <div class="p-6 border-l-4 border-[#755d46] bg-white rounded shadow">
+      <h3 class="text-xl font-semibold mb-2 text-[#5e432f]">채무조정채권</h3>
+      <p class="text-sm"><strong>정의:</strong> 공적기관을 통한 채무조정 결과 발생한 채권</p>
+      <p class="text-sm text-gray-700 mt-1"><strong>특성:</strong> 추심 불필요, 관리비용 낮음<br><strong>시장동향:</strong> 최근 가장 활발한 시장, 현금흐름 안정</p>
     </div>
+
+    <!-- 일반무담보채권 -->
+    <div class="p-6 border-l-4 border-[#755d46] bg-white rounded shadow">
+      <h3 class="text-xl font-semibold mb-2 text-[#5e432f]">일반무담보채권</h3>
+      <p class="text-sm"><strong>정의:</strong> 채무조정이 적용되지 않은 무담보채권</p>
+      <p class="text-sm text-gray-700 mt-1"><strong>특성:</strong> 채권별 가격 상이, 추심비용 큼<br><strong>시장동향:</strong> 과거 활발 → 현재 제한적 거래</p>
+    </div>
+  </div>
+</section>
+
+<!-- 채무조정 제도 비교 테이블 -->
+<section class="py-20 px-6 max-w-6xl mx-auto">
+  <h2 class="text-3xl md:text-4xl font-bold text-[#2e1c0f] text-center mb-10 tracking-tight">채무조정 제도 비교</h2>
+
+  <div class="overflow-x-auto rounded shadow bg-white">
+    <table class="min-w-full text-sm border border-gray-200">
+      <thead class="bg-[#f4f1ee] text-[#442404] text-left">
+        <tr>
+          <th class="px-4 py-3 font-semibold border">구분</th>
+          <th class="px-4 py-3 font-semibold border">개인회생(IRL)</th>
+          <th class="px-4 py-3 font-semibold border">개인워크아웃</th>
+          <th class="px-4 py-3 font-semibold border">프리워크아웃</th>
+          <th class="px-4 py-3 font-semibold border">신속채무조정</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-800">
+        <tr class="border-t">
+          <td class="px-4 py-3 border font-medium">운영주체</td>
+          <td class="px-4 py-3 border">법원</td>
+          <td colspan="3" class="px-4 py-3 border">신용회복위원회</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-3 border font-medium">시행시기</td>
+          <td class="px-4 py-3 border">2004.09.23</td>
+          <td class="px-4 py-3 border">2002.10.01</td>
+          <td class="px-4 py-3 border">2009.04.13</td>
+          <td class="px-4 py-3 border">2019.07.08</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-3 border font-medium">대상채권</td>
+          <td class="px-4 py-3 border">제한 없음 (사채 포함)</td>
+          <td colspan="3" class="px-4 py-3 border">협약가입 금융기관</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-3 border font-medium">채무범위</td>
+          <td class="px-4 py-3 border">무담보 10억, 담보 15억</td>
+          <td colspan="3" class="px-4 py-3 border">총 15억 이하 (무담보 5억, 담보 10억)</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-3 border font-medium">대상 채무자</td>
+          <td class="px-4 py-3 border">과대채무 봉급생활자/영업소득자</td>
+          <td class="px-4 py-3 border">연체 90일 이상</td>
+          <td class="px-4 py-3 border">연체 30~90일</td>
+          <td class="px-4 py-3 border">연체 30일 이하</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-3 border font-medium">보증인 효력</td>
+          <td class="px-4 py-3 border">채권추심 가능</td>
+          <td colspan="3" class="px-4 py-3 border">채권추심 불가</td>
+        </tr>
+        <tr class="border-t align-top">
+          <td class="px-4 py-3 border font-medium">채무조정 수준</td>
+          <td class="px-4 py-3 border whitespace-pre-line text-xs">
+변제기간 5년 (2018.06.13부터 3년)
+(청산가치보다 클 것)
+          </td>
+          <td class="px-4 py-3 border whitespace-pre-line text-xs">
+무담보: 이자·연체이자 전액감면, 원금 70% 감면<br>
+담보: 연체이자 감면, 최장 35년 분할 (3년 거치 포함)
+          </td>
+          <td class="px-4 py-3 border whitespace-pre-line text-xs">
+무담보: 이자율 1/2 인하, 최장 10년<br>
+담보: 연체이자 감면, 최장 35년 (3년 거치 포함)
+          </td>
+          <td class="px-4 py-3 border whitespace-pre-line text-xs">
+무담보: 연체이자 감면, 최고이자율 15%<br>
+최장 10년 균등 분할상환 (6개월 유예 지원)
+          </td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-3 border font-medium">법적효력</td>
+          <td class="px-4 py-3 border">변제 완료 시 면책</td>
+          <td colspan="3" class="px-4 py-3 border">사적조정 → 변제 완료 시 면책</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
