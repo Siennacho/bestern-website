@@ -32,11 +32,13 @@
   <!-- 부실채권 종류 -->
   <section class="py-20 px-6 max-w-6xl mx-auto">
     <h2 class="text-3xl md:text-4xl font-bold text-[#2e1c0f] text-center mb-10 tracking-tight">부실채권(NPL)의 종류</h2>
+
     <div class="overflow-x-auto rounded shadow bg-white">
       <table class="min-w-full text-sm border border-gray-200">
         <thead class="bg-[#f4f1ee] text-[#442404] text-left">
           <tr>
-            <th class="px-4 py-3 border font-semibold text-center">채권 구분</th>
+            <th class="px-4 py-3 border font-semibold text-center align-middle" rowspan="2">채권 구분</th>
+            <th class="px-4 py-3 border font-semibold text-center">세부 구분</th>
             <th class="px-4 py-3 border font-semibold text-center">내용</th>
             <th class="px-4 py-3 border font-semibold text-center">비고</th>
           </tr>
@@ -44,44 +46,44 @@
         <tbody class="text-gray-800">
           <!-- Special 채권 -->
           <tr class="border-t">
-            <td class="px-4 py-3 border font-medium text-center align-top" rowspan="2">Special 채권</td>
+            <td class="px-4 py-3 border text-center font-medium align-middle" rowspan="2">Special<br>채권</td>
+            <td class="px-4 py-3 border text-center font-medium">회생절차 진행기업</td>
             <td class="px-4 py-3 border whitespace-pre-line text-sm">
-              회생절차 진행기업<br>
-              - 회생 가능<br>
-              회생조건 이행 → 일정 CF 및 적정 수익 유지<br>
-              1) M&A 등을 통한 회수<br>
-              2) 영업정상화를 통한 회수<br>
-              - 회생 불가능 → 담보처분 회수
+  - 회생 가능<br>
+  회생조건 이행 → 일정 CF 및 적정 수익 유지<br>
+  1) M&A 등을 통한 회수<br>
+  2) 영업 정상화를 통한 회수<br>
+  - 회생 불가능 → 담보처분 회수
             </td>
-            <td class="px-4 py-3 border text-center align-top">회생 가능 여부 판단 중요</td>
+            <td class="px-4 py-3 border text-center align-middle">회생 가능 여부 판단 중요</td>
           </tr>
           <tr class="border-t">
+            <td class="px-4 py-3 border text-center font-medium">Workout 기업</td>
             <td class="px-4 py-3 border whitespace-pre-line text-sm">
-              Work-out 기업<br>
-              - 유사한 방식의 구조조정 및 회수
+  - 기업 구조조정 등을 통해 회수 추진
             </td>
             <td class="px-4 py-3 border text-center">-</td>
           </tr>
 
           <!-- Regular 채권 - 담보채권 -->
           <tr class="border-t">
-            <td class="px-4 py-3 border font-medium text-center align-top" rowspan="2">Regular 채권</td>
+            <td class="px-4 py-3 border text-center font-medium align-middle" rowspan="2">Regular<br>채권</td>
+            <td class="px-4 py-3 border text-center font-medium">담보채권</td>
             <td class="px-4 py-3 border whitespace-pre-line text-sm">
-              담보채권<br>
-              - 경매 또는 공매를 통한 담보처분 회수<br>
-              - 수익 극대화를 위하여 개발 가능성 있는 부동산이나<br>
-              권리관계 복잡한 부동산 등 → 유입 후 권리관계 정리·매각하여<br>
-              부동산 가치 상승 시켜 회수
+  - 경매 또는 공매를 통한 담보처분 회수<br>
+  - 수익 극대화를 위해 개발 가능성 있는 부동산이나<br>
+  권리관계 복잡한 부동산 등 → 유입 후 권리관계 정리<br>
+  → 매각하여 부동산 가치 상승 시켜 회수
             </td>
             <td class="px-4 py-3 border text-center">-</td>
           </tr>
 
           <!-- Regular 채권 - 무담보채권 -->
           <tr class="border-t">
+            <td class="px-4 py-3 border text-center font-medium">무담보채권</td>
             <td class="px-4 py-3 border whitespace-pre-line text-sm">
-              무담보채권<br>
-              - 개인회생 및 신용회복 채권<br>
-              - 매입가격 저렴 → 시효관리 지속 → 회수기간 장기 소요
+  - 개인회생 및 신용회복 채권<br>
+  - 매입가격 저렴 → 시효관리 지속 → 회수기간 장기 소요
             </td>
             <td class="px-4 py-3 border text-center">-</td>
           </tr>
@@ -89,6 +91,8 @@
       </table>
     </div>
   </section>
+
+
   <!-- 투자 구조 -->
   <h3 class="text-2xl font-semibold text-[#755d46] mb-4 mt-10">투자 구조</h3>
   <img src="{{ url_for('static', filename='img/SPC.png') }}" alt="투자 구조" class="w-full max-w-3xl mx-auto border rounded-lg shadow-md">
