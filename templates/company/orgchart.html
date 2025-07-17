@@ -18,32 +18,20 @@
   </div>
 </section>
 
-<!-- 조직도 구조 -->
+<!-- 조직도 이미지 삽입 -->
 <section class="max-w-5xl mx-auto px-6 py-20 text-center">
   <h2 class="text-3xl md:text-4xl font-bold mb-10 text-[#2e1c0f] tracking-tight">조직 구성</h2>
 
-  <div class="flex flex-col items-center space-y-10 text-[#2e1c0f]">
-    <!-- CEO -->
-    <div>
-      <div class="text-xl font-bold border-b-2 border-[#755d46] inline-block pb-1 mb-2">대표이사 (CEO)</div>
-      <p class="text-sm text-gray-600">최고 경영 책임자</p>
-    </div>
+  <p class="text-sm md:text-base text-gray-600 mb-6">
+    투자심의위원회, 리스트관리위원회, 각 부문 조직의 역할이 한눈에 보이는 BESTERN의 공식 조직도입니다.
+  </p>
 
-    <!-- 주요 부서 -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4 w-full max-w-4xl">
-      <div class="bg-[#fefcf9] p-6 rounded-lg shadow">
-        <h3 class="text-lg font-semibold text-[#5e432f] mb-2">자산운용팀</h3>
-        <p class="text-sm text-gray-700">NPL 운용, SPC 관리, 수익 분석</p>
-      </div>
-      <div class="bg-[#fefcf9] p-6 rounded-lg shadow">
-        <h3 class="text-lg font-semibold text-[#5e432f] mb-2">리스크관리팀</h3>
-        <p class="text-sm text-gray-700">법률 검토, 리스크 분석, 내부통제</p>
-      </div>
-      <div class="bg-[#fefcf9] p-6 rounded-lg shadow">
-        <h3 class="text-lg font-semibold text-[#5e432f] mb-2">경영지원팀</h3>
-        <p class="text-sm text-gray-700">회계, 인사, 총무, 대외업무</p>
-      </div>
-    </div>
+  <div class="rounded-lg overflow-hidden shadow bg-white p-4 md:p-6">
+    <img 
+      src="{{ url_for('static', filename='img/orgchart-company.png') }}" 
+      alt="BESTERN 조직도 이미지" 
+      class="mx-auto max-w-full object-contain max-h-[900px]" 
+      loading="lazy" />
   </div>
 </section>
 
