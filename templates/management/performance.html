@@ -26,21 +26,52 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
     <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition min-h-[160px]">
-      <p class="text-4xl font-bold text-[#755d46] mb-2">94%</p>
+      <p class="text-3xl font-bold text-[#755d46] mb-2 counter" data-target="1852458470150">0</p>
       <div class="w-6 h-[2px] mx-auto bg-[#e2d4c5] mb-3"></div>
-      <p class="text-gray-700 text-sm">2023년 누적 회수율</p>
+      <p class="text-gray-700 text-sm">총 수임자산</p>
     </div>
     <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition min-h-[160px]">
-      <p class="text-4xl font-bold text-[#755d46] mb-2">1.2조 원</p>
+      <p class="text-3xl font-bold text-[#755d46] mb-2 counter" data-target="851056236792">0</p>
       <div class="w-6 h-[2px] mx-auto bg-[#e2d4c5] mb-3"></div>
-      <p class="text-gray-700 text-sm">총 관리 자산 규모</p>
+      <p class="text-gray-700 text-sm">회수 실적</p>
     </div>
     <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition min-h-[160px]">
-      <p class="text-4xl font-bold text-[#755d46] mb-2">25개</p>
+      <p class="text-3xl font-bold text-[#755d46] mb-2 counter" data-target="1001402233358">0</p>
       <div class="w-6 h-[2px] mx-auto bg-[#e2d4c5] mb-3"></div>
-      <p class="text-gray-700 text-sm">운영 중인 SPC 수</p>
+      <p class="text-gray-700 text-sm">현재 관리자산</p>
     </div>
   </div>
 </section>
+
+<!-- 숫자 애니메이션 스크립트 -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll('.counter');
+
+    const animateCount = (el) => {
+      const target = parseInt(el.dataset.target, 10);
+      let current = 0;
+      const duration = 1800; // 총 시간(ms)
+      const stepTime = Math.max(Math.floor(duration / target * 100), 10);
+      const increment = Math.ceil(target / (duration / stepTime));
+
+      const update = () => {
+        current += increment;
+        if (current >= target) {
+          el.innerText = target.toLocaleString();
+        } else {
+          el.innerText = current.toLocaleString();
+          requestAnimationFrame(update);
+        }
+      };
+
+      update();
+    };
+
+    counters.forEach((counter) => {
+      animateCount(counter);
+    });
+  });
+</script>
 
 {% endblock %}
