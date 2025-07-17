@@ -2,7 +2,7 @@
 {% block title %}자산관리 - 개요{% endblock %}
 
 {% block meta %}
-  <meta name="description" content="Bestern의 자산관리 개요 페이지입니다. 부실채권 관리, SPC 자산관리, 투자자 보고 등 전문적인 자산운용 체계를 확인하세요.">
+  <meta name="description" content="Bestern의 자산관리 개요입니다. 체계적인 구조와 프로세스를 통해 전문성과 투명한 운영을 보장합니다.">
 {% endblock %}
 
 {% block content %}
@@ -12,22 +12,34 @@
   <img src="{{ url_for('static', filename='img/management.jpg') }}" class="w-full h-full object-cover" alt="자산관리 배경 이미지" />
   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
     <div class="text-white text-center px-4">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-snug drop-shadow-md">
-        전문성과 투명성
-      </h1>
-      <p class="mt-4 text-lg md:text-xl text-gray-200">베스턴은 체계적인 자산관리를 제공합니다.</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-snug drop-shadow-md">자산관리 개요</h1>
+      <p class="mt-4 text-lg md:text-xl text-gray-200">Bestern은 자산관리의 기준을 제시합니다.</p>
     </div>
   </div>
 </section>
 
-<!-- 자산관리 개요 본문 -->
-<section class="py-20 px-6 max-w-4xl mx-auto">
-  <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center text-[#2e1c0f] tracking-tight">자산관리 개요</h2>
+<!-- 개요 내용 -->
+<section class="py-20 px-6 max-w-5xl mx-auto text-gray-800 leading-relaxed">
+  <h2 class="text-3xl md:text-4xl font-bold text-[#442404] mb-8 text-center">자산관리 구조</h2>
+  <p class="mb-6">
+    자산관리회사(AMC, Asset Management Company)는 유동화전문회사(SPC)의 설립부터 자산 매각까지 전 과정에 걸쳐 자산관리 업무를 총괄합니다.
+    유동화 구조의 설계, 투자자 대상 보고, 법인 관리, 리스크 관리 등 다양한 업무를 수행하며, 철저한 내부통제 절차와 법률적 책임 하에 운영됩니다.
+  </p>
 
-  <div class="text-center text-base md:text-lg text-gray-700 leading-relaxed tracking-tight bg-white p-6 rounded-lg shadow-sm max-w-prose mx-auto">
-    <span class="font-semibold text-[#2e1c0f]">베스턴자산관리</span>는 금융기관의 부실채권(NPL)을 전문적으로 관리하기 위한 자산관리회사로,<br class="hidden md:block">
-    SPC의 자산관리, 투자자 보고, 법인관리 등 <span class="font-semibold text-[#2e1c0f]">법적 요건을 충족하며 안정적인 서비스</span>를 제공합니다.
-  </div>
+  <h3 class="text-2xl font-semibold text-[#755d46] mb-4 mt-10">운영 프로세스</h3>
+  <ul class="list-disc pl-5 space-y-2">
+    <li>유동화 구조 설계 및 SPC 설립</li>
+    <li>기초자산 확보 및 평가</li>
+    <li>자산 관리 및 회수 업무 수행</li>
+    <li>투자자 보고 및 정보 공시</li>
+    <li>SPC 법인 관리 (회계, 세무, 행정)</li>
+  </ul>
+
+  <h3 class="text-2xl font-semibold text-[#755d46] mb-4 mt-10">자산관리사의 역할</h3>
+  <p>
+    Bestern은 다양한 유형의 자산과 시장 상황에 맞는 맞춤형 자산관리 서비스를 제공합니다. 엄격한 리스크 분석과 철저한 회수 전략을 바탕으로,
+    고객의 수익 극대화와 자산의 안정적인 운용을 동시에 달성합니다.
+  </p>
 </section>
 
 {% endblock %}

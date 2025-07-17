@@ -1,48 +1,45 @@
 {% extends "base.html" %}
-{% block title %}자산관리 - 담보부 NPL{% endblock %}
+{% block title %}자산관리 - 담보자산{% endblock %}
 
 {% block meta %}
-  <meta name="description" content="Bestern의 담보부 NPL 관리 방식입니다. 경매, 공매, 협의매각을 통해 부동산 담보 기반 채권을 효율적으로 회수합니다.">
+  <meta name="description" content="Bestern의 담보자산 관리전략을 소개합니다. 철저한 실사 및 담보가치 평가를 바탕으로 안정적인 수익을 도모합니다.">
 {% endblock %}
 
 {% block content %}
 
 <!-- Hero Banner -->
 <section class="relative h-[320px] md:h-[420px]">
-  <img src="{{ url_for('static', filename='img/management.jpg') }}" class="w-full h-full object-cover" alt="자산관리 배경 이미지" />
+  <img src="{{ url_for('static', filename='img/secured.jpg') }}" class="w-full h-full object-cover" alt="담보자산 배경 이미지" />
   <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
     <div class="text-white text-center px-4">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-snug drop-shadow-md">
-        담보부 NPL
-      </h1>
-      <p class="mt-4 text-lg md:text-xl text-gray-200">부동산을 담보로 안정적인 회수를 이끌어냅니다.</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-snug drop-shadow-md">담보자산 운용</h1>
+      <p class="mt-4 text-lg md:text-xl text-gray-200">정확한 실사와 분석을 통한 안정적 회수 전략</p>
     </div>
   </div>
 </section>
 
-<!-- 본문 내용 -->
-<section class="py-20 px-6 max-w-5xl mx-auto text-center">
-  <h2 class="text-3xl md:text-4xl font-bold text-[#442404] mb-10">담보부 NPL 관리</h2>
+<!-- 담보자산 내용 -->
+<section class="py-20 px-6 max-w-5xl mx-auto text-gray-800 leading-relaxed">
+  <h2 class="text-3xl md:text-4xl font-bold text-[#442404] mb-8 text-center">담보자산 운용 개요</h2>
 
-  <p class="text-gray-700 text-base md:text-lg leading-relaxed max-w-prose mx-auto">
-    <span class="font-semibold text-[#442404]">담보부 NPL(부실채권)</span>은 부동산을 담보로 설정한 채권으로,<br class="hidden md:inline">
-    안정적인 회수를 위해 아래 절차를 체계적으로 수행합니다.
+  <p class="mb-6">
+    담보자산 운용은 부동산, 유가증권, 기계설비 등 실물 담보물을 기초로 하여, 회수 가능성을 높이고 리스크를 최소화하는 전략적 자산관리 방식입니다.
+    Bestern은 담보 자산의 위치, 가치, 시장성 등을 정밀 분석하여 회수 전략을 수립하고, 담보권 실행, 관리 및 매각까지 체계적으로 수행합니다.
   </p>
 
-  <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">1. 경매</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">법원을 통해 담보물을 매각하여 채권을 회수하는 절차입니다.</p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">2. 공매</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">국세청이나 한국자산관리공사 등의 기관을 통해 매각이 이루어집니다.</p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">3. 협의 매각</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">채무자와 협의를 통해 시장가에 맞는 직접 매각을 진행합니다.</p>
-    </div>
-  </div>
+  <h3 class="text-2xl font-semibold text-[#755d46] mt-10 mb-4">주요 업무</h3>
+  <ul class="list-disc pl-5 space-y-2">
+    <li>담보 자산의 실사 및 평가</li>
+    <li>담보권 실행 관련 법률 검토 및 절차 진행</li>
+    <li>자산별 회수 전략 수립 및 관리</li>
+    <li>시장 분석을 통한 최적 매각 시기 결정</li>
+    <li>매각 후 정산 및 SPC 관리보고</li>
+  </ul>
+
+  <h3 class="text-2xl font-semibold text-[#755d46] mt-10 mb-4">Bestern의 강점</h3>
+  <p>
+    Bestern은 담보자산의 정밀한 실사 능력과 풍부한 회수 경험을 바탕으로, 고객의 수익을 극대화하고 리스크를 최소화하는 전략적 운용을 실현하고 있습니다.
+  </p>
 </section>
 
 {% endblock %}
