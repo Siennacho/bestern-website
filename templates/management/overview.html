@@ -20,25 +20,30 @@
 
 <!-- 개요 내용 -->
 <section class="py-20 px-6 max-w-5xl mx-auto text-gray-800 leading-relaxed">
-  <h2 class="text-3xl md:text-4xl font-bold text-[#442404] mb-8 text-center">자산관리 구조</h2>
+  <h2 class="text-3xl md:text-4xl font-bold text-[#442404] mb-8 text-center">자산관리 개요</h2>
+
+  <!-- 부실채권 정의 -->
+  <h3 class="text-2xl font-semibold text-[#755d46] mb-4">부실채권(NPL)이란?</h3>
   <p class="mb-6">
-    자산관리회사(AMC, Asset Management Company)는 유동화전문회사(SPC)의 설립부터 자산 매각까지 전 과정에 걸쳐 자산관리 업무를 총괄합니다.
-    유동화 구조의 설계, 투자자 대상 보고, 법인 관리, 리스크 관리 등 다양한 업무를 수행하며, 철저한 내부통제 절차와 법률적 책임 하에 운영됩니다.
+    원리금 등의 상환이 지연되는 채권으로써, 금융기관의 수익을 발생시키지 않거나, 다른 정상채권에 비해 낮은 수익 또는 수익이 발생하지 않는 채권을 의미합니다. <br>
+    ※ <strong>고정이하여신</strong> : 대출원리금이 3개월 이상 연체된 무수익 여신을 말하며, 흔히 부실채권이라 불립니다.
   </p>
 
-  <h3 class="text-2xl font-semibold text-[#755d46] mb-4 mt-10">운영 프로세스</h3>
-  <ul class="list-disc pl-5 space-y-2">
-    <li>유동화 구조 설계 및 SPC 설립</li>
-    <li>기초자산 확보 및 평가</li>
-    <li>자산 관리 및 회수 업무 수행</li>
-    <li>투자자 보고 및 정보 공시</li>
-    <li>SPC 법인 관리 (회계, 세무, 행정)</li>
-  </ul>
+  <!-- 부실채권 종류 -->
+  <h3 class="text-2xl font-semibold text-[#755d46] mb-4 mt-10">부실채권의 종류</h3>
+  <img src="{{ url_for('static', filename='img/orgchart-company.png') }}" alt="부실채권 종류 이미지" class="w-full max-w-4xl mx-auto border rounded-lg shadow-md">
 
-  <h3 class="text-2xl font-semibold text-[#755d46] mb-4 mt-10">자산관리사의 역할</h3>
+  <!-- 투자 구조 -->
+  <h3 class="text-2xl font-semibold text-[#755d46] mb-4 mt-10">투자 구조</h3>
+  <img src="{{ url_for('static', filename='img/SPC.png') }}" alt="투자 구조" class="w-full max-w-3xl mx-auto border rounded-lg shadow-md">
+
+  <!-- 자산관리회사 정의 -->
+  <h3 class="text-2xl font-semibold text-[#755d46] mb-4 mt-10">자산관리회사(AMC)란?</h3>
   <p>
-    Bestern은 다양한 유형의 자산과 시장 상황에 맞는 맞춤형 자산관리 서비스를 제공합니다. 엄격한 리스크 분석과 철저한 회수 전략을 바탕으로,
-    고객의 수익 극대화와 자산의 안정적인 운용을 동시에 달성합니다.
+    자산관리회사(AMC)는 자산유동화에 관한 법률에 따라 규정 요건을 갖추고 금융감독원의 승인을 받아 설립된 독립적인 회사입니다.<br>
+    금융기관에서 발생한 부실채권(NPL)을 매각하기 위해 설립된 특수목적회사(SPC: Special Purpose Company)는
+    자산관리, 투자자보고, 법인관리 등의 업무를 총괄할 자산관리회사(AMC)를 필요로 하며,
+    자산유동화에 관한 법률에서는 그 업무를 자산관리자(AMC)에게 위탁하도록 의무화하고 있습니다.
   </p>
 </section>
 

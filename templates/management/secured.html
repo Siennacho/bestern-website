@@ -21,7 +21,6 @@
 <!-- 담보자산 내용 -->
 <section class="py-20 px-6 max-w-5xl mx-auto text-gray-800 leading-relaxed">
   <h2 class="text-3xl md:text-4xl font-bold text-[#442404] mb-8 text-center">담보자산 운용 개요</h2>
-
   <p class="mb-6">
     담보자산 운용은 부동산, 유가증권, 기계설비 등 실물 담보물을 기초로 하여, 회수 가능성을 높이고 리스크를 최소화하는 전략적 자산관리 방식입니다.
     Bestern은 담보 자산의 위치, 가치, 시장성 등을 정밀 분석하여 회수 전략을 수립하고, 담보권 실행, 관리 및 매각까지 체계적으로 수행합니다.
@@ -40,6 +39,34 @@
   <p>
     Bestern은 담보자산의 정밀한 실사 능력과 풍부한 회수 경험을 바탕으로, 고객의 수익을 극대화하고 리스크를 최소화하는 전략적 운용을 실현하고 있습니다.
   </p>
+</section>
+
+<!-- 채권 유형 설명 -->
+<section class="py-20 px-6 max-w-6xl mx-auto">
+  <h2 class="text-3xl md:text-4xl font-bold text-[#2e1c0f] mb-12 text-center tracking-tight">채권 유형 설명</h2>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    <!-- NPL채권 -->
+    <div class="p-6 border-l-4 border-[#755d46] bg-white rounded shadow">
+      <h3 class="text-xl font-semibold mb-2 text-[#5e432f]">NPL채권 (Non Performing Loan)</h3>
+      <p class="text-sm"><strong>정의:</strong> 금융기관이 회수 가능성이 낮거나 어려운 부실채권</p>
+      <p class="text-sm text-gray-700 mt-1">여신거래로 인한 채권 중 채무자의 변제를 기대할 수 없어 회수조치 또는 관리가 필요한 채권</p>
+    </div>
+
+    <!-- 담보부 부실채권 -->
+    <div class="p-6 border-l-4 border-[#755d46] bg-white rounded shadow">
+      <h3 class="text-xl font-semibold mb-2 text-[#5e432f]">담보부 부실채권</h3>
+      <p class="text-sm"><strong>정의:</strong> 부동산 등 담보물에 기반한 부실채권</p>
+      <p class="text-sm text-gray-700 mt-1">경매 또는 공매를 통한 담보처분 회수<br>
+      수익극대화를 위하여 개발 가능성 있는 부동산이나 권리관계 복잡한 부동산 등은 유입 후 권리관계 정리 매각하여 부동산가치 상승 시켜 회수</p>
+    </div>
+  </div>
+</section>
+
+<!-- 회수 방법 -->
+<section class="py-20 px-6 max-w-6xl mx-auto">
+  <h2 class="text-3xl md:text-4xl font-bold text-[#2e1c0f] mb-12 text-center tracking-tight">담보부채권 회수 방법</h2>
+  <img src="{{ url_for('static', filename='img/secured-method.png') }}" alt="담보부채권 회수방법" class="w-full max-w-4xl mx-auto shadow-md rounded">
 </section>
 
 {% endblock %}
