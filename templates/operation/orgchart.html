@@ -20,40 +20,20 @@
   </div>
 </section>
 
-<!-- 조직도 설명 -->
-<section class="py-20 px-6 max-w-6xl mx-auto text-gray-800 text-center">
+<!-- 조직도 이미지 섹션 -->
+<section class="py-20 px-6 max-w-6xl mx-auto text-center">
   <h2 class="text-3xl md:text-4xl font-bold text-[#442404] mb-10 tracking-tight">운용 조직 구성</h2>
   <p class="text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-12">
     <span class="font-semibold text-[#442404]">BESTERN</span>은 안정적인 수익과 체계적인 리스크 관리를 위해<br class="hidden md:block">
     분야별 <span class="font-semibold text-[#442404]">전문 인력</span>을 중심으로 효율적인 운용 조직을 구성하고 있습니다.
   </p>
 
-  <!-- 조직도 카드 구성 -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">1. 운용전략팀</h3>
-      <p class="text-sm text-gray-600 leading-relaxed">
-        전체 포트폴리오 전략 수립 및 자산 배분 조정 역할을 수행합니다.
-      </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">2. 실물자산팀</h3>
-      <p class="text-sm text-gray-600 leading-relaxed">
-        부동산, 인프라 등 실물 기반 자산에 대한 투자 실행 및 사후 관리를 담당합니다.
-      </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">3. 금융자산팀</h3>
-      <p class="text-sm text-gray-600 leading-relaxed">
-        유동화채권, NPL, 대체투자 등 다양한 금융상품을 운용합니다.
-      </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-      <h3 class="text-lg font-semibold text-[#755d46] mb-2">4. 리스크관리팀</h3>
-      <p class="text-sm text-gray-600 leading-relaxed">
-        사전·사후 리스크를 정밀 분석하고 조직 전반의 리스크를 통제합니다.
-      </p>
-    </div>
+  <div class="rounded-lg overflow-hidden shadow bg-white p-4 md:p-6">
+    <img 
+      src="{{ url_for('static', filename='img/orgchart-operation.png') }}" 
+      alt="Bestern 자산운용 조직도 이미지" 
+      class="mx-auto max-w-full object-contain max-h-[900px]" 
+      loading="lazy" />
   </div>
 </section>
 
