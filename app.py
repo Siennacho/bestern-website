@@ -50,7 +50,7 @@ class Post(db.Model):
 with app.app_context():
     db.create_all()
     
-notice_posts = []
+#notice_posts = []
 
 CATEGORIES = {
     'policy': '개인채무자보호법 관련 내부 기준',
@@ -256,8 +256,12 @@ def board_delete(category, post_id):
 
 @app.route("/notice")
 def notice_list():
-    sorted_posts = sorted(notice_posts, key=lambda x: x['date'], reverse=True)
-    return render_template("noticeboard/notice_list.html", posts=sorted_posts)
+    # ✅ DB에서 category='notice_announcement'인 게시글만 불러오기
+    posts = Post.query.filter_by(category='notice_announcement').order_by(Post.date.desc()).all()
+    post_dicts = [post.to_dict() for post in posts]
+
+    return render_template("noticeboard/notice_list.html", posts=post_dicts)
+
 
 @app.route("/notice/write", methods=['GET', 'POST'])
 def notice_write():
@@ -272,13 +276,17 @@ def notice_write():
         image_urls = []
         file_urls = []
 
+        # 이미지 저장
         for image in image_files:
             if image and allowed_file(image.filename) and is_image(image.filename):
                 filename = secure_filename(image.filename)
-                path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                image.save(path)
-                image_urls.append('/' + path.replace("\\", "/"))
+                timestamp = datetime.now().strftime('%Y%m%d%H%M%S%f')
+                new_filename = f"{timestamp}_{filename}"
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], new_filename)
+                image.save(filepath)
+                image_urls.append(url_for('static', filename=f'uploads/{new_filename}'))
 
+        # 첨부파일 저장
         for file in attachment_files:
             if file and allowed_file(file.filename) and not is_image(file.filename):
                 filename = secure_filename(file.filename)
@@ -286,28 +294,32 @@ def notice_write():
                 file.save(path)
                 file_urls.append('/' + path.replace("\\", "/"))
 
-        new_post = {
-            'id': len(notice_posts) + 1,
-            'title': title,
-            'content': content,
-            'author': author,
-            'image_urls': image_urls,
-            'file_urls': file_urls,
-            'date': datetime.now().strftime('%Y-%m-%d')
-        }
+        # DB에 저장
+        new_post = Post(
+            category='notice_announcement',
+            title=title,
+            content=content,
+            author=author,
+            image_urls=json.dumps(image_urls),
+            file_urls=json.dumps(file_urls),
+            date=datetime.now().strftime('%Y-%m-%d')
+        )
+        db.session.add(new_post)
+        db.session.commit()
 
-        notice_posts.append(new_post)
         flash("공시 게시글이 등록되었습니다.", "success")
         return redirect(url_for('notice_list'))
+
     return render_template("noticeboard/notice_write.html")
+
 
 @app.route("/notice/<int:post_id>")
 def notice_post(post_id):
-    post = next((p for p in notice_posts if p['id'] == post_id), None)
+    post = Post.query.filter_by(id=post_id, category='notice_announcement').first()
     if not post:
         return "게시글을 찾을 수 없습니다.", 404
-    return render_template("noticeboard/notice_post.html", post=post)
 
+    return render_template("noticeboard/notice_post.html", post=post.to_dict())
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
