@@ -49,7 +49,7 @@ with app.app_context():
 
 CATEGORIES = {
     'policy': '개인채무자보호법 관련 내부 기준',
-    'auction': '경매 예정 통기서',
+    'auction': '경매 예정 통지서',
     'notice': '개인 채무자보호 관련 공고',
     'privacy': '개인정보 처리방침',
     'assets': '기타 유동화 자산관련 공고',
