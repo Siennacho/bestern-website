@@ -321,6 +321,16 @@ def notice_post(post_id):
 
     return render_template("noticeboard/notice_post.html", post=post.to_dict())
 
+
+# 처음 한 번만 실행하여 DB 생성
+if not os.path.exists('posts.db'):
+    with app.app_context():
+        db.create_all()
+        print("✅ posts.db 파일 생성 완료")
+
+        
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()  
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
